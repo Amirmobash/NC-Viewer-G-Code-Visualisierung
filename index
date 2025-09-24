@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NC-Viewer Deutsch - Professionelle G-Code Visualisierung</title>
+    <meta name="description" content="Kostenloser Online G-Code Viewer für die deutsche Fertigungsindustrie. Visualisieren und analysieren Sie Ihre CNC-Programme direkt im Browser.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.nivt.de/">
+    <meta property="og:title" content="NC-Viewer Deutsch - Professionelle G-Code Visualisierung">
+    <meta property="og:description" content="Kostenloser Online G-Code Viewer für die deutsche Fertigungsindustrie.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.nivt.de/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NC-Viewer Deutsch">
+    <meta name="twitter:description" content="Professionelle G-Code Visualisierung für CNC-Programme">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+        
+        .control-panel {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .panel-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .panel-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--light);
+            color: var(--primary);
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--gray);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--secondary);
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-light {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .btn-light:hover {
+            background-color: #dde4e6;
+        }
+        
+        .visualization-area {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .visualization-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .view-tabs {
+            display: flex;
+            background: var(--light);
+            border-radius: 5px;
+            padding: 4px;
+        }
+        
+        .view-tab {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        .view-tab.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .view-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .view-btn {
+            background: var(--light);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .view-btn.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .canvas-container {
+            flex: 1;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+        }
+        
+        .canvas-container.panning {
+            cursor: grabbing;
+        }
+        
+        #viewer-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .file-info {
+            background-color: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-label {
+            font-weight: 600;
+        }
+        
+        .gcode-preview {
+            margin-top: 1.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--light);
+            border-radius: 5px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            background-color: #f8f9fa;
+        }
+        
+        .slider-container {
+            margin: 1rem 0;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: var(--light);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--secondary);
+            cursor: pointer;
+        }
+        
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            gap: 10px;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--secondary);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .status-bar {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .coordinates {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .camera-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-panel {
+                order: 2;
+            }
+            
+            .visualization-area {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">⚙️</div>
+                <div>
+                    <h1>NC-Viewer Deutsch</h1>
+                    <div class="subtitle">Visualisieren und analysieren Sie Ihre G-Code Dateien</div>
+                </div>
+            </div>
+            <a href="https://www.nivt.de/" class="btn btn-light">Zurück zu nivt.de</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <div class="control-panel">
+                <div class="panel-section">
+                    <h3>Datei hochladen</h3>
+                    <div class="file-upload" id="upload-area">
+                        <div class="upload-icon">📁</div>
+                        <p>Ziehen Sie eine NC-Datei hierher oder klicken Sie zum Auswählen</p>
+                        <p class="subtitle">Unterstützt: .nc, .gcode, .cnc, .txt</p>
+                        <input type="file" id="file-input" class="file-input" accept=".nc,.gcode,.cnc,.txt">
+                    </div>
+                    <button class="btn btn-block" id="load-sample">
+                        <span>📋</span> Beispieldatei laden
+                    </button>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>Visualisierungseinstellungen</h3>
+                    
+                    <div class="toggle-container">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="grid-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span>Gitternetz anzeigen</span>
+                    </div>
+                    
+                    <div class="toggle-container">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="rapid-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span>Schnellbewegungen farbig</span>
+                    </div>
+                    
+                    <div class="toggle-container">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="depth-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span>Tiefenanzeige (3D)</span>
+                    </div>
+                    
+                    <div class="slider-container">
+                        <div class="slider-label">
+                            <span>Werkzeuggeschwindigkeit</span>
+                            <span id="speed-value">Mittel</span>
+                        </div>
+                        <input type="range" min="1" max="4" value="2" class="slider" id="speed-slider">
+                    </div>
+                    
+                    <div class="slider-container">
+                        <div class="slider-label">
+                            <span>Linienstärke</span>
+                            <span id="line-width-value">Mittel</span>
+                        </div>
+                        <input type="range" min="1" max="3" value="2" class="slider" id="line-width-slider">
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: 1rem;">
+                        <button class="btn btn-light btn-block" id="reset-view">
+                            <span>🔄</span> Zurücksetzen
+                        </button>
+                        <button class="btn btn-light btn-block" id="fit-view">
+                            <span>🔍</span> Anpassen
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>Datei-Informationen</h3>
+                    <div class="file-info">
+                        <div class="info-item">
+                            <span class="info-label">Dateiname:</span>
+                            <span id="filename">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Dateigröße:</span>
+                            <span id="filesize">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Zeilen:</span>
+                            <span id="line-count">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Bearbeitungszeit:</span>
+                            <span id="processing-time">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Einheiten:</span>
+                            <span id="units">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>G-Code Vorschau</h3>
+                    <div class="gcode-preview" id="gcode-preview">
+                        <p>Laden Sie eine Datei, um den G-Code anzuzeigen</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="visualization-area">
+                <div class="visualization-header">
+                    <h3 id="view-title">2D-Visualisierung (XY-Ebene)</h3>
+                    <div class="view-tabs">
+                        <button class="view-tab active" data-view="2d">Draufsicht (2D)</button>
+                        <button class="view-tab" data-view="3d">3D-Ansicht</button>
+                    </div>
+                </div>
+                
+                <div class="canvas-container" id="canvas-container">
+                    <canvas id="viewer-canvas"></canvas>
+                    <div class="status-bar">
+                        <span>Zoom: <span id="zoom-level">100%</span></span>
+                        <span>Ansicht: <span id="view-type">2D</span></span>
+                    </div>
+                    <div class="coordinates">
+                        X: <span id="coord-x">0.00</span> | Y: <span id="coord-y">0.00</span> | Z: <span id="coord-z">0.00</span>
+                    </div>
+                    <div class="camera-info" id="camera-info" style="display: none;">
+                        Kamera: <span id="camera-angles">0°, 0°</span> | Distanz: <span id="camera-distance">100</span>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-light" id="play-btn">
+                            <span>▶️</span> Simulation starten
+                        </button>
+                        <button class="btn btn-light" id="step-btn">
+                            <span>⏭️</span> Schritt
+                        </button>
+                    </div>
+                    <button class="btn btn-accent" id="export-btn">
+                        <span>💾</span> Als Bild exportieren
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>NC-Viewer Deutsch - Ein kostenloses Tool zur G-Code Visualisierung</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">© 2023 - Entwickelt für die deutsche Fertigungsindustrie</p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "NC-Viewer Deutsch",
+      "url": "https://www.nivt.de/",
+      "description": "Kostenloser Online G-Code Viewer für die deutsche Fertigungsindustrie",
+      "publisher": {
+        "@type": "Organization",
+        "name": "NC-Viewer"
+      }
+    }
+    </script>
+
+    <script>
+        // G-Code Parser und Visualisierer
+        class GCodeViewer {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.segments = [];
+                this.bbox = { minX: 0, minY: 0, minZ: 0, maxX: 0, maxY: 0, maxZ: 0 };
+                this.view2D = {
+                    zoom: 1,
+                    panX: 0,
+                    panY: 0,
+                    offsetX: 0,
+                    offsetY: 0
+                };
+                this.view3D = {
+                    yaw: 0,    // Drehung um Y-Achse (Grad)
+                    pitch: 0,  // Drehung um X-Achse (Grad)
+                    distance: 100, // Abstand vom Ursprung
+                    targetX: 0, // Zielpunkt X
+                    targetY: 0, // Zielpunkt Y
+                    targetZ: 0  // Zielpunkt Z
+                };
+                this.mode = {
+                    absolute: true,
+                    units: 'mm'
+                };
+                this.currentPosition = { x: 0, y: 0, z: 0 };
+                this.playIndex = 0;
+                this.isPlaying = false;
+                this.playInterval = null;
+                this.speedValues = [500, 250, 100, 50]; // ms pro Segment
+                this.lineWidthValues = [1, 2, 3];
+                this.activeView = '2d'; // '2d' oder '3d'
+                
+                // Event-Listener für Maussteuerung
+                this.setupMouseControls();
+                
+                // Initialisiere die Canvas-Größe
+                this.setupCanvas();
+            }
+            
+            setupCanvas() {
+                // Verwende ResizeObserver für responsives Canvas
+                const container = this.canvas.parentElement;
+                const resizeObserver = new ResizeObserver(entries => {
+                    for (let entry of entries) {
+                        this.handleResize(entry.contentRect);
+                    }
+                });
+                
+                resizeObserver.observe(container);
+                this.handleResize(container.getBoundingClientRect());
+            }
+            
+            handleResize(rect) {
+                const dpr = window.devicePixelRatio || 1;
+                
+                // CSS-Größe setzen
+                this.canvas.style.width = rect.width + 'px';
+                this.canvas.style.height = rect.height + 'px';
+                
+                // Interne Größe mit DPR-Berücksichtigung
+                this.canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+                this.canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+
+                // Wichtig: Vor dem Skalieren die Transformation zurücksetzen
+                this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+                this.ctx.scale(dpr, dpr);
+                
+                // Offsets auf Canvas-Mitte setzen, falls sie 0 sind
+                const cssW = this.canvas.width / dpr;
+                const cssH = this.canvas.height / dpr;
+                if (this.view2D.offsetX === 0 && this.view2D.offsetY === 0) {
+                    this.view2D.offsetX = cssW / 2;
+                    this.view2D.offsetY = cssH / 2;
+                }
+                
+                this.draw();
+            }
+            
+            setupMouseControls() {
+                const container = this.canvas.parentElement;
+                let isPanning = false;
+                let isRotating = false;
+                let is3DPanning = false;
+                let lastX = 0;
+                let lastY = 0;
+                
+                // Mausrad-Zoom
+                container.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    
+                    if (this.activeView === '2d') {
+                        const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
+                        const rect = this.canvas.getBoundingClientRect();
+                        const mouseX = e.clientX - rect.left;
+                        const mouseY = e.clientY - rect.top;
+                        
+                        // Zoom auf den Mauszeiger
+                        const worldX = this.screenToWorldX(mouseX);
+                        const worldY = this.screenToWorldY(mouseY);
+                        
+                        this.view2D.zoom *= zoomFactor;
+                        this.view2D.zoom = Math.max(0.1, Math.min(10, this.view2D.zoom));
+                        
+                        // Anpassen der Pan-Position, um den Zoom-Punkt zu fixieren
+                        const newWorldX = this.screenToWorldX(mouseX);
+                        const newWorldY = this.screenToWorldY(mouseY);
+                        
+                        this.view2D.panX += newWorldX - worldX;
+                        this.view2D.panY += newWorldY - worldY;
+                    } else {
+                        // 3D-Zoom (Abstand ändern)
+                        const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
+                        this.view3D.distance *= zoomFactor;
+                        this.view3D.distance = Math.max(10, Math.min(1000, this.view3D.distance));
+                    }
+                    
+                    this.updateUI();
+                    this.draw();
+                });
+                
+                // Mausbewegung für 2D-Panning und 3D-Orbit
+                container.addEventListener('mousedown', (e) => {
+                    if (e.button === 0) { // Linke Maustaste
+                        if (this.activeView === '2d') {
+                            isPanning = true;
+                            container.classList.add('panning');
+                        } else {
+                            if (e.shiftKey) {
+                                is3DPanning = true;
+                            } else {
+                                isRotating = true;
+                            }
+                        }
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                    }
+                });
+                
+                document.addEventListener('mousemove', (e) => {
+                    if (isPanning) {
+                        const deltaX = e.clientX - lastX;
+                        const deltaY = e.clientY - lastY;
+                        
+                        this.view2D.panX -= deltaX / this.view2D.zoom;
+                        this.view2D.panY -= deltaY / this.view2D.zoom;
+                        
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                        
+                        this.updateUI();
+                        this.draw();
+                    } else if (isRotating) {
+                        const deltaX = e.clientX - lastX;
+                        const deltaY = e.clientY - lastY;
+                        
+                        this.view3D.yaw += deltaX * 0.5;
+                        this.view3D.pitch += deltaY * 0.5;
+                        
+                        // Pitch auf -89 bis +89 Grad beschränken
+                        this.view3D.pitch = Math.max(-89, Math.min(89, this.view3D.pitch));
+                        
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                        
+                        this.updateUI();
+                        this.draw();
+                    } else if (is3DPanning) {
+                        const deltaX = e.clientX - lastX;
+                        const deltaY = e.clientY - lastY;
+                        
+                        // 3D-Panning: Zielpunkt verschieben
+                        const panSpeed = this.view3D.distance * 0.001;
+                        this.view3D.targetX -= deltaX * panSpeed;
+                        this.view3D.targetY += deltaY * panSpeed;
+                        
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                        
+                        this.updateUI();
+                        this.draw();
+                    }
+                });
+                
+                document.addEventListener('mouseup', () => {
+                    isPanning = false;
+                    isRotating = false;
+                    is3DPanning = false;
+                    container.classList.remove('panning');
+                });
+                
+                // Doppelklick für Fit-to-View
+                container.addEventListener('dblclick', () => {
+                    this.fitToView();
+                });
+                
+                // Mausposition anzeigen
+                container.addEventListener('mousemove', (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    const mouseX = e.clientX - rect.left;
+                    const mouseY = e.clientY - rect.top;
+                    
+                    if (this.activeView === '2d') {
+                        const worldX = this.screenToWorldX(mouseX);
+                        const worldY = this.screenToWorldY(mouseY);
+                        
+                        document.getElementById('coord-x').textContent = worldX.toFixed(2);
+                        document.getElementById('coord-y').textContent = worldY.toFixed(2);
+                        document.getElementById('coord-z').textContent = '0.00';
+                    } else {
+                        // Für 3D zeigen wir nur die Mausposition im Bildschirmraum
+                        document.getElementById('coord-x').textContent = mouseX.toFixed(0);
+                        document.getElementById('coord-y').textContent = mouseY.toFixed(0);
+                        document.getElementById('coord-z').textContent = '3D';
+                    }
+                });
+            }
+            
+            screenToWorldX(screenX) {
+                return (screenX - this.view2D.offsetX) / this.view2D.zoom + this.view2D.panX;
+            }
+            
+            screenToWorldY(screenY) {
+                return (screenY - this.view2D.offsetY) / this.view2D.zoom + this.view2D.panY;
+            }
+            
+            worldToScreenX(worldX) {
+                return (worldX - this.view2D.panX) * this.view2D.zoom + this.view2D.offsetX;
+            }
+            
+            worldToScreenY(worldY) {
+                return (worldY - this.view2D.panY) * this.view2D.zoom + this.view2D.offsetY;
+            }
+            
+            // 3D-Projektion: Weltkoordinaten → Bildschirmkoordinaten
+            project3D(x, y, z) {
+                // Relative Position zum Zielpunkt
+                const relX = x - this.view3D.targetX;
+                const relY = y - this.view3D.targetY;
+                const relZ = z - this.view3D.targetZ;
+                
+                // Winkel in Radiant umrechnen
+                const yawRad = this.view3D.yaw * Math.PI / 180;
+                const pitchRad = this.view3D.pitch * Math.PI / 180;
+                
+                // Rotation um Y-Achse (Yaw)
+                const cosYaw = Math.cos(yawRad);
+                const sinYaw = Math.sin(yawRad);
+                const x1 = relX * cosYaw - relZ * sinYaw;
+                const z1 = relX * sinYaw + relZ * cosYaw;
+                
+                // Rotation um X-Achse (Pitch)
+                const cosPitch = Math.cos(pitchRad);
+                const sinPitch = Math.sin(pitchRad);
+                const y1 = relY * cosPitch - z1 * sinPitch;
+                const z2 = relY * sinPitch + z1 * cosPitch;
+                
+                // Perspektivische Projektion
+                const canvasWidth = this.canvas.width / (window.devicePixelRatio || 1);
+                const canvasHeight = this.canvas.height / (window.devicePixelRatio || 1);
+                const fov = Math.PI / 4; // 45 Grad Feld der Sicht
+                const scale = Math.min(canvasWidth, canvasHeight) / 2;
+                
+                // Z-Translation (Kamera-Abstand)
+                const zTranslated = z2 - this.view3D.distance;
+                
+                // Vermeide Division durch Null
+                if (zTranslated === 0) zTranslated = 0.001;
+                
+                // Perspektivische Projektion
+                const factor = fov / zTranslated;
+                const screenX = x1 * factor * scale + canvasWidth / 2;
+                const screenY = y1 * factor * scale + canvasHeight / 2;
+                
+                return { x: screenX, y: screenY, depth: zTranslated };
+            }
+            
+            parseGCode(gcode) {
+                this.segments = [];
+                this.bbox = { minX: 0, minY: 0, minZ: 0, maxX: 0, maxY: 0, maxZ: 0 };
+                this.currentPosition = { x: 0, y: 0, z: 0 };
+                this.mode.absolute = true;
+                this.mode.units = 'mm';
+                
+                const lines = gcode.split('\n');
+                let isRapid = false;
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line || line.startsWith('(') || line.startsWith(';') || line.startsWith('%')) {
+                        continue;
+                    }
+                    
+                    // Modal-Befehle verarbeiten
+                    if (line.includes('G90')) this.mode.absolute = true;
+                    if (line.includes('G91')) this.mode.absolute = false;
+                    if (line.includes('G20')) this.mode.units = 'inch';
+                    if (line.includes('G21')) this.mode.units = 'mm';
+                    
+                    // Bewegungsbefehle
+                    if (line.includes('G0') || line.includes('G00')) {
+                        isRapid = true;
+                        this.parseMovement(line, isRapid);
+                    } else if (line.includes('G1') || line.includes('G01')) {
+                        isRapid = false;
+                        this.parseMovement(line, isRapid);
+                    } else if (line.includes('G2') || line.includes('G3') || line.includes('G02') || line.includes('G03')) {
+                        isRapid = false;
+                        this.parseArc(line, isRapid);
+                    }
+                }
+                
+                // Bounding Box berechnen
+                this.calculateBoundingBox();
+                
+                // Ansicht anpassen
+                this.fitToView();
+                
+                // UI aktualisieren
+                this.updateUI();
+                
+                // Zeichnen
+                this.draw();
+            }
+            
+            parseMovement(line, isRapid) {
+                const xMatch = line.match(/X([-\d.]+)/);
+                const yMatch = line.match(/Y([-\d.]+)/);
+                const zMatch = line.match(/Z([-\d.]+)/);
+                
+                let x = this.currentPosition.x;
+                let y = this.currentPosition.y;
+                let z = this.currentPosition.z;
+                
+                if (xMatch) {
+                    x = parseFloat(xMatch[1]);
+                    if (!this.mode.absolute) x += this.currentPosition.x;
+                }
+                
+                if (yMatch) {
+                    y = parseFloat(yMatch[1]);
+                    if (!this.mode.absolute) y += this.currentPosition.y;
+                }
+                
+                if (zMatch) {
+                    z = parseFloat(zMatch[1]);
+                    if (!this.mode.absolute) z += this.currentPosition.z;
+                }
+                
+                // Einheiten umrechnen (falls nötig)
+                if (this.mode.units === 'inch') {
+                    x *= 25.4;
+                    y *= 25.4;
+                    z *= 25.4;
+                }
+                
+                // Segment hinzufügen
+                this.segments.push({
+                    x1: this.currentPosition.x, y1: this.currentPosition.y, z1: this.currentPosition.z,
+                    x2: x, y2: y, z2: z,
+                    rapid: isRapid,
+                    arc: false
+                });
+                
+                // Aktuelle Position aktualisieren
+                this.currentPosition = { x, y, z };
+            }
+            
+            parseArc(line, isRapid) {
+                const xMatch = line.match(/X([-\d.]+)/);
+                const yMatch = line.match(/Y([-\d.]+)/);
+                const iMatch = line.match(/I([-\d.]+)/);
+                const jMatch = line.match(/J([-\d.]+)/);
+                
+                if (!xMatch || !yMatch || !iMatch || !jMatch) return;
+                
+                const endX = parseFloat(xMatch[1]);
+                const endY = parseFloat(yMatch[1]);
+                const centerX = this.currentPosition.x + parseFloat(iMatch[1]);
+                const centerY = this.currentPosition.y + parseFloat(jMatch[1]);
+                
+                // Einheiten umrechnen (falls nötig)
+                let finalEndX = endX;
+                let finalEndY = endY;
+                let finalCenterX = centerX;
+                let finalCenterY = centerY;
+                
+                if (this.mode.units === 'inch') {
+                    finalEndX *= 25.4;
+                    finalEndY *= 25.4;
+                    finalCenterX *= 25.4;
+                    finalCenterY *= 25.4;
+                }
+                
+                // Relative oder absolute Position
+                if (this.mode.absolute) {
+                    finalEndX = endX;
+                    finalEndY = endY;
+                } else {
+                    finalEndX = this.currentPosition.x + endX;
+                    finalEndY = this.currentPosition.y + endY;
+                }
+                
+                // Bogen in Linien segmentieren
+                const startAngle = Math.atan2(this.currentPosition.y - finalCenterY, this.currentPosition.x - finalCenterX);
+                const endAngle = Math.atan2(finalEndY - finalCenterY, finalEndX - finalCenterX);
+                const radius = Math.sqrt(
+                    Math.pow(this.currentPosition.x - finalCenterX, 2) + 
+                    Math.pow(this.currentPosition.y - finalCenterY, 2)
+                );
+                
+                // Winkelrichtung bestimmen (G2 = CW, G3 = CCW)
+                const isClockwise = line.includes('G2') || line.includes('G02');
+                let angleDiff = endAngle - startAngle;
+                
+                if (isClockwise) {
+                    if (angleDiff > 0) angleDiff -= 2 * Math.PI;
+                } else {
+                    if (angleDiff < 0) angleDiff += 2 * Math.PI;
+                }
+                
+                // Anzahl der Segmente basierend auf Bogenlänge
+                const segments = Math.max(8, Math.abs(Math.round(angleDiff * 16 / (2 * Math.PI))));
+                const z = this.currentPosition.z; // Z beibehalten
+                
+                // Bogen segmentieren
+                let lastX = this.currentPosition.x;
+                let lastY = this.currentPosition.y;
+                
+                for (let s = 1; s <= segments; s++) {
+                    const angle = startAngle + (angleDiff * s / segments);
+                    const x = finalCenterX + radius * Math.cos(angle);
+                    const y = finalCenterY + radius * Math.sin(angle);
+                    
+                    this.segments.push({
+                        x1: lastX, y1: lastY, z1: z,
+                        x2: x, y2: y, z2: z,
+                        rapid: isRapid,
+                        arc: true
+                    });
+                    
+                    lastX = x;
+                    lastY = y;
+                }
+                
+                // Aktuelle Position aktualisieren
+                this.currentPosition = { x: finalEndX, y: finalEndY, z };
+            }
+            
+            calculateBoundingBox() {
+                if (this.segments.length === 0) {
+                    this.bbox = { minX: -10, minY: -10, minZ: -10, maxX: 10, maxY: 10, maxZ: 10 };
+                    return;
+                }
+                
+                this.bbox.minX = Infinity;
+                this.bbox.minY = Infinity;
+                this.bbox.minZ = Infinity;
+                this.bbox.maxX = -Infinity;
+                this.bbox.maxY = -Infinity;
+                this.bbox.maxZ = -Infinity;
+                
+                for (const segment of this.segments) {
+                    this.bbox.minX = Math.min(this.bbox.minX, segment.x1, segment.x2);
+                    this.bbox.minY = Math.min(this.bbox.minY, segment.y1, segment.y2);
+                    this.bbox.minZ = Math.min(this.bbox.minZ, segment.z1, segment.z2);
+                    this.bbox.maxX = Math.max(this.bbox.maxX, segment.x1, segment.x2);
+                    this.bbox.maxY = Math.max(this.bbox.maxY, segment.y1, segment.y2);
+                    this.bbox.maxZ = Math.max(this.bbox.maxZ, segment.z1, segment.z2);
+                }
+                
+                // Sicherstellen, dass die BBox nicht leer ist
+                if (this.bbox.minX === Infinity) {
+                    this.bbox = { minX: -10, minY: -10, minZ: -10, maxX: 10, maxY: 10, maxZ: 10 };
+                }
+                
+                // Etwas Padding hinzufügen
+                const padding = Math.max(
+                    (this.bbox.maxX - this.bbox.minX) * 0.1,
+                    (this.bbox.maxY - this.bbox.minY) * 0.1,
+                    (this.bbox.maxZ - this.bbox.minZ) * 0.1,
+                    1
+                );
+                
+                this.bbox.minX -= padding;
+                this.bbox.minY -= padding;
+                this.bbox.minZ -= padding;
+                this.bbox.maxX += padding;
+                this.bbox.maxY += padding;
+                this.bbox.maxZ += padding;
+            }
+            
+            fitToView() {
+                if (this.activeView === '2d') {
+                    if (this.bbox.maxX - this.bbox.minX === 0 || this.bbox.maxY - this.bbox.minY === 0) {
+                        return;
+                    }
+                    
+                    const canvasWidth = this.canvas.width / (window.devicePixelRatio || 1);
+                    const canvasHeight = this.canvas.height / (window.devicePixelRatio || 1);
+                    
+                    const contentWidth = this.bbox.maxX - this.bbox.minX;
+                    const contentHeight = this.bbox.maxY - this.bbox.minY;
+                    
+                    const scaleX = canvasWidth / contentWidth;
+                    const scaleY = canvasHeight / contentHeight;
+                    
+                    this.view2D.zoom = Math.min(scaleX, scaleY) * 0.9; // 10% Padding
+                    this.view2D.panX = (this.bbox.minX + this.bbox.maxX) / 2;
+                    this.view2D.panY = (this.bbox.minY + this.bbox.maxY) / 2;
+                    
+                    this.view2D.offsetX = canvasWidth / 2;
+                    this.view2D.offsetY = canvasHeight / 2;
+                } else {
+                    // 3D-Ansicht anpassen
+                    const centerX = (this.bbox.minX + this.bbox.maxX) / 2;
+                    const centerY = (this.bbox.minY + this.bbox.maxY) / 2;
+                    const centerZ = (this.bbox.minZ + this.bbox.maxZ) / 2;
+                    
+                    this.view3D.targetX = centerX;
+                    this.view3D.targetY = centerY;
+                    this.view3D.targetZ = centerZ;
+                    
+                    // Abstand so wählen, dass das gesamte Modell sichtbar ist
+                    const sizeX = this.bbox.maxX - this.bbox.minX;
+                    const sizeY = this.bbox.maxY - this.bbox.minY;
+                    const sizeZ = this.bbox.maxZ - this.bbox.minZ;
+                    const maxSize = Math.max(sizeX, sizeY, sizeZ);
+                    
+                    this.view3D.distance = maxSize * 1.5;
+                    this.view3D.yaw = 45;
+                    this.view3D.pitch = 30;
+                }
+                
+                this.updateUI();
+                this.draw();
+            }
+            
+            draw() {
+                const canvasWidth = this.canvas.width / (window.devicePixelRatio || 1);
+                const canvasHeight = this.canvas.height / (window.devicePixelRatio || 1);
+                
+                // Canvas löschen
+                this.ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+                
+                // Hintergrund
+                this.ctx.fillStyle = '#f8f9fa';
+                this.ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+                
+                if (this.activeView === '2d') {
+                    this.draw2D(canvasWidth, canvasHeight);
+                } else {
+                    this.draw3D(canvasWidth, canvasHeight);
+                }
+            }
+            
+            draw2D(canvasWidth, canvasHeight) {
+                // Gitternetz zeichnen (falls aktiviert)
+                if (document.getElementById('grid-toggle').checked) {
+                    this.drawGrid(canvasWidth, canvasHeight);
+                }
+                
+                // Segmente zeichnen
+                const showRapid = document.getElementById('rapid-toggle').checked;
+                const lineWidthIndex = parseInt(document.getElementById('line-width-slider').value) - 1;
+                const lineWidth = this.lineWidthValues[lineWidthIndex];
+                
+                for (let i = 0; i < this.segments.length; i++) {
+                    // Nur bis zum aktuellen Wiedergabeindex zeichnen, wenn Wiedergabe aktiv
+                    if (this.isPlaying && i >= this.playIndex) {
+                        break;
+                    }
+                    
+                    const segment = this.segments[i];
+                    
+                    const x1 = this.worldToScreenX(segment.x1);
+                    const y1 = this.worldToScreenY(segment.y1);
+                    const x2 = this.worldToScreenX(segment.x2);
+                    const y2 = this.worldToScreenY(segment.y2);
+                    
+                    // Linienstil basierend auf Bewegungstyp
+                    if (segment.rapid && showRapid) {
+                        this.ctx.strokeStyle = '#e74c3c'; // Rot für Schnellbewegungen
+                        this.ctx.setLineDash([5, 5]);
+                    } else {
+                        this.ctx.strokeStyle = '#3498db'; // Blau für Arbeitsbewegungen
+                        this.ctx.setLineDash([]);
+                    }
+                    
+                    this.ctx.lineWidth = lineWidth;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(x1, y1);
+                    this.ctx.lineTo(x2, y2);
+                    this.ctx.stroke();
+                }
+                
+                // Start- und Endpunkte markieren (nur wenn nicht in Wiedergabe)
+                if (!this.isPlaying && this.segments.length > 0) {
+                    // Startpunkt
+                    const firstSegment = this.segments[0];
+                    const startX = this.worldToScreenX(firstSegment.x1);
+                    const startY = this.worldToScreenY(firstSegment.y1);
+                    
+                    this.ctx.fillStyle = '#2ecc71';
+                    this.ctx.beginPath();
+                    this.ctx.arc(startX, startY, 5, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // Endpunkt
+                    const lastSegment = this.segments[this.segments.length - 1];
+                    const endX = this.worldToScreenX(lastSegment.x2);
+                    const endY = this.worldToScreenY(lastSegment.y2);
+                    
+                    this.ctx.fillStyle = '#e74c3c';
+                    this.ctx.beginPath();
+                    this.ctx.arc(endX, endY, 5, 0, Math.PI * 2);
+                    this.ctx.fill();
+                }
+                
+                // Aktuelle Position während der Wiedergabe markieren
+                if (this.isPlaying && this.playIndex > 0) {
+                    const currentSegment = this.segments[this.playIndex - 1];
+                    const currentX = this.worldToScreenX(currentSegment.x2);
+                    const currentY = this.worldToScreenY(currentSegment.y2);
+                    
+                    this.ctx.fillStyle = '#f39c12';
+                    this.ctx.beginPath();
+                    this.ctx.arc(currentX, currentY, 6, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    this.ctx.strokeStyle = '#d35400';
+                    this.ctx.lineWidth = 2;
+                    this.ctx.beginPath();
+                    this.ctx.arc(currentX, currentY, 8, 0, Math.PI * 2);
+                    this.ctx.stroke();
+                }
+            }
+            
+            draw3D(canvasWidth, canvasHeight) {
+                // Gitternetz zeichnen (falls aktiviert) amir
+                if (document.getElementById('grid-toggle').checked) {
+                    this.draw3DGrid(canvasWidth, canvasHeight);
+                }
+                
+                // Segmente für 3D zeichnen (mit Tiefensortierung)
+                const showRapid = document.getElementById('rapid-toggle').checked;
+                const useDepth = document.getElementById('depth-toggle').checked;
+                const lineWidthIndex = parseInt(document.getElementById('line-width-slider').value) - 1;
+                const lineWidth = this.lineWidthValues[lineWidthIndex];
+                
+                // Segmente projizieren und nach Tiefe sortieren
+                const projectedSegments = [];
+                
+                for (let i = 0; i < this.segments.length; i++) {
+                    // Nur bis zum aktuellen Wiedergabeindex zeichnen, wenn Wiedergabe aktiv
+                    if (this.isPlaying && i >= this.playIndex) {
+                        break;
+                    }
+                    
+                    const segment = this.segments[i];
+                    const p1 = this.project3D(segment.x1, segment.y1, segment.z1);
+                    const p2 = this.project3D(segment.x2, segment.y2, segment.z2);
+                    
+                    // Durchschnittliche Tiefe für Sortierung
+                    const avgDepth = (p1.depth + p2.depth) / 2;
+                    
+                    projectedSegments.push({
+                        segment: segment,
+                        p1: p1,
+                        p2: p2,
+                        depth: avgDepth
+                    });
+                }
+                
+                // Nach Tiefe sortieren (Painter's Algorithm)
+                projectedSegments.sort((a, b) => b.depth - a.depth);
+                
+                // Segmente zeichnen
+                for (const proj of projectedSegments) {
+                    const segment = proj.segment;
+                    
+                    // Linienstil basierend auf Bewegungstyp
+                    if (segment.rapid && showRapid) {
+                        this.ctx.strokeStyle = '#e74c3c'; // Rot für Schnellbewegungen
+                        this.ctx.setLineDash([5, 5]);
+                    } else {
+                        this.ctx.strokeStyle = '#3498db'; // Blau für Arbeitsbewegungen
+                        this.ctx.setLineDash([]);
+                    }
+                    
+                    // Tiefeneffekt (Alpha basierend auf Entfernung)-amir
+                    if (useDepth) {
+                        const alpha = Math.max(0.3, 1 - (proj.depth + this.view3D.distance) / (this.view3D.distance * 2));
+                        this.ctx.globalAlpha = alpha;
+                    } else {
+                        this.ctx.globalAlpha = 1;
+                    }
+                    
+                    this.ctx.lineWidth = lineWidth;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(proj.p1.x, proj.p1.y);
+                    this.ctx.lineTo(proj.p2.x, proj.p2.y);
+                    this.ctx.stroke();
+                }
+                
+                // Alpha zurücksetzen
+                this.ctx.globalAlpha = 1;
+                
+                // Aktuelle Position während der Wiedergabe markieren
+                if (this.isPlaying && this.playIndex > 0) {
+                    const currentSegment = this.segments[this.playIndex - 1];
+                    const currentPos = this.project3D(currentSegment.x2, currentSegment.y2, currentSegment.z2);
+                    
+                    this.ctx.fillStyle = '#f39c12';
+                    this.ctx.beginPath();
+                    this.ctx.arc(currentPos.x, currentPos.y, 6, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    this.ctx.strokeStyle = '#d35400';
+                    this.ctx.lineWidth = 2;
+                    this.ctx.beginPath();
+                    this.ctx.arc(currentPos.x, currentPos.y, 8, 0, Math.PI * 2);
+                    this.ctx.stroke();
+                }
+            }
+            
+            drawGrid(canvasWidth, canvasHeight) {
+                const gridSize = 10; // Weltkoordinaten-Größe pro Raster
+                const zoomThreshold = 0.5; // Zoom-Schwelle für feineres Raster
+                
+                // Rastergröße basierend auf Zoom anpassen
+                let effectiveGridSize = gridSize;
+                if (this.view2D.zoom > zoomThreshold * 5) {
+                    effectiveGridSize = gridSize / 10;
+                } else if (this.view2D.zoom > zoomThreshold) {
+                    effectiveGridSize = gridSize / 2;
+                }
+                
+                // Weltkoordinaten der sichtbaren Bereichsränder
+                const left = this.screenToWorldX(0);
+                const right = this.screenToWorldX(canvasWidth);
+                const top = this.screenToWorldY(0);
+                const bottom = this.screenToWorldY(canvasHeight);
+                
+                // Hauptachsen (X=0, Y=0)
+                this.ctx.strokeStyle = '#bbb';
+                this.ctx.lineWidth = 2;
+                
+                // Y-Achse (X=0)
+                const yAxisScreenX = this.worldToScreenX(0);
+                if (yAxisScreenX >= 0 && yAxisScreenX <= canvasWidth) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(yAxisScreenX, 0);
+                    this.ctx.lineTo(yAxisScreenX, canvasHeight);
+                    this.ctx.stroke();
+                }
+                
+                // X-Achse (Y=0)
+                const xAxisScreenY = this.worldToScreenY(0);
+                if (xAxisScreenY >= 0 && xAxisScreenY <= canvasHeight) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, xAxisScreenY);
+                    this.ctx.lineTo(canvasWidth, xAxisScreenY);
+                    this.ctx.stroke();
+                }
+                
+                // Rasterlinien
+                this.ctx.strokeStyle = '#e0e0e0';
+                this.ctx.lineWidth = 1;
+                
+                // Vertikale Linien
+                const firstVertical = Math.ceil(left / effectiveGridSize) * effectiveGridSize;
+                for (let x = firstVertical; x <= right; x += effectiveGridSize) {
+                    const screenX = this.worldToScreenX(x);
+                    if (screenX < 0 || screenX > canvasWidth) continue;
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(screenX, 0);
+                    this.ctx.lineTo(screenX, canvasHeight);
+                    this.ctx.stroke();
+                }
+                
+                // Horizontale Linien
+                const firstHorizontal = Math.ceil(top / effectiveGridSize) * effectiveGridSize;
+                for (let y = firstHorizontal; y <= bottom; y += effectiveGridSize) {
+                    const screenY = this.worldToScreenY(y);
+                    if (screenY < 0 || screenY > canvasHeight) continue;
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, screenY);
+                    this.ctx.lineTo(canvasWidth, screenY);
+                    this.ctx.stroke();
+                }
+            }
+            
+            draw3DGrid(canvasWidth, canvasHeight) {
+                // 3D-Gitternetz (XY-Ebene bei Z=0)
+                const gridSize = 10;
+                const gridExtent = 50;
+                
+                this.ctx.strokeStyle = '#e0e0e0';
+                this.ctx.lineWidth = 1;
+                
+                // X-Linien
+                for (let x = -gridExtent; x <= gridExtent; x += gridSize) {
+                    const p1 = this.project3D(x, -gridExtent, 0);
+                    const p2 = this.project3D(x, gridExtent, 0);
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(p1.x, p1.y);
+                    this.ctx.lineTo(p2.x, p2.y);
+                    this.ctx.stroke();
+                }
+                
+                // Y-Linien
+                for (let y = -gridExtent; y <= gridExtent; y += gridSize) {
+                    const p1 = this.project3D(-gridExtent, y, 0);
+                    const p2 = this.project3D(gridExtent, y, 0);
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(p1.x, p1.y);
+                    this.ctx.lineTo(p2.x, p2.y);
+                    this.ctx.stroke();
+                }
+                
+                // Achsen zeichnen
+                // X-Achse (Rot)
+                const xStart = this.project3D(-gridExtent, 0, 0);
+                const xEnd = this.project3D(gridExtent, 0, 0);
+                this.ctx.strokeStyle = '#e74c3c';
+                this.ctx.lineWidth = 2;
+                this.ctx.beginPath();
+                this.ctx.moveTo(xStart.x, xStart.y);
+                this.ctx.lineTo(xEnd.x, xEnd.y);
+                this.ctx.stroke();
+                
+                // Y-Achse (Grün)
+                const yStart = this.project3D(0, -gridExtent, 0);
+                const yEnd = this.project3D(0, gridExtent, 0);
+                this.ctx.strokeStyle = '#2ecc71';
+                this.ctx.lineWidth = 2;
+                this.ctx.beginPath();
+                this.ctx.moveTo(yStart.x, yStart.y);
+                this.ctx.lineTo(yEnd.x, yEnd.y);
+                this.ctx.stroke();
+                
+                // Z-Achse (Blau)
+                const zStart = this.project3D(0, 0, -gridExtent);
+                const zEnd = this.project3D(0, 0, gridExtent);
+                this.ctx.strokeStyle = '#3498db';
+                this.ctx.lineWidth = 2;
+                this.ctx.beginPath();
+                this.ctx.moveTo(zStart.x, zStart.y);
+                this.ctx.lineTo(zEnd.x, zEnd.y);
+                this.ctx.stroke();
+            }
+            
+            play() {
+                // Playback guard: Keine Wiedergabe wenn keine Segmente vorhanden
+                if (!this.segments.length) return;
+                
+                if (this.isPlaying) {
+                    this.stop();
+                    return;
+                }
+                
+                this.isPlaying = true;
+                this.playIndex = 0;
+                
+                const speedIndex = parseInt(document.getElementById('speed-slider').value) - 1;
+                const delay = this.speedValues[speedIndex];
+                
+                this.playInterval = setInterval(() => {
+                    this.step();
+                }, delay);
+                
+                document.getElementById('play-btn').innerHTML = '<span>⏹️</span> Simulation stoppen';
+            }
+            
+            stop() {
+                this.isPlaying = false;
+                if (this.playInterval) {
+                    clearInterval(this.playInterval);
+                    this.playInterval = null;
+                }
+                
+                document.getElementById('play-btn').innerHTML = '<span>▶️</span> Simulation starten';
+                this.draw();
+            }
+            
+            step() {
+                if (this.playIndex >= this.segments.length) {
+                    this.stop();
+                    return;
+                }
+                
+                this.playIndex++;
+                this.draw();
+                
+                if (this.playIndex >= this.segments.length) {
+                    this.stop();
+                }
+            }
+            
+            resetPlayback() {
+                this.playIndex = 0;
+                this.draw();
+            }
+            
+            updateUI() {
+                document.getElementById('zoom-level').textContent = Math.round(
+                    (this.activeView === '2d' ? this.view2D.zoom : this.view3D.distance / 100) * 100
+                ) + '%';
+                
+                document.getElementById('view-type').textContent = this.activeView === '2d' ? '2D' : '3D';
+                
+                // Einheiten anzeigen
+                document.getElementById('units').textContent = this.mode.units.toUpperCase();
+                
+                // 3D-Kamerainfo
+                const cameraInfo = document.getElementById('camera-info');
+                if (this.activeView === '3d') {
+                    cameraInfo.style.display = 'block';
+                    document.getElementById('camera-angles').textContent = 
+                        `${Math.round(this.view3D.yaw)}°, ${Math.round(this.view3D.pitch)}°`;
+                    document.getElementById('camera-distance').textContent = Math.round(this.view3D.distance);
+                } else {
+                    cameraInfo.style.display = 'none';
+                }
+            }
+            
+            setView(view) {
+                this.activeView = view;
+                document.getElementById('view-title').textContent = 
+                    view === '2d' ? '2D-Visualisierung (XY-Ebene)' : '3D-Visualisierung';
+                document.getElementById('view-type').textContent = view === '2d' ? '2D' : '3D';
+                
+                // Tabs aktualisieren
+                document.querySelectorAll('.view-tab').forEach(tab => {
+                    if (tab.dataset.view === view) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+                
+                this.updateUI();
+                this.draw();
+            }
+            
+            exportAsImage() {
+                // Temporäres Canvas für Export mit höherer Auflösung
+                const exportCanvas = document.createElement('canvas');
+                const exportCtx = exportCanvas.getContext('2d');
+                
+                // Größe für Export (höhere Auflösung)
+                const scale = 2;
+                exportCanvas.width = this.canvas.width * scale;
+                exportCanvas.height = this.canvas.height * scale;
+                
+                // Hintergrund weiß für Export
+                exportCtx.fillStyle = 'white';
+                exportCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+                
+                if (this.activeView === '2d') {
+                    // 2D-Export
+                    const exportView = {
+                        zoom: this.view2D.zoom * scale,
+                        panX: this.view2D.panX,
+                        panY: this.view2D.panY,
+                        offsetX: this.view2D.offsetX * scale,
+                        offsetY: this.view2D.offsetY * scale
+                    };
+                    
+                    const worldToScreenXExport = (worldX) => {
+                        return (worldX - exportView.panX) * exportView.zoom + exportView.offsetX;
+                    };
+                    
+                    const worldToScreenYExport = (worldY) => {
+                        return (worldY - exportView.panY) * exportView.zoom + exportView.offsetY;
+                    };
+                    
+                    // Segmente zeichnen
+                    const showRapid = document.getElementById('rapid-toggle').checked;
+                    const lineWidthIndex = parseInt(document.getElementById('line-width-slider').value) - 1;
+                    const lineWidth = this.lineWidthValues[lineWidthIndex] * scale;
+                    
+                    for (const segment of this.segments) {
+                        const x1 = worldToScreenXExport(segment.x1);
+                        const y1 = worldToScreenYExport(segment.y1);
+                        const x2 = worldToScreenXExport(segment.x2);
+                        const y2 = worldToScreenYExport(segment.y2);
+                        
+                        // Linienstil basierend auf Bewegungstyp
+                        if (segment.rapid && showRapid) {
+                            exportCtx.strokeStyle = '#e74c3c';
+                            exportCtx.setLineDash([5 * scale, 5 * scale]);
+                        } else {
+                            exportCtx.strokeStyle = '#3498db';
+                            exportCtx.setLineDash([]);
+                        }
+                        
+                        exportCtx.lineWidth = lineWidth;
+                        exportCtx.beginPath();
+                        exportCtx.moveTo(x1, y1);
+                        exportCtx.lineTo(x2, y2);
+                        exportCtx.stroke();
+                    }
+                } else {
+                    // 3D-Export (vereinfacht, ohne Tiefensortierung)
+                    const exportView = {
+                        yaw: this.view3D.yaw,
+                        pitch: this.view3D.pitch,
+                        distance: this.view3D.distance,
+                        targetX: this.view3D.targetX,
+                        targetY: this.view3D.targetY,
+                        targetZ: this.view3D.targetZ
+                    };
+                    
+                    const project3DExport = (x, y, z) => {
+                        // Vereinfachte Projektion für Export
+                        const relX = x - exportView.targetX;
+                        const relY = y - exportView.targetY;
+                        const relZ = z - exportView.targetZ;
+                        
+                        const yawRad = exportView.yaw * Math.PI / 180;
+                        const pitchRad = exportView.pitch * Math.PI / 180;
+                        
+                        const cosYaw = Math.cos(yawRad);
+                        const sinYaw = Math.sin(yawRad);
+                        const x1 = relX * cosYaw - relZ * sinYaw;
+                        const z1 = relX * sinYaw + relZ * cosYaw;
+                        
+                        const cosPitch = Math.cos(pitchRad);
+                        const sinPitch = Math.sin(pitchRad);
+                        const y1 = relY * cosPitch - z1 * sinPitch;
+                        const z2 = relY * sinPitch + z1 * cosPitch;
+                        
+                        const fov = Math.PI / 4;
+                        const scaleFactor = Math.min(exportCanvas.width, exportCanvas.height) / 2;
+                        
+                        const zTranslated = z2 - exportView.distance;
+                        if (zTranslated === 0) zTranslated = 0.001;
+                        
+                        const factor = fov / zTranslated;
+                        const screenX = x1 * factor * scaleFactor + exportCanvas.width / 2;
+                        const screenY = y1 * factor * scaleFactor + exportCanvas.height / 2;
+                        
+                        return { x: screenX, y: screenY };
+                    };
+                    
+                    const showRapid = document.getElementById('rapid-toggle').checked;
+                    const lineWidthIndex = parseInt(document.getElementById('line-width-slider').value) - 1;
+                    const lineWidth = this.lineWidthValues[lineWidthIndex] * scale;
+                    
+                    for (const segment of this.segments) {
+                        const p1 = project3DExport(segment.x1, segment.y1, segment.z1);
+                        const p2 = project3DExport(segment.x2, segment.y2, segment.z2);
+                        
+                        // Linienstil basierend auf Bewegungstyp
+                        if (segment.rapid && showRapid) {
+                            exportCtx.strokeStyle = '#e74c3c';
+                            exportCtx.setLineDash([5 * scale, 5 * scale]);
+                        } else {
+                            exportCtx.strokeStyle = '#3498db';
+                            exportCtx.setLineDash([]);
+                        }
+                        
+                        exportCtx.lineWidth = lineWidth;
+                        exportCtx.beginPath();
+                        exportCtx.moveTo(p1.x, p1.y);
+                        exportCtx.lineTo(p2.x, p2.y);
+                        exportCtx.stroke();
+                    }
+                }
+                
+                // Bild herunterladen
+                const link = document.createElement('a');
+                link.download = 'gcode-visualisierung.png';
+                link.href = exportCanvas.toDataURL('image/png');
+                link.click();
+            }
+        }
+
+        // DOM-Elemente amir mobasheraghdam
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-input');
+        const loadSampleBtn = document.getElementById('load-sample');
+        const resetViewBtn = document.getElementById('reset-view');
+        const fitViewBtn = document.getElementById('fit-view');
+        const playBtn = document.getElementById('play-btn');
+        const stepBtn = document.getElementById('step-btn');
+        const exportBtn = document.getElementById('export-btn');
+        const viewTabs = document.querySelectorAll('.view-tab');
+        const speedSlider = document.getElementById('speed-slider');
+        const toolSizeSlider = document.getElementById('line-width-slider');
+        const speedValue = document.getElementById('speed-value');
+        const toolSizeValue = document.getElementById('line-width-value');
+        const gridToggle = document.getElementById('grid-toggle');
+        const rapidToggle = document.getElementById('rapid-toggle');
+        const depthToggle = document.getElementById('depth-toggle');
+        
+        // Info-Felder
+        const filenameEl = document.getElementById('filename');
+        const filesizeEl = document.getElementById('filesize');
+        const lineCountEl = document.getElementById('line-count');
+        const processingTimeEl = document.getElementById('processing-time');
+        const gcodePreview = document.getElementById('gcode-preview');
+        
+        // Canvas für die Visualisierung nivta.de
+        const canvas = document.getElementById('viewer-canvas');
+        const viewer = new GCodeViewer(canvas);
+        
+        // Event-Listener für Datei-Upload
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#3498db';
+            uploadArea.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#95a5a6';
+            uploadArea.style.backgroundColor = 'transparent';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#95a5a6';
+            uploadArea.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                handleFile(e.target.files[0]);
+            }
+        });
+        
+        // Beispieldatei laden
+        loadSampleBtn.addEventListener('click', () => {
+            // Beispiel-G-Code
+            const sampleGCode = `%
+O1000
+(TEST PROGRAMM - QUADRAT MIT BOHRUNGEN)
+G17 G20 G40 G49 G80 G90
+G00 G54 X0. Y0. S2000 M03
+G43 H01 Z1.
+G01 Z-0.1 F10.
+X1. Y0.5 F15.
+G02 X1.5 Y1. I0.5 J0.
+G01 Y1.5
+G03 X1. Y2. I-0.5 J0.
+G01 X0.5
+G02 X0. Y1.5 I0. J-0.5
+G01 Y0.5
+G00 Z1.
+X0.5 Y0.5
+G01 Z-0.2 F10.
+G00 Z1.
+X1.0 Y1.0
+G01 Z-0.2 F10.
+G00 Z1.
+M30
+%`;
+            
+            handleFileContent(sampleGCode, 'beispiel_programm.nc', 24576);
+        });
+        
+        // Datei verarbeiten Amir
+        function handleFile(file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const content = e.target.result;
+                handleFileContent(content, file.name, file.size);
+            };
+            
+            reader.readAsText(file);
+        }
+        
+        function handleFileContent(content, filename, filesize) {
+            // Dateiinformationen anzeigen
+            filenameEl.textContent = filename;
+            filesizeEl.textContent = formatFileSize(filesize);
+            
+            // Zeilen zählen
+            const lines = content.split('\n');
+            lineCountEl.textContent = lines.length;
+            
+            // Bearbeitungszeit schätzen
+            const processingTime = Math.round(lines.length * 0.05); // 0.05 Sekunden pro Zeile
+            processingTimeEl.textContent = `${processingTime} Sekunden (geschätzt)`;
+            
+            // G-Code Vorschau
+            gcodePreview.innerHTML = '';
+            const previewLines = lines.slice(0, 120); // Erste 120 Zeilen anzeigen
+            previewLines.forEach(line => {
+                const lineEl = document.createElement('div');
+                lineEl.textContent = line;
+                gcodePreview.appendChild(lineEl);
+            });
+            
+            if (lines.length > 120) {
+                const moreEl = document.createElement('div');
+                moreEl.textContent = `... und ${lines.length - 120} weitere Zeilen`;
+                moreEl.style.fontStyle = 'italic';
+                moreEl.style.color = '#7f8c8d';
+                gcodePreview.appendChild(moreEl);
+            }
+            
+            // G-Code parsen und visualisieren
+            viewer.parseGCode(content);
+            
+            // Erfolgsmeldung
+            console.log(`Datei "${filename}" erfolgreich geladen und visualisiert!`);
+        }
+        
+        // Dateigröße formatieren
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' Bytes';
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            else return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+        
+        // Ansicht-Tabs
+        viewTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                viewer.setView(tab.dataset.view);
+            });
+        });
+        
+        // Slider-Event-Listener
+        speedSlider.addEventListener('input', () => {
+            const values = ['Sehr langsam', 'Langsam', 'Mittel', 'Schnell'];
+            speedValue.textContent = values[speedSlider.value - 1];
+            
+            // Wiedergabegeschwindigkeit aktualisieren, falls aktiv
+            if (viewer.isPlaying) {
+                viewer.stop();
+                viewer.play();
+            }
+        });
+        
+        toolSizeSlider.addEventListener('input', () => {
+            const values = ['Dünn', 'Mittel', 'Dick'];
+            toolSizeValue.textContent = values[toolSizeSlider.value - 1];
+            viewer.draw();
+        });
+        
+        // Toggle-Event-Listener
+        gridToggle.addEventListener('change', () => {
+            viewer.draw();
+        });
+        
+        rapidToggle.addEventListener('change', () => {
+            viewer.draw();
+        });
+        
+        depthToggle.addEventListener('change', () => {
+            if (viewer.activeView === '3d') {
+                viewer.draw();
+            }
+        });
+        
+        // Andere Buttons
+        resetViewBtn.addEventListener('click', () => {
+            if (viewer.activeView === '2d') {
+                viewer.view2D.zoom = 1;
+                viewer.view2D.panX = 0;
+                viewer.view2D.panY = 0;
+                const dpr = window.devicePixelRatio || 1;
+                const cssW = viewer.canvas.width / dpr;
+                const cssH = viewer.canvas.height / dpr;
+                viewer.view2D.offsetX = cssW / 2;
+                viewer.view2D.offsetY = cssH / 2;
+            } else {
+                viewer.view3D.yaw = 0;
+                viewer.view3D.pitch = 0;
+                viewer.view3D.distance = 100;
+                viewer.view3D.targetX = 0;
+                viewer.view3D.targetY = 0;
+                viewer.view3D.targetZ = 0;
+            }
+            viewer.updateUI();
+            viewer.draw();
+        });
+        
+        fitViewBtn.addEventListener('click', () => {
+            viewer.fitToView();
+        });
+        
+        playBtn.addEventListener('click', () => {
+            viewer.play();
+        });
+        
+        stepBtn.addEventListener('click', () => {
+            if (!viewer.isPlaying) {
+                viewer.resetPlayback();
+            }
+            viewer.step();
+        });
+        
+        exportBtn.addEventListener('click', () => {
+            viewer.exportAsImage();
+        });
+        
+        // Initialisierung
+        window.addEventListener('load', () => {
+            // Zeichne die anfängliche Platzhaltervisualisierung
+            viewer.draw();
+        });
+    </script>
+</body>
+</html>
