@@ -1180,10 +1180,7 @@
                     if (segment.rapid && showRapid) {
                         this.ctx.strokeStyle = '#e74c3c'; // Rot für Schnellbewegungen
                         this.ctx.setLineDash([5, 5]);
-                    } else {
-                        this.ctx.strokeStyle = '#3498db'; // Blau für Arbeitsbewegungen
-                        this.ctx.setLineDash([]);
-                    }
+                    
                     
                     this.ctx.lineWidth = lineWidth;
                     this.ctx.beginPath();
