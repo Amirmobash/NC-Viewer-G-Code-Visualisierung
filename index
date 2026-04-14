@@ -2,332 +2,281 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NC-Viewer Deutsch - Professionelle G-Code Visualisierung</title>
-    <meta name="description" content="Kostenloser Online G-Code Viewer für die deutsche Fertigungsindustrie. Visualisieren und analysieren Sie Ihre CNC-Programme direkt im Browser.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NC-Viewer Professional | CNC G-Code Visualisierung</title>
+    <meta name="description" content="Professioneller Online G-Code Viewer für die Fertigungsindustrie. 2D/3D Visualisierung, Simulation und Analyse von CNC-Programmen.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.nivt.de/">
-    <meta property="og:title" content="NC-Viewer Deutsch - Professionelle G-Code Visualisierung">
-    <meta property="og:description" content="Kostenloser Online G-Code Viewer für die deutsche Fertigungsindustrie.">
+    <meta property="og:title" content="NC-Viewer Professional - G-Code Visualisierung">
+    <meta property="og:description" content="Kostenloser, leistungsstarker G-Code Viewer mit 2D/3D Ansichten und Simulation.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.nivt.de/">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="NC-Viewer Deutsch">
-    <meta name="twitter:description" content="Professionelle G-Code Visualisierung für CNC-Programme">
+    <meta name="theme-color" content="#f97316">
     <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --gray: #95a5a6;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f5f7fa;
-            color: var(--dark);
-            line-height: 1.6;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background: #fefcf5;
+            color: #1e293b;
+            line-height: 1.5;
         }
-        
+
+        /* Weiß-Orange Theme */
+        :root {
+            --orange: #f97316;
+            --orange-dark: #ea580c;
+            --orange-light: #ffedd5;
+            --orange-soft: #fff7ed;
+            --white: #ffffff;
+            --gray-50: #fafaf9;
+            --gray-100: #f5f5f4;
+            --gray-200: #e7e5e4;
+            --gray-300: #d6d3d1;
+            --gray-700: #44403c;
+            --gray-800: #292524;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius-lg: 1rem;
+            --radius-md: 0.75rem;
+            --radius-sm: 0.5rem;
+        }
+
+        /* Header modern */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: var(--white);
+            border-bottom: 3px solid var(--orange);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
-        
+
         .header-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        
+
         .logo-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
+            filter: drop-shadow(0 2px 4px rgba(249,115,22,0.2));
         }
-        
+
         h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
         }
-        
+
         .subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-top: 5px;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            font-weight: 500;
         }
-        
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--orange);
+            color: var(--orange-dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--orange);
+            color: white;
+            transform: translateY(-1px);
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 2rem auto;
             padding: 0 1.5rem;
         }
-        
+
+        /* 2 Spalten Layout */
         .main-content {
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
+            grid-template-columns: 320px 1fr;
+            gap: 1.75rem;
         }
-        
+
+        /* Control Panel (Karten UI) */
         .control-panel {
-            background: white;
-            border-radius: 10px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--gray-200);
+            transition: all 0.2s;
         }
-        
+
         .panel-section {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
-        
+
         .panel-section h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--light);
-            color: var(--primary);
+            border-bottom: 2px solid var(--orange-light);
+            color: var(--gray-800);
+            display: inline-block;
         }
-        
+
+        /* Upload Bereich */
         .file-upload {
-            border: 2px dashed var(--gray);
-            border-radius: 8px;
-            padding: 2rem;
+            border: 2px dashed var(--gray-300);
+            background: var(--gray-50);
+            border-radius: var(--radius-md);
+            padding: 1.8rem 1rem;
             text-align: center;
-            margin-bottom: 1.5rem;
             cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .file-upload:hover {
-            border-color: var(--secondary);
-            background-color: rgba(52, 152, 219, 0.05);
-        }
-        
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--gray);
+            transition: all 0.25s ease;
             margin-bottom: 1rem;
         }
-        
-        .file-input {
-            display: none;
+
+        .file-upload:hover {
+            border-color: var(--orange);
+            background: var(--orange-soft);
+            transform: scale(0.98);
         }
-        
+
+        .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
         .btn {
-            background-color: var(--secondary);
-            color: white;
             border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 0.7rem 1.2rem;
+            border-radius: 2rem;
             font-weight: 600;
-            transition: all 0.3s;
+            cursor: pointer;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-        }
-        
-        .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-        }
-        
-        .btn-block {
-            display: block;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .btn-accent {
-            background-color: var(--accent);
-        }
-        
-        .btn-accent:hover {
-            background-color: #c0392b;
-        }
-        
-        .btn-light {
-            background-color: var(--light);
-            color: var(--dark);
-        }
-        
-        .btn-light:hover {
-            background-color: #dde4e6;
-        }
-        
-        .visualization-area {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            min-height: 600px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .visualization-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .view-tabs {
-            display: flex;
-            background: var(--light);
-            border-radius: 5px;
-            padding: 4px;
-        }
-        
-        .view-tab {
-            padding: 0.5rem 1rem;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            border-radius: 3px;
-            transition: all 0.3s;
-        }
-        
-        .view-tab.active {
-            background-color: var(--secondary);
-            color: white;
-        }
-        
-        .view-controls {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .view-btn {
-            background: var(--light);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .view-btn.active {
-            background-color: var(--secondary);
-            color: white;
-        }
-        
-        .canvas-container {
-            flex: 1;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            cursor: grab;
-        }
-        
-        .canvas-container.panning {
-            cursor: grabbing;
-        }
-        
-        #viewer-canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-        
-        .file-info {
-            background-color: var(--light);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-        
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-        
-        .info-label {
-            font-weight: 600;
-        }
-        
-        .gcode-preview {
-            margin-top: 1.5rem;
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid var(--light);
-            border-radius: 5px;
-            padding: 1rem;
-            font-family: monospace;
+            justify-content: center;
             font-size: 0.9rem;
-            background-color: #f8f9fa;
         }
-        
+
+        .btn-primary {
+            background: var(--orange);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-800);
+            border: 1px solid var(--gray-200);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-200);
+            transform: translateY(-1px);
+        }
+
+        .btn-accent {
+            background: #fff1e6;
+            color: var(--orange-dark);
+            border: 1px solid var(--orange-light);
+        }
+
+        .btn-accent:hover {
+            background: var(--orange);
+            color: white;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
         .slider-container {
             margin: 1rem 0;
         }
-        
+
         .slider-label {
             display: flex;
             justify-content: space-between;
             margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
-        
-        .slider {
+
+        input[type="range"] {
             width: 100%;
             height: 5px;
-            border-radius: 5px;
-            background: var(--light);
-            outline: none;
+            border-radius: 10px;
+            background: var(--gray-200);
             -webkit-appearance: none;
         }
-        
-        .slider::-webkit-slider-thumb {
+
+        input[type="range"]:focus {
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: var(--secondary);
+            background: var(--orange);
             cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            border: 2px solid white;
         }
-        
+
         .toggle-container {
             display: flex;
             align-items: center;
-            margin: 0.5rem 0;
-            gap: 10px;
+            justify-content: space-between;
+            margin: 0.8rem 0;
         }
-        
+
         .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 50px;
+            width: 48px;
             height: 24px;
         }
-        
+
         .toggle-switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-        
+
         .toggle-slider {
             position: absolute;
             cursor: pointer;
@@ -336,1581 +285,603 @@
             right: 0;
             bottom: 0;
             background-color: #ccc;
-            transition: .4s;
-            border-radius: 24px;
+            transition: .3s;
+            border-radius: 34px;
         }
-        
+
         .toggle-slider:before {
             position: absolute;
             content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
             background-color: white;
-            transition: .4s;
+            transition: .3s;
             border-radius: 50%;
         }
-        
+
         input:checked + .toggle-slider {
-            background-color: var(--secondary);
+            background-color: var(--orange);
         }
-        
+
         input:checked + .toggle-slider:before {
-            transform: translateX(26px);
+            transform: translateX(24px);
         }
-        
+
+        .file-info {
+            background: var(--gray-50);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.85rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.6rem;
+        }
+
+        .gcode-preview {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #1e1b18;
+            color: #fef3c7;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.75rem;
+            padding: 0.8rem;
+            border-radius: var(--radius-sm);
+            line-height: 1.4;
+        }
+
+        /* Visualisierung Bereich */
+        .visualization-area {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 1.5rem;
+            border: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+        }
+
+        .visualization-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .view-tabs {
+            display: flex;
+            background: var(--gray-100);
+            border-radius: 2rem;
+            padding: 0.25rem;
+        }
+
+        .view-tab {
+            padding: 0.4rem 1.2rem;
+            border: none;
+            background: transparent;
+            border-radius: 2rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-tab.active {
+            background: var(--orange);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .canvas-container {
+            background: #fefaf5;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+            aspect-ratio: 16 / 10;
+            border: 1px solid var(--gray-200);
+        }
+
+        .canvas-container:active {
+            cursor: grabbing;
+        }
+
+        #viewer-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .status-bar, .coordinates, .camera-info {
+            position: absolute;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: white;
+            pointer-events: none;
+            font-family: monospace;
+        }
+        .status-bar { bottom: 12px; left: 12px; display: flex; gap: 12px; }
+        .coordinates { bottom: 12px; right: 12px; }
+        .camera-info { top: 12px; right: 12px; background: rgba(0,0,0,0.6); }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.2rem;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
-            background-color: var(--primary);
-            color: white;
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            color: var(--gray-700);
         }
-        
-        .status-bar {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            display: flex;
-            gap: 15px;
-        }
-        
-        .coordinates {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .camera-info {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
+
         @media (max-width: 900px) {
             .main-content {
                 grid-template-columns: 1fr;
             }
-            
-            .control-panel {
-                order: 2;
-            }
-            
-            .visualization-area {
-                order: 1;
+            .header-content {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">⚙️</div>
-                <div>
-                    <h1>NC-Viewer Deutsch</h1>
-                    <div class="subtitle">Visualisieren und analysieren Sie Ihre G-Code Dateien</div>
-                </div>
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <div class="logo-icon">⚙️🧡</div>
+            <div>
+                <h1>NC-Viewer Professional</h1>
+                <div class="subtitle">Präzise G-Code Visualisierung | 2D/3D | Simulation</div>
             </div>
-            <a href="https://www.nivt.de/" class="btn btn-light">Zurück zu nivt.de</a>
         </div>
-    </header>
-    
-    <div class="container">
-        <div class="main-content">
-            <div class="control-panel">
-                <div class="panel-section">
-                    <h3>Datei hochladen</h3>
-                    <div class="file-upload" id="upload-area">
-                        <div class="upload-icon">📁</div>
-                        <p>Ziehen Sie eine NC-Datei hierher oder klicken Sie zum Auswählen</p>
-                        <p class="subtitle">Unterstützt: .nc, .gcode, .cnc, .txt</p>
-                        <input type="file" id="file-input" class="file-input" accept=".nc,.gcode,.cnc,.txt">
-                    </div>
-                    <button class="btn btn-block" id="load-sample">
-                        <span>📋</span> Beispieldatei laden
-                    </button>
+        <a href="https://www.nivt.de/" class="btn-outline">🌐 nivt.de</a>
+    </div>
+</header>
+
+<div class="container">
+    <div class="main-content">
+        <!-- Linke Steuerung -->
+        <div class="control-panel">
+            <div class="panel-section">
+                <h3>📁 Datei laden</h3>
+                <div class="file-upload" id="upload-area">
+                    <div class="upload-icon">📂</div>
+                    <p>NC / G-Code hierher ziehen</p>
+                    <p style="font-size:0.75rem; color:gray;">.nc, .gcode, .cnc, .txt</p>
+                    <input type="file" id="file-input" accept=".nc,.gcode,.cnc,.txt" style="display:none">
                 </div>
-                
-                <div class="panel-section">
-                    <h3>Visualisierungseinstellungen</h3>
-                    
-                    <div class="toggle-container">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="grid-toggle" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                        <span>Gitternetz anzeigen</span>
-                    </div>
-                    
-                    <div class="toggle-container">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="rapid-toggle" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                        <span>Schnellbewegungen farbig</span>
-                    </div>
-                    
-                    <div class="toggle-container">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="depth-toggle">
-                            <span class="toggle-slider"></span>
-                        </label>
-                        <span>Tiefenanzeige (3D)</span>
-                    </div>
-                    
-                    <div class="slider-container">
-                        <div class="slider-label">
-                            <span>Werkzeuggeschwindigkeit</span>
-                            <span id="speed-value">Mittel</span>
-                        </div>
-                        <input type="range" min="1" max="4" value="2" class="slider" id="speed-slider">
-                    </div>
-                    
-                    <div class="slider-container">
-                        <div class="slider-label">
-                            <span>Linienstärke</span>
-                            <span id="line-width-value">Mittel</span>
-                        </div>
-                        <input type="range" min="1" max="3" value="2" class="slider" id="line-width-slider">
-                    </div>
-                    
-                    <div style="display: flex; gap: 10px; margin-top: 1rem;">
-                        <button class="btn btn-light btn-block" id="reset-view">
-                            <span>🔄</span> Zurücksetzen
-                        </button>
-                        <button class="btn btn-light btn-block" id="fit-view">
-                            <span>🔍</span> Anpassen
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="panel-section">
-                    <h3>Datei-Informationen</h3>
-                    <div class="file-info">
-                        <div class="info-item">
-                            <span class="info-label">Dateiname:</span>
-                            <span id="filename">-</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Dateigröße:</span>
-                            <span id="filesize">-</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Zeilen:</span>
-                            <span id="line-count">-</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Bearbeitungszeit:</span>
-                            <span id="processing-time">-</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Einheiten:</span>
-                            <span id="units">-</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel-section">
-                    <h3>G-Code Vorschau</h3>
-                    <div class="gcode-preview" id="gcode-preview">
-                        <p>Laden Sie eine Datei, um den G-Code anzuzeigen</p>
-                    </div>
+                <button class="btn btn-secondary btn-block" id="load-sample" style="margin-top:0.5rem;">📋 Beispieldatei laden</button>
+            </div>
+
+            <div class="panel-section">
+                <h3>🎨 Ansicht & Stil</h3>
+                <div class="toggle-container"><label class="toggle-switch"><input type="checkbox" id="grid-toggle" checked><span class="toggle-slider"></span></label><span>Gitternetz</span></div>
+                <div class="toggle-container"><label class="toggle-switch"><input type="checkbox" id="rapid-toggle" checked><span class="toggle-slider"></span></label><span>Schnellbewegungen (rot)</span></div>
+                <div class="toggle-container"><label class="toggle-switch"><input type="checkbox" id="depth-toggle"><span class="toggle-slider"></span></label><span>Tiefeneffekt (3D)</span></div>
+                <div class="slider-container"><div class="slider-label"><span>📏 Linienstärke</span><span id="line-width-value">Mittel</span></div><input type="range" min="1" max="3" value="2" id="line-width-slider"></div>
+                <div class="slider-container"><div class="slider-label"><span>⚡ Animationsgeschw.</span><span id="speed-value">Mittel</span></div><input type="range" min="1" max="4" value="2" id="speed-slider"></div>
+                <div style="display: flex; gap: 10px; margin-top: 1rem;">
+                    <button class="btn btn-secondary" id="fit-view">🔍 Zentrieren</button>
+                    <button class="btn btn-secondary" id="reset-view">🔄 Reset</button>
                 </div>
             </div>
-            
-            <div class="visualization-area">
-                <div class="visualization-header">
-                    <h3 id="view-title">2D-Visualisierung (XY-Ebene)</h3>
-                    <div class="view-tabs">
-                        <button class="view-tab active" data-view="2d">Draufsicht (2D)</button>
-                        <button class="view-tab" data-view="3d">3D-Ansicht</button>
-                    </div>
-                </div>
-                
-                <div class="canvas-container" id="canvas-container">
-                    <canvas id="viewer-canvas"></canvas>
-                    <div class="status-bar">
-                        <span>Zoom: <span id="zoom-level">100%</span></span>
-                        <span>Ansicht: <span id="view-type">2D</span></span>
-                    </div>
-                    <div class="coordinates">
-                        X: <span id="coord-x">0.00</span> | Y: <span id="coord-y">0.00</span> | Z: <span id="coord-z">0.00</span>
-                    </div>
-                    <div class="camera-info" id="camera-info" style="display: none;">
-                        Kamera: <span id="camera-angles">0°, 0°</span> | Distanz: <span id="camera-distance">100</span>
-                    </div>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
-                    <div style="display: flex; gap: 10px;">
-                        <button class="btn btn-light" id="play-btn">
-                            <span>▶️</span> Simulation starten
-                        </button>
-                        <button class="btn btn-light" id="step-btn">
-                            <span>⏭️</span> Schritt
-                        </button>
-                    </div>
-                    <button class="btn btn-accent" id="export-btn">
-                        <span>💾</span> Als Bild exportieren
-                    </button>
+
+            <div class="panel-section">
+                <h3>📊 Datei-Info</h3>
+                <div class="file-info">
+                    <div class="info-item"><span>Dateiname:</span><span id="filename">—</span></div>
+                    <div class="info-item"><span>Größe:</span><span id="filesize">—</span></div>
+                    <div class="info-item"><span>Zeilen:</span><span id="line-count">—</span></div>
+                    <div class="info-item"><span>Bereich X:</span><span id="range-x">—</span></div>
+                    <div class="info-item"><span>Bereich Y/Z:</span><span id="range-yz">—</span></div>
+                    <div class="info-item"><span>Einheiten:</span><span id="units">mm</span></div>
                 </div>
             </div>
+
+            <div class="panel-section">
+                <h3>📜 G-Code Vorschau</h3>
+                <div class="gcode-preview" id="gcode-preview"><span style="color:#aaa;">Keine Datei geladen</span></div>
+            </div>
+        </div>
+
+        <!-- Rechte Visualisierung -->
+        <div class="visualization-area">
+            <div class="visualization-header">
+                <h3 id="view-title" style="font-weight:600;">2D-Visualisierung (XY-Ebene)</h3>
+                <div class="view-tabs">
+                    <button class="view-tab active" data-view="2d">2D Draufsicht</button>
+                    <button class="view-tab" data-view="3d">3D Orbit</button>
+                </div>
+            </div>
+            <div class="canvas-container" id="canvas-container">
+                <canvas id="viewer-canvas"></canvas>
+                <div class="status-bar"><span>🔍 Zoom: <span id="zoom-level">100%</span></span><span>📐 <span id="view-type">2D</span></span></div>
+                <div class="coordinates" id="coord-panel">📍 X:0.00 Y:0.00 Z:0.00</div>
+                <div class="camera-info" id="camera-info" style="display:none;">🎥 Winkel: <span id="camera-angles">0°</span> 📏 <span id="camera-distance">100</span></div>
+            </div>
+            <div class="action-bar">
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-primary" id="play-btn">▶️ Simulation starten</button>
+                    <button class="btn btn-secondary" id="step-btn">⏭️ Einzelschritt</button>
+                    <button class="btn btn-secondary" id="reset-sim-btn">🔄 Reset Sim</button>
+                </div>
+                <button class="btn btn-accent" id="export-btn">📸 Als PNG exportieren</button>
+            </div>
+            <p style="font-size:0.7rem; margin-top: 12px; color: gray; text-align:center;">🖱️ Maus: Ziehen = Pan (2D) / Rotation (3D) | Shift+ziehen = Pan (3D) | Scroll = Zoom</p>
         </div>
     </div>
-    
-    <footer>
-        <p>NC-Viewer Deutsch - Ein kostenloses Tool zur G-Code Visualisierung</p>
-        <p style="margin-top: 0.5rem; opacity: 0.8;">© 2023 - Entwickelt für die deutsche Fertigungsindustrie</p>
-    </footer>
+</div>
+<footer>
+    <p>NC-Viewer Professional – Optimiert für die deutsche Fertigungsindustrie | Weiß-Orange Edition</p>
+    <p style="font-size:0.75rem;">© 2025 | Präzise G-Code Visualisierung direkt im Browser</p>
+</footer>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "NC-Viewer Deutsch",
-      "url": "https://www.nivt.de/",
-      "description": "Kostenloser Online G-Code Viewer für die deutsche Fertigungsindustrie",
-      "publisher": {
-        "@type": "Organization",
-        "name": "NC-Viewer"
-      }
-    }
-    </script>
-
-    <script>
-        // G-Code Parser und Visualisierer
+<script>
+    (function(){
+        // ----- Verbesserter G-Code Viewer mit Theme Orange/Weiß -----
         class GCodeViewer {
             constructor(canvas) {
                 this.canvas = canvas;
                 this.ctx = canvas.getContext('2d');
                 this.segments = [];
-                this.bbox = { minX: 0, minY: 0, minZ: 0, maxX: 0, maxY: 0, maxZ: 0 };
-                this.view2D = {
-                    zoom: 1,
-                    panX: 0,
-                    panY: 0,
-                    offsetX: 0,
-                    offsetY: 0
-                };
-                this.view3D = {
-                    yaw: 0,    // Drehung um Y-Achse (Grad)
-                    pitch: 0,  // Drehung um X-Achse (Grad)
-                    distance: 100, // Abstand vom Ursprung
-                    targetX: 0, // Zielpunkt X
-                    targetY: 0, // Zielpunkt Y
-                    targetZ: 0  // Zielpunkt Z
-                };
-                this.mode = {
-                    absolute: true,
-                    units: 'mm'
-                };
-                this.currentPosition = { x: 0, y: 0, z: 0 };
+                this.bbox = { minX:0, minY:0, minZ:0, maxX:0, maxY:0, maxZ:0 };
+                this.view2D = { zoom:1, panX:0, panY:0, offsetX:0, offsetY:0 };
+                this.view3D = { yaw:45, pitch:30, distance:150, targetX:0, targetY:0, targetZ:0 };
+                this.mode = { absolute: true, units: 'mm' };
+                this.currentPosition = { x:0, y:0, z:0 };
                 this.playIndex = 0;
                 this.isPlaying = false;
                 this.playInterval = null;
-                this.speedValues = [500, 250, 100, 50]; // ms pro Segment
-                this.lineWidthValues = [1, 2, 3];
-                this.activeView = '2d'; // '2d' oder '3d'
-                
-                // Event-Listener für Maussteuerung
+                this.speedValues = [800, 300, 120, 50];
+                this.lineWidthValues = [1, 2.2, 3.5];
+                this.activeView = '2d';
                 this.setupMouseControls();
-                
-                // Initialisiere die Canvas-Größe
-                this.setupCanvas();
+                this.setupCanvasResize();
             }
-            
-            setupCanvas() {
-                // Verwende ResizeObserver für responsives Canvas
+
+            setupCanvasResize() {
                 const container = this.canvas.parentElement;
-                const resizeObserver = new ResizeObserver(entries => {
-                    for (let entry of entries) {
-                        this.handleResize(entry.contentRect);
-                    }
+                const resizeObserver = new ResizeObserver(() => {
+                    this.handleResize();
                 });
-                
                 resizeObserver.observe(container);
-                this.handleResize(container.getBoundingClientRect());
+                this.handleResize();
             }
-            
-            handleResize(rect) {
+
+            handleResize() {
+                const container = this.canvas.parentElement;
+                const rect = container.getBoundingClientRect();
                 const dpr = window.devicePixelRatio || 1;
-                
-                // CSS-Größe setzen
                 this.canvas.style.width = rect.width + 'px';
                 this.canvas.style.height = rect.height + 'px';
-                
-                // Interne Größe mit DPR-Berücksichtigung
-                this.canvas.width = Math.max(1, Math.floor(rect.width * dpr));
-                this.canvas.height = Math.max(1, Math.floor(rect.height * dpr));
-
-                // Wichtig: Vor dem Skalieren die Transformation zurücksetzen
-                this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+                this.canvas.width = Math.max(1, rect.width * dpr);
+                this.canvas.height = Math.max(1, rect.height * dpr);
+                this.ctx.setTransform(1,0,0,1,0,0);
                 this.ctx.scale(dpr, dpr);
-                
-                // Offsets auf Canvas-Mitte setzen, falls sie 0 sind
                 const cssW = this.canvas.width / dpr;
                 const cssH = this.canvas.height / dpr;
-                if (this.view2D.offsetX === 0 && this.view2D.offsetY === 0) {
-                    this.view2D.offsetX = cssW / 2;
-                    this.view2D.offsetY = cssH / 2;
-                }
-                
+                if(this.view2D.offsetX === 0) this.view2D.offsetX = cssW/2;
+                if(this.view2D.offsetY === 0) this.view2D.offsetY = cssH/2;
                 this.draw();
             }
-            
+
             setupMouseControls() {
                 const container = this.canvas.parentElement;
-                let isPanning = false;
-                let isRotating = false;
-                let is3DPanning = false;
-                let lastX = 0;
-                let lastY = 0;
-                
-                // Mausrad-Zoom
+                let isPan2D = false, isRotate3D = false, isPan3D = false, lastX=0, lastY=0;
                 container.addEventListener('wheel', (e) => {
                     e.preventDefault();
-                    
-                    if (this.activeView === '2d') {
-                        const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
-                        const rect = this.canvas.getBoundingClientRect();
-                        const mouseX = e.clientX - rect.left;
-                        const mouseY = e.clientY - rect.top;
-                        
-                        // Zoom auf den Mauszeiger
-                        const worldX = this.screenToWorldX(mouseX);
-                        const worldY = this.screenToWorldY(mouseY);
-                        
-                        this.view2D.zoom *= zoomFactor;
-                        this.view2D.zoom = Math.max(0.1, Math.min(10, this.view2D.zoom));
-                        
-                        // Anpassen der Pan-Position, um den Zoom-Punkt zu fixieren
-                        const newWorldX = this.screenToWorldX(mouseX);
-                        const newWorldY = this.screenToWorldY(mouseY);
-                        
-                        this.view2D.panX += newWorldX - worldX;
-                        this.view2D.panY += newWorldY - worldY;
+                    if(this.activeView === '2d') {
+                        const factor = e.deltaY > 0 ? 0.9 : 1.1;
+                        this.view2D.zoom = Math.min(12, Math.max(0.15, this.view2D.zoom * factor));
                     } else {
-                        // 3D-Zoom (Abstand ändern)
-                        const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
-                        this.view3D.distance *= zoomFactor;
-                        this.view3D.distance = Math.max(10, Math.min(1000, this.view3D.distance));
+                        const factor = e.deltaY > 0 ? 1.08 : 0.92;
+                        this.view3D.distance = Math.min(800, Math.max(20, this.view3D.distance * factor));
                     }
-                    
-                    this.updateUI();
-                    this.draw();
+                    this.updateUI(); this.draw();
                 });
-                
-                // Mausbewegung für 2D-Panning und 3D-Orbit
                 container.addEventListener('mousedown', (e) => {
-                    if (e.button === 0) { // Linke Maustaste
-                        if (this.activeView === '2d') {
-                            isPanning = true;
-                            container.classList.add('panning');
-                        } else {
-                            if (e.shiftKey) {
-                                is3DPanning = true;
-                            } else {
-                                isRotating = true;
-                            }
-                        }
-                        lastX = e.clientX;
-                        lastY = e.clientY;
-                    }
+                    if(e.button !== 0) return;
+                    if(this.activeView === '2d') { isPan2D = true; }
+                    else { if(e.shiftKey) isPan3D = true; else isRotate3D = true; }
+                    lastX = e.clientX; lastY = e.clientY;
+                    container.style.cursor = 'grabbing';
                 });
-                
-                document.addEventListener('mousemove', (e) => {
-                    if (isPanning) {
-                        const deltaX = e.clientX - lastX;
-                        const deltaY = e.clientY - lastY;
-                        
-                        this.view2D.panX -= deltaX / this.view2D.zoom;
-                        this.view2D.panY -= deltaY / this.view2D.zoom;
-                        
-                        lastX = e.clientX;
-                        lastY = e.clientY;
-                        
-                        this.updateUI();
+                window.addEventListener('mousemove', (e) => {
+                    if(isPan2D) {
+                        const dx = e.clientX - lastX, dy = e.clientY - lastY;
+                        this.view2D.panX -= dx / this.view2D.zoom;
+                        this.view2D.panY -= dy / this.view2D.zoom;
+                        lastX = e.clientX; lastY = e.clientY;
                         this.draw();
-                    } else if (isRotating) {
-                        const deltaX = e.clientX - lastX;
-                        const deltaY = e.clientY - lastY;
-                        
-                        this.view3D.yaw += deltaX * 0.5;
-                        this.view3D.pitch += deltaY * 0.5;
-                        
-                        // Pitch auf -89 bis +89 Grad beschränken
-                        this.view3D.pitch = Math.max(-89, Math.min(89, this.view3D.pitch));
-                        
-                        lastX = e.clientX;
-                        lastY = e.clientY;
-                        
-                        this.updateUI();
-                        this.draw();
-                    } else if (is3DPanning) {
-                        const deltaX = e.clientX - lastX;
-                        const deltaY = e.clientY - lastY;
-                        
-                        // 3D-Panning: Zielpunkt verschieben
-                        const panSpeed = this.view3D.distance * 0.001;
-                        this.view3D.targetX -= deltaX * panSpeed;
-                        this.view3D.targetY += deltaY * panSpeed;
-                        
-                        lastX = e.clientX;
-                        lastY = e.clientY;
-                        
-                        this.updateUI();
+                    } else if(isRotate3D) {
+                        this.view3D.yaw += (e.clientX - lastX) * 0.6;
+                        this.view3D.pitch += (e.clientY - lastY) * 0.6;
+                        this.view3D.pitch = Math.min(89, Math.max(-89, this.view3D.pitch));
+                        lastX = e.clientX; lastY = e.clientY;
+                        this.updateUI(); this.draw();
+                    } else if(isPan3D) {
+                        const speed = this.view3D.distance * 0.002;
+                        this.view3D.targetX -= (e.clientX - lastX) * speed;
+                        this.view3D.targetY += (e.clientY - lastY) * speed;
+                        lastX = e.clientX; lastY = e.clientY;
                         this.draw();
                     }
                 });
-                
-                document.addEventListener('mouseup', () => {
-                    isPanning = false;
-                    isRotating = false;
-                    is3DPanning = false;
-                    container.classList.remove('panning');
-                });
-                
-                // Doppelklick für Fit-to-View
-                container.addEventListener('dblclick', () => {
-                    this.fitToView();
-                });
-                
-                // Mausposition anzeigen
+                window.addEventListener('mouseup', () => { isPan2D=false; isRotate3D=false; isPan3D=false; container.style.cursor='grab'; });
+                container.addEventListener('dblclick', () => this.fitToView());
                 container.addEventListener('mousemove', (e) => {
-                    const rect = this.canvas.getBoundingClientRect();
-                    const mouseX = e.clientX - rect.left;
-                    const mouseY = e.clientY - rect.top;
-                    
-                    if (this.activeView === '2d') {
-                        const worldX = this.screenToWorldX(mouseX);
-                        const worldY = this.screenToWorldY(mouseY);
-                        
-                        document.getElementById('coord-x').textContent = worldX.toFixed(2);
-                        document.getElementById('coord-y').textContent = worldY.toFixed(2);
-                        document.getElementById('coord-z').textContent = '0.00';
+                    if(this.activeView === '2d') {
+                        const rect = this.canvas.getBoundingClientRect();
+                        const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+                        const wx = this.screenToWorldX(mx), wy = this.screenToWorldY(my);
+                        document.getElementById('coord-panel').innerHTML = `📍 X:${wx.toFixed(2)} Y:${wy.toFixed(2)} Z:0.00`;
                     } else {
-                        // Für 3D zeigen wir nur die Mausposition im Bildschirmraum
-                        document.getElementById('coord-x').textContent = mouseX.toFixed(0);
-                        document.getElementById('coord-y').textContent = mouseY.toFixed(0);
-                        document.getElementById('coord-z').textContent = '3D';
+                        document.getElementById('coord-panel').innerHTML = `🎮 3D-Modus | Ziel: X:${this.view3D.targetX.toFixed(1)} Y:${this.view3D.targetY.toFixed(1)}`;
                     }
                 });
             }
-            
-            screenToWorldX(screenX) {
-                return (screenX - this.view2D.offsetX) / this.view2D.zoom + this.view2D.panX;
+
+            screenToWorldX(sx) { return (sx - this.view2D.offsetX)/this.view2D.zoom + this.view2D.panX; }
+            screenToWorldY(sy) { return (sy - this.view2D.offsetY)/this.view2D.zoom + this.view2D.panY; }
+            worldToScreenX(wx) { return (wx - this.view2D.panX)*this.view2D.zoom + this.view2D.offsetX; }
+            worldToScreenY(wy) { return (wy - this.view2D.panY)*this.view2D.zoom + this.view2D.offsetY; }
+
+            project3D(x,y,z) {
+                let rx = x - this.view3D.targetX, ry = y - this.view3D.targetY, rz = z - this.view3D.targetZ;
+                const yawRad = this.view3D.yaw * Math.PI/180, pitchRad = this.view3D.pitch * Math.PI/180;
+                const x1 = rx * Math.cos(yawRad) - rz * Math.sin(yawRad);
+                const z1 = rx * Math.sin(yawRad) + rz * Math.cos(yawRad);
+                const y1 = ry * Math.cos(pitchRad) - z1 * Math.sin(pitchRad);
+                const z2 = ry * Math.sin(pitchRad) + z1 * Math.cos(pitchRad);
+                const fov = Math.PI/4;
+                const scale = Math.min(this.canvas.width/(window.devicePixelRatio||1), this.canvas.height/(window.devicePixelRatio||1))/2;
+                const zTrans = z2 - this.view3D.distance;
+                const factor = fov / (Math.abs(zTrans) < 0.001 ? 0.001 : zTrans);
+                return { x: x1 * factor * scale + this.canvas.width/(window.devicePixelRatio||1)/2, y: y1 * factor * scale + this.canvas.height/(window.devicePixelRatio||1)/2, depth: zTrans };
             }
-            
-            screenToWorldY(screenY) {
-                return (screenY - this.view2D.offsetY) / this.view2D.zoom + this.view2D.panY;
-            }
-            
-            worldToScreenX(worldX) {
-                return (worldX - this.view2D.panX) * this.view2D.zoom + this.view2D.offsetX;
-            }
-            
-            worldToScreenY(worldY) {
-                return (worldY - this.view2D.panY) * this.view2D.zoom + this.view2D.offsetY;
-            }
-            
-            // 3D-Projektion: Weltkoordinaten → Bildschirmkoordinaten
-            project3D(x, y, z) {
-                // Relative Position zum Zielpunkt
-                const relX = x - this.view3D.targetX;
-                const relY = y - this.view3D.targetY;
-                const relZ = z - this.view3D.targetZ;
-                
-                // Winkel in Radiant umrechnen
-                const yawRad = this.view3D.yaw * Math.PI / 180;
-                const pitchRad = this.view3D.pitch * Math.PI / 180;
-                
-                // Rotation um Y-Achse (Yaw)
-                const cosYaw = Math.cos(yawRad);
-                const sinYaw = Math.sin(yawRad);
-                const x1 = relX * cosYaw - relZ * sinYaw;
-                const z1 = relX * sinYaw + relZ * cosYaw;
-                
-                // Rotation um X-Achse (Pitch)
-                const cosPitch = Math.cos(pitchRad);
-                const sinPitch = Math.sin(pitchRad);
-                const y1 = relY * cosPitch - z1 * sinPitch;
-                const z2 = relY * sinPitch + z1 * cosPitch;
-                
-                // Perspektivische Projektion
-                const canvasWidth = this.canvas.width / (window.devicePixelRatio || 1);
-                const canvasHeight = this.canvas.height / (window.devicePixelRatio || 1);
-                const fov = Math.PI / 4; // 45 Grad Feld der Sicht
-                const scale = Math.min(canvasWidth, canvasHeight) / 2;
-                
-                // Z-Translation (Kamera-Abstand)
-                const zTranslated = z2 - this.view3D.distance;
-                
-                // Vermeide Division durch Null
-                if (zTranslated === 0) zTranslated = 0.001;
-                
-                // Perspektivische Projektion
-                const factor = fov / zTranslated;
-                const screenX = x1 * factor * scale + canvasWidth / 2;
-                const screenY = y1 * factor * scale + canvasHeight / 2;
-                
-                return { x: screenX, y: screenY, depth: zTranslated };
-            }
-            
-            parseGCode(gcode) {
-                this.segments = [];
-                this.bbox = { minX: 0, minY: 0, minZ: 0, maxX: 0, maxY: 0, maxZ: 0 };
-                this.currentPosition = { x: 0, y: 0, z: 0 };
-                this.mode.absolute = true;
-                this.mode.units = 'mm';
-                
-                const lines = gcode.split('\n');
-                let isRapid = false;
-                
-                for (let i = 0; i < lines.length; i++) {
-                    const line = lines[i].trim();
-                    if (!line || line.startsWith('(') || line.startsWith(';') || line.startsWith('%')) {
-                        continue;
-                    }
-                    
-                    // Modal-Befehle verarbeiten
-                    if (line.includes('G90')) this.mode.absolute = true;
-                    if (line.includes('G91')) this.mode.absolute = false;
-                    if (line.includes('G20')) this.mode.units = 'inch';
-                    if (line.includes('G21')) this.mode.units = 'mm';
-                    
-                    // Bewegungsbefehle
-                    if (line.includes('G0') || line.includes('G00')) {
-                        isRapid = true;
-                        this.parseMovement(line, isRapid);
-                    } else if (line.includes('G1') || line.includes('G01')) {
-                        isRapid = false;
-                        this.parseMovement(line, isRapid);
-                    } else if (line.includes('G2') || line.includes('G3') || line.includes('G02') || line.includes('G03')) {
-                        isRapid = false;
-                        this.parseArc(line, isRapid);
-                    }
+
+            parseGCode(gcodeStr) {
+                this.segments = []; this.currentPosition = {x:0,y:0,z:0}; this.mode = {absolute:true, units:'mm'};
+                const lines = gcodeStr.split(/\r?\n/);
+                for(let raw of lines) {
+                    let line = raw.split(';')[0].split('(')[0].trim().toUpperCase();
+                    if(!line) continue;
+                    if(line.includes('G90')) this.mode.absolute = true;
+                    if(line.includes('G91')) this.mode.absolute = false;
+                    if(line.includes('G20')) this.mode.units = 'inch';
+                    if(line.includes('G21')) this.mode.units = 'mm';
+                    if(line.match(/G0[0]?/) || line.match(/G0[0]?/)) this.parseMovement(line, true);
+                    else if(line.match(/G1[01]?/)) this.parseMovement(line, false);
+                    else if(line.match(/G2|G3|G02|G03/)) this.parseArc(line, false);
                 }
-                
-                // Bounding Box berechnen
-                this.calculateBoundingBox();
-                
-                // Ansicht anpassen
+                this.calcBBox();
                 this.fitToView();
-                
-                // UI aktualisieren
+                this.stopPlayback();
+                this.playIndex = 0;
                 this.updateUI();
-                
-                // Zeichnen
                 this.draw();
             }
-            
-            parseMovement(line, isRapid) {
-                const xMatch = line.match(/X([-\d.]+)/);
-                const yMatch = line.match(/Y([-\d.]+)/);
-                const zMatch = line.match(/Z([-\d.]+)/);
-                
-                let x = this.currentPosition.x;
-                let y = this.currentPosition.y;
-                let z = this.currentPosition.z;
-                
-                if (xMatch) {
-                    x = parseFloat(xMatch[1]);
-                    if (!this.mode.absolute) x += this.currentPosition.x;
+
+            parseMovement(line, rapid) {
+                let x = this.currentPosition.x, y = this.currentPosition.y, z = this.currentPosition.z;
+                let changed = false;
+                const getVal = (c) => { let m = line.match(new RegExp(c+'([-+]?\\d*\\.?\\d+)')); return m ? parseFloat(m[1]) : null; };
+                let nx = getVal('X'); if(nx !== null) { x = this.mode.absolute ? nx : this.currentPosition.x + nx; changed=true; }
+                let ny = getVal('Y'); if(ny !== null) { y = this.mode.absolute ? ny : this.currentPosition.y + ny; changed=true; }
+                let nz = getVal('Z'); if(nz !== null) { z = this.mode.absolute ? nz : this.currentPosition.z + nz; changed=true; }
+                if(this.mode.units === 'inch') { x*=25.4; y*=25.4; z*=25.4; }
+                if(changed && (x!==this.currentPosition.x || y!==this.currentPosition.y || z!==this.currentPosition.z)) {
+                    this.segments.push({ x1:this.currentPosition.x, y1:this.currentPosition.y, z1:this.currentPosition.z, x2:x, y2:y, z2:z, rapid, arc:false });
+                    this.currentPosition = {x,y,z};
                 }
-                
-                if (yMatch) {
-                    y = parseFloat(yMatch[1]);
-                    if (!this.mode.absolute) y += this.currentPosition.y;
-                }
-                
-                if (zMatch) {
-                    z = parseFloat(zMatch[1]);
-                    if (!this.mode.absolute) z += this.currentPosition.z;
-                }
-                
-                // Einheiten umrechnen (falls nötig)
-                if (this.mode.units === 'inch') {
-                    x *= 25.4;
-                    y *= 25.4;
-                    z *= 25.4;
-                }
-                
-                // Segment hinzufügen
-                this.segments.push({
-                    x1: this.currentPosition.x, y1: this.currentPosition.y, z1: this.currentPosition.z,
-                    x2: x, y2: y, z2: z,
-                    rapid: isRapid,
-                    arc: false
-                });
-                
-                // Aktuelle Position aktualisieren
-                this.currentPosition = { x, y, z };
             }
-            
-            parseArc(line, isRapid) {
-                const xMatch = line.match(/X([-\d.]+)/);
-                const yMatch = line.match(/Y([-\d.]+)/);
-                const iMatch = line.match(/I([-\d.]+)/);
-                const jMatch = line.match(/J([-\d.]+)/);
-                
-                if (!xMatch || !yMatch || !iMatch || !jMatch) return;
-                
-                const endX = parseFloat(xMatch[1]);
-                const endY = parseFloat(yMatch[1]);
-                const centerX = this.currentPosition.x + parseFloat(iMatch[1]);
-                const centerY = this.currentPosition.y + parseFloat(jMatch[1]);
-                
-                // Einheiten umrechnen (falls nötig)
-                let finalEndX = endX;
-                let finalEndY = endY;
-                let finalCenterX = centerX;
-                let finalCenterY = centerY;
-                
-                if (this.mode.units === 'inch') {
-                    finalEndX *= 25.4;
-                    finalEndY *= 25.4;
-                    finalCenterX *= 25.4;
-                    finalCenterY *= 25.4;
+
+            parseArc(line, rapid) {
+                let x = this.currentPosition.x, y = this.currentPosition.y;
+                let nx=null, ny=null, i=0, j=0;
+                const xm = line.match(/X([-+]?\d*\.?\d+)/), ym = line.match(/Y([-+]?\d*\.?\d+)/), im = line.match(/I([-+]?\d*\.?\d+)/), jm = line.match(/J([-+]?\d*\.?\d+)/);
+                if(!xm || !ym || !im || !jm) return;
+                nx = parseFloat(xm[1]); ny = parseFloat(ym[1]); i = parseFloat(im[1]); j = parseFloat(jm[1]);
+                if(!this.mode.absolute) { nx += this.currentPosition.x; ny += this.currentPosition.y; }
+                const centerX = this.currentPosition.x + i, centerY = this.currentPosition.y + j;
+                const radius = Math.hypot(this.currentPosition.x - centerX, this.currentPosition.y - centerY);
+                let startAng = Math.atan2(this.currentPosition.y - centerY, this.currentPosition.x - centerX);
+                let endAng = Math.atan2(ny - centerY, nx - centerX);
+                const clockwise = line.includes('G2') || line.includes('G02');
+                let angleDiff = endAng - startAng;
+                if(clockwise) { while(angleDiff > 0) angleDiff -= 2*Math.PI; while(angleDiff < -2*Math.PI) angleDiff += 2*Math.PI; }
+                else { while(angleDiff < 0) angleDiff += 2*Math.PI; while(angleDiff > 2*Math.PI) angleDiff -= 2*Math.PI; }
+                const steps = Math.max(12, Math.floor(Math.abs(angleDiff) * 12 / (2*Math.PI)));
+                let lastX = this.currentPosition.x, lastY = this.currentPosition.y;
+                for(let s=1; s<=steps; s++) {
+                    let ang = startAng + angleDiff * s/steps;
+                    let px = centerX + radius * Math.cos(ang), py = centerY + radius * Math.sin(ang);
+                    this.segments.push({ x1:lastX, y1:lastY, z1:this.currentPosition.z, x2:px, y2:py, z2:this.currentPosition.z, rapid, arc:true });
+                    lastX = px; lastY = py;
                 }
-                
-                // Relative oder absolute Position
-                if (this.mode.absolute) {
-                    finalEndX = endX;
-                    finalEndY = endY;
-                } else {
-                    finalEndX = this.currentPosition.x + endX;
-                    finalEndY = this.currentPosition.y + endY;
-                }
-                
-                // Bogen in Linien segmentieren
-                const startAngle = Math.atan2(this.currentPosition.y - finalCenterY, this.currentPosition.x - finalCenterX);
-                const endAngle = Math.atan2(finalEndY - finalCenterY, finalEndX - finalCenterX);
-                const radius = Math.sqrt(
-                    Math.pow(this.currentPosition.x - finalCenterX, 2) + 
-                    Math.pow(this.currentPosition.y - finalCenterY, 2)
-                );
-                
-                // Winkelrichtung bestimmen (G2 = CW, G3 = CCW)
-                const isClockwise = line.includes('G2') || line.includes('G02');
-                let angleDiff = endAngle - startAngle;
-                
-                if (isClockwise) {
-                    if (angleDiff > 0) angleDiff -= 2 * Math.PI;
-                } else {
-                    if (angleDiff < 0) angleDiff += 2 * Math.PI;
-                }
-                
-                // Anzahl der Segmente basierend auf Bogenlänge
-                const segments = Math.max(8, Math.abs(Math.round(angleDiff * 16 / (2 * Math.PI))));
-                const z = this.currentPosition.z; // Z beibehalten
-                
-                // Bogen segmentieren
-                let lastX = this.currentPosition.x;
-                let lastY = this.currentPosition.y;
-                
-                for (let s = 1; s <= segments; s++) {
-                    const angle = startAngle + (angleDiff * s / segments);
-                    const x = finalCenterX + radius * Math.cos(angle);
-                    const y = finalCenterY + radius * Math.sin(angle);
-                    
-                    this.segments.push({
-                        x1: lastX, y1: lastY, z1: z,
-                        x2: x, y2: y, z2: z,
-                        rapid: isRapid,
-                        arc: true
-                    });
-                    
-                    lastX = x;
-                    lastY = y;
-                }
-                
-                // Aktuelle Position aktualisieren
-                this.currentPosition = { x: finalEndX, y: finalEndY, z };
+                this.currentPosition = { x:nx, y:ny, z:this.currentPosition.z };
             }
-            
-            calculateBoundingBox() {
-                if (this.segments.length === 0) {
-                    this.bbox = { minX: -10, minY: -10, minZ: -10, maxX: 10, maxY: 10, maxZ: 10 };
-                    return;
+
+            calcBBox() {
+                if(!this.segments.length) { this.bbox = {minX:-20,minY:-20,minZ:-20,maxX:20,maxY:20,maxZ:20}; return; }
+                let minX=Infinity,minY=Infinity,minZ=Infinity,maxX=-Infinity,maxY=-Infinity,maxZ=-Infinity;
+                for(let s of this.segments) {
+                    minX = Math.min(minX,s.x1,s.x2); maxX = Math.max(maxX,s.x1,s.x2);
+                    minY = Math.min(minY,s.y1,s.y2); maxY = Math.max(maxY,s.y1,s.y2);
+                    minZ = Math.min(minZ,s.z1,s.z2); maxZ = Math.max(maxZ,s.z1,s.z2);
                 }
-                
-                this.bbox.minX = Infinity;
-                this.bbox.minY = Infinity;
-                this.bbox.minZ = Infinity;
-                this.bbox.maxX = -Infinity;
-                this.bbox.maxY = -Infinity;
-                this.bbox.maxZ = -Infinity;
-                
-                for (const segment of this.segments) {
-                    this.bbox.minX = Math.min(this.bbox.minX, segment.x1, segment.x2);
-                    this.bbox.minY = Math.min(this.bbox.minY, segment.y1, segment.y2);
-                    this.bbox.minZ = Math.min(this.bbox.minZ, segment.z1, segment.z2);
-                    this.bbox.maxX = Math.max(this.bbox.maxX, segment.x1, segment.x2);
-                    this.bbox.maxY = Math.max(this.bbox.maxY, segment.y1, segment.y2);
-                    this.bbox.maxZ = Math.max(this.bbox.maxZ, segment.z1, segment.z2);
-                }
-                
-                // Sicherstellen, dass die BBox nicht leer ist
-                if (this.bbox.minX === Infinity) {
-                    this.bbox = { minX: -10, minY: -10, minZ: -10, maxX: 10, maxY: 10, maxZ: 10 };
-                }
-                
-                // Etwas Padding hinzufügen
-                const padding = Math.max(
-                    (this.bbox.maxX - this.bbox.minX) * 0.1,
-                    (this.bbox.maxY - this.bbox.minY) * 0.1,
-                    (this.bbox.maxZ - this.bbox.minZ) * 0.1,
-                    1
-                );
-                
-                this.bbox.minX -= padding;
-                this.bbox.minY -= padding;
-                this.bbox.minZ -= padding;
-                this.bbox.maxX += padding;
-                this.bbox.maxY += padding;
-                this.bbox.maxZ += padding;
+                let pad = Math.max((maxX-minX)*0.08, (maxY-minY)*0.08, 1);
+                this.bbox = { minX:minX-pad, maxX:maxX+pad, minY:minY-pad, maxY:maxY+pad, minZ:minZ-pad, maxZ:maxZ+pad };
+                const rangeX = document.getElementById('range-x');
+                const rangeYZ = document.getElementById('range-yz');
+                if(rangeX) rangeX.innerText = `${minX.toFixed(1)}..${maxX.toFixed(1)}`;
+                if(rangeYZ) rangeYZ.innerText = `Y:${minY.toFixed(1)}..${maxY.toFixed(1)} Z:${minZ.toFixed(1)}..${maxZ.toFixed(1)}`;
             }
-            
+
             fitToView() {
-                if (this.activeView === '2d') {
-                    if (this.bbox.maxX - this.bbox.minX === 0 || this.bbox.maxY - this.bbox.minY === 0) {
-                        return;
+                if(this.activeView === '2d') {
+                    const w = this.canvas.width/(window.devicePixelRatio||1), h = this.canvas.height/(window.devicePixelRatio||1);
+                    const ww = this.bbox.maxX - this.bbox.minX, hh = this.bbox.maxY - this.bbox.minY;
+                    if(ww>0 && hh>0) {
+                        this.view2D.zoom = Math.min(w/ww, h/hh) * 0.9;
+                        this.view2D.panX = (this.bbox.minX+this.bbox.maxX)/2;
+                        this.view2D.panY = (this.bbox.minY+this.bbox.maxY)/2;
+                        this.view2D.offsetX = w/2; this.view2D.offsetY = h/2;
                     }
-                    
-                    const canvasWidth = this.canvas.width / (window.devicePixelRatio || 1);
-                    const canvasHeight = this.canvas.height / (window.devicePixelRatio || 1);
-                    
-                    const contentWidth = this.bbox.maxX - this.bbox.minX;
-                    const contentHeight = this.bbox.maxY - this.bbox.minY;
-                    
-                    const scaleX = canvasWidth / contentWidth;
-                    const scaleY = canvasHeight / contentHeight;
-                    
-                    this.view2D.zoom = Math.min(scaleX, scaleY) * 0.9; // 10% Padding
-                    this.view2D.panX = (this.bbox.minX + this.bbox.maxX) / 2;
-                    this.view2D.panY = (this.bbox.minY + this.bbox.maxY) / 2;
-                    
-                    this.view2D.offsetX = canvasWidth / 2;
-                    this.view2D.offsetY = canvasHeight / 2;
                 } else {
-                    // 3D-Ansicht anpassen
-                    const centerX = (this.bbox.minX + this.bbox.maxX) / 2;
-                    const centerY = (this.bbox.minY + this.bbox.maxY) / 2;
-                    const centerZ = (this.bbox.minZ + this.bbox.maxZ) / 2;
-                    
-                    this.view3D.targetX = centerX;
-                    this.view3D.targetY = centerY;
-                    this.view3D.targetZ = centerZ;
-                    
-                    // Abstand so wählen, dass das gesamte Modell sichtbar ist
-                    const sizeX = this.bbox.maxX - this.bbox.minX;
-                    const sizeY = this.bbox.maxY - this.bbox.minY;
-                    const sizeZ = this.bbox.maxZ - this.bbox.minZ;
-                    const maxSize = Math.max(sizeX, sizeY, sizeZ);
-                    
-                    this.view3D.distance = maxSize * 1.5;
-                    this.view3D.yaw = 45;
-                    this.view3D.pitch = 30;
+                    this.view3D.targetX = (this.bbox.minX+this.bbox.maxX)/2;
+                    this.view3D.targetY = (this.bbox.minY+this.bbox.maxY)/2;
+                    this.view3D.targetZ = (this.bbox.minZ+this.bbox.maxZ)/2;
+                    let maxDim = Math.max(this.bbox.maxX-this.bbox.minX, this.bbox.maxY-this.bbox.minY, this.bbox.maxZ-this.bbox.minZ);
+                    this.view3D.distance = maxDim * 1.3;
+                    this.view3D.yaw = 45; this.view3D.pitch = 30;
                 }
-                
-                this.updateUI();
-                this.draw();
+                this.updateUI(); this.draw();
             }
-            
+
             draw() {
-                const canvasWidth = this.canvas.width / (window.devicePixelRatio || 1);
-                const canvasHeight = this.canvas.height / (window.devicePixelRatio || 1);
-                
-                // Canvas löschen
-                this.ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-                
-                // Hintergrund
-                this.ctx.fillStyle = '#f8f9fa';
-                this.ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-                
-                if (this.activeView === '2d') {
-                    this.draw2D(canvasWidth, canvasHeight);
-                } else {
-                    this.draw3D(canvasWidth, canvasHeight);
+                const w = this.canvas.width/(window.devicePixelRatio||1), h = this.canvas.height/(window.devicePixelRatio||1);
+                this.ctx.clearRect(0,0,w,h);
+                this.ctx.fillStyle = '#ffffff'; this.ctx.fillRect(0,0,w,h);
+                if(this.activeView === '2d') this.draw2D(w,h);
+                else this.draw3D(w,h);
+            }
+
+            draw2D(w,h) {
+                if(document.getElementById('grid-toggle').checked) this.drawGrid2D(w,h);
+                const rapidVis = document.getElementById('rapid-toggle').checked;
+                const lwIdx = parseInt(document.getElementById('line-width-slider').value)-1;
+                const lw = this.lineWidthValues[lwIdx];
+                for(let i=0; i<this.segments.length; i++) {
+                    if(this.isPlaying && i>=this.playIndex) break;
+                    const s = this.segments[i];
+                    const x1=this.worldToScreenX(s.x1), y1=this.worldToScreenY(s.y1), x2=this.worldToScreenX(s.x2), y2=this.worldToScreenY(s.y2);
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(x1,y1); this.ctx.lineTo(x2,y2);
+                    if(s.rapid && rapidVis) { this.ctx.strokeStyle = '#f97316'; this.ctx.setLineDash([6,6]); }
+                    else { this.ctx.strokeStyle = '#ea580c'; this.ctx.setLineDash([]); }
+                    this.ctx.lineWidth = lw; this.ctx.stroke();
+                }
+                this.ctx.setLineDash([]);
+                if(this.isPlaying && this.playIndex>0) {
+                    let last = this.segments[this.playIndex-1];
+                    let cx=this.worldToScreenX(last.x2), cy=this.worldToScreenY(last.y2);
+                    this.ctx.fillStyle = '#f97316'; this.ctx.beginPath(); this.ctx.arc(cx,cy,6,0,2*Math.PI); this.ctx.fill();
                 }
             }
-            
-            draw2D(canvasWidth, canvasHeight) {
-                // Gitternetz zeichnen (falls aktiviert)
-                if (document.getElementById('grid-toggle').checked) {
-                    this.drawGrid(canvasWidth, canvasHeight);
-                }
-                
-                // Segmente zeichnen
-                const showRapid = document.getElementById('rapid-toggle').checked;
-                const lineWidthIndex = parseInt(document.getElementById('line-width-slider').value) - 1;
-                const lineWidth = this.lineWidthValues[lineWidthIndex];
-                
-                for (let i = 0; i < this.segments.length; i++) {
-                    // Nur bis zum aktuellen Wiedergabeindex zeichnen, wenn Wiedergabe aktiv
-                    if (this.isPlaying && i >= this.playIndex) {
-                        break;
-                    }
-                    
-                    const segment = this.segments[i];
-                    
-                    const x1 = this.worldToScreenX(segment.x1);
-                    const y1 = this.worldToScreenY(segment.y1);
-                    const x2 = this.worldToScreenX(segment.x2);
-                    const y2 = this.worldToScreenY(segment.y2);
-                    
-                    // Linienstil basierend auf Bewegungstyp
-                    if (segment.rapid && showRapid) {
-                        this.ctx.strokeStyle = '#e74c3c'; // Rot für Schnellbewegungen
-                        this.ctx.setLineDash([5, 5]);
-                    
-                    
-                    this.ctx.lineWidth = lineWidth;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(x1, y1);
-                    this.ctx.lineTo(x2, y2);
-                    this.ctx.stroke();
-                }
-                
-                // Start- und Endpunkte markieren (nur wenn nicht in Wiedergabe)
-                if (!this.isPlaying && this.segments.length > 0) {
-                    // Startpunkt
-                    const firstSegment = this.segments[0];
-                    const startX = this.worldToScreenX(firstSegment.x1);
-                    const startY = this.worldToScreenY(firstSegment.y1);
-                    
-                    this.ctx.fillStyle = '#2ecc71';
-                    this.ctx.beginPath();
-                    this.ctx.arc(startX, startY, 5, 0, Math.PI * 2);
-                    this.ctx.fill();
-                    
-                    // Endpunkt
-                    const lastSegment = this.segments[this.segments.length - 1];
-                    const endX = this.worldToScreenX(lastSegment.x2);
-                    const endY = this.worldToScreenY(lastSegment.y2);
-                    
-                    this.ctx.fillStyle = '#e74c3c';
-                    this.ctx.beginPath();
-                    this.ctx.arc(endX, endY, 5, 0, Math.PI * 2);
-                    this.ctx.fill();
-                }
-                
-                // Aktuelle Position während der Wiedergabe markieren
-                if (this.isPlaying && this.playIndex > 0) {
-                    const currentSegment = this.segments[this.playIndex - 1];
-                    const currentX = this.worldToScreenX(currentSegment.x2);
-                    const currentY = this.worldToScreenY(currentSegment.y2);
-                    
-                    this.ctx.fillStyle = '#f39c12';
-                    this.ctx.beginPath();
-                    this.ctx.arc(currentX, currentY, 6, 0, Math.PI * 2);
-                    this.ctx.fill();
-                    
-                    this.ctx.strokeStyle = '#d35400';
-                    this.ctx.lineWidth = 2;
-                    this.ctx.beginPath();
-                    this.ctx.arc(currentX, currentY, 8, 0, Math.PI * 2);
-                    this.ctx.stroke();
-                }
+
+            drawGrid2D(w,h) {
+                const left=this.screenToWorldX(0), right=this.screenToWorldX(w), top=this.screenToWorldY(0), bottom=this.screenToWorldY(h);
+                let step = 10; if(this.view2D.zoom>1.2) step=5; if(this.view2D.zoom>2.5) step=2;
+                this.ctx.strokeStyle = '#e2e8f0'; this.ctx.lineWidth = 0.8;
+                for(let x=Math.floor(left/step)*step; x<=right; x+=step) { let sx=this.worldToScreenX(x); if(sx>0 && sx<w){ this.ctx.beginPath(); this.ctx.moveTo(sx,0); this.ctx.lineTo(sx,h); this.ctx.stroke(); } }
+                for(let y=Math.floor(top/step)*step; y<=bottom; y+=step) { let sy=this.worldToScreenY(y); if(sy>0 && sy<h){ this.ctx.beginPath(); this.ctx.moveTo(0,sy); this.ctx.lineTo(w,sy); this.ctx.stroke(); } }
+                this.ctx.beginPath(); let ax=this.worldToScreenX(0); if(ax>0&&ax<w){ this.ctx.moveTo(ax,0); this.ctx.lineTo(ax,h); } let ay=this.worldToScreenY(0); if(ay>0&&ay<h){ this.ctx.moveTo(0,ay); this.ctx.lineTo(w,ay); } this.ctx.strokeStyle='#f97316'; this.ctx.lineWidth=1.5; this.ctx.stroke();
             }
-            
-            draw3D(canvasWidth, canvasHeight) {
-                // Gitternetz zeichnen (falls aktiviert) amir
-                if (document.getElementById('grid-toggle').checked) {
-                    this.draw3DGrid(canvasWidth, canvasHeight);
+
+            draw3D(w,h) {
+                if(document.getElementById('grid-toggle').checked) this.drawGrid3D();
+                const rapidVis = document.getElementById('rapid-toggle').checked, depthEff = document.getElementById('depth-toggle').checked;
+                const lwIdx = parseInt(document.getElementById('line-width-slider').value)-1, lw = this.lineWidthValues[lwIdx];
+                let proj = [];
+                for(let i=0; i<this.segments.length; i++) {
+                    if(this.isPlaying && i>=this.playIndex) break;
+                    let s=this.segments[i];
+                    let p1=this.project3D(s.x1,s.y1,s.z1), p2=this.project3D(s.x2,s.y2,s.z2);
+                    proj.push({p1,p2,rapid:s.rapid,depth:(p1.depth+p2.depth)/2});
                 }
-                
-                // Segmente für 3D zeichnen (mit Tiefensortierung)
-                const showRapid = document.getElementById('rapid-toggle').checked;
-                const useDepth = document.getElementById('depth-toggle').checked;
-                const lineWidthIndex = parseInt(document.getElementById('line-width-slider').value) - 1;
-                const lineWidth = this.lineWidthValues[lineWidthIndex];
-                
-                // Segmente projizieren und nach Tiefe sortieren
-                const projectedSegments = [];
-                
-                for (let i = 0; i < this.segments.length; i++) {
-                    // Nur bis zum aktuellen Wiedergabeindex zeichnen, wenn Wiedergabe aktiv
-                    if (this.isPlaying && i >= this.playIndex) {
-                        break;
-                    }
-                    
-                    const segment = this.segments[i];
-                    const p1 = this.project3D(segment.x1, segment.y1, segment.z1);
-                    const p2 = this.project3D(segment.x2, segment.y2, segment.z2);
-                    
-                    // Durchschnittliche Tiefe für Sortierung
-                    const avgDepth = (p1.depth + p2.depth) / 2;
-                    
-                    projectedSegments.push({
-                        segment: segment,
-                        p1: p1,
-                        p2: p2,
-                        depth: avgDepth
-                    });
+                proj.sort((a,b)=>b.depth-a.depth);
+                for(let p of proj) {
+                    this.ctx.beginPath(); this.ctx.moveTo(p.p1.x,p.p1.y); this.ctx.lineTo(p.p2.x,p.p2.y);
+                    if(p.rapid && rapidVis) { this.ctx.strokeStyle = '#f97316'; this.ctx.setLineDash([5,5]); }
+                    else { this.ctx.strokeStyle = '#ea580c'; this.ctx.setLineDash([]); }
+                    if(depthEff) this.ctx.globalAlpha = Math.min(1, Math.max(0.3, 1 - (p.depth+this.view3D.distance)/(this.view3D.distance*1.8)));
+                    else this.ctx.globalAlpha = 1;
+                    this.ctx.lineWidth = lw; this.ctx.stroke();
                 }
-                
-                // Nach Tiefe sortieren (Painter's Algorithm)
-                projectedSegments.sort((a, b) => b.depth - a.depth);
-                
-                // Segmente zeichnen
-                for (const proj of projectedSegments) {
-                    const segment = proj.segment;
-                    
-                    // Linienstil basierend auf Bewegungstyp
-                    if (segment.rapid && showRapid) {
-                        this.ctx.strokeStyle = '#e74c3c'; // Rot für Schnellbewegungen
-                        this.ctx.setLineDash([5, 5]);
-                    } else {
-                        this.ctx.strokeStyle = '#3498db'; // Blau für Arbeitsbewegungen
-                        this.ctx.setLineDash([]);
-                    }
-                    
-                    // Tiefeneffekt (Alpha basierend auf Entfernung)-amir
-                    if (useDepth) {
-                        const alpha = Math.max(0.3, 1 - (proj.depth + this.view3D.distance) / (this.view3D.distance * 2));
-                        this.ctx.globalAlpha = alpha;
-                    } else {
-                        this.ctx.globalAlpha = 1;
-                    }
-                    
-                    this.ctx.lineWidth = lineWidth;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(proj.p1.x, proj.p1.y);
-                    this.ctx.lineTo(proj.p2.x, proj.p2.y);
-                    this.ctx.stroke();
-                }
-                
-                // Alpha zurücksetzen
-                this.ctx.globalAlpha = 1;
-                
-                // Aktuelle Position während der Wiedergabe markieren
-                if (this.isPlaying && this.playIndex > 0) {
-                    const currentSegment = this.segments[this.playIndex - 1];
-                    const currentPos = this.project3D(currentSegment.x2, currentSegment.y2, currentSegment.z2);
-                    
-                    this.ctx.fillStyle = '#f39c12';
-                    this.ctx.beginPath();
-                    this.ctx.arc(currentPos.x, currentPos.y, 6, 0, Math.PI * 2);
-                    this.ctx.fill();
-                    
-                    this.ctx.strokeStyle = '#d35400';
-                    this.ctx.lineWidth = 2;
-                    this.ctx.beginPath();
-                    this.ctx.arc(currentPos.x, currentPos.y, 8, 0, Math.PI * 2);
-                    this.ctx.stroke();
-                }
+                this.ctx.globalAlpha=1; this.ctx.setLineDash([]);
             }
-            
-            drawGrid(canvasWidth, canvasHeight) {
-                const gridSize = 10; // Weltkoordinaten-Größe pro Raster
-                const zoomThreshold = 0.5; // Zoom-Schwelle für feineres Raster
-                
-                // Rastergröße basierend auf Zoom anpassen
-                let effectiveGridSize = gridSize;
-                if (this.view2D.zoom > zoomThreshold * 5) {
-                    effectiveGridSize = gridSize / 10;
-                } else if (this.view2D.zoom > zoomThreshold) {
-                    effectiveGridSize = gridSize / 2;
-                }
-                
-                // Weltkoordinaten der sichtbaren Bereichsränder
-                const left = this.screenToWorldX(0);
-                const right = this.screenToWorldX(canvasWidth);
-                const top = this.screenToWorldY(0);
-                const bottom = this.screenToWorldY(canvasHeight);
-                
-                // Hauptachsen (X=0, Y=0)
-                this.ctx.strokeStyle = '#bbb';
-                this.ctx.lineWidth = 2;
-                
-                // Y-Achse (X=0)
-                const yAxisScreenX = this.worldToScreenX(0);
-                if (yAxisScreenX >= 0 && yAxisScreenX <= canvasWidth) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(yAxisScreenX, 0);
-                    this.ctx.lineTo(yAxisScreenX, canvasHeight);
-                    this.ctx.stroke();
-                }
-                
-                // X-Achse (Y=0)
-                const xAxisScreenY = this.worldToScreenY(0);
-                if (xAxisScreenY >= 0 && xAxisScreenY <= canvasHeight) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, xAxisScreenY);
-                    this.ctx.lineTo(canvasWidth, xAxisScreenY);
-                    this.ctx.stroke();
-                }
-                
-                // Rasterlinien
-                this.ctx.strokeStyle = '#e0e0e0';
-                this.ctx.lineWidth = 1;
-                
-                // Vertikale Linien
-                const firstVertical = Math.ceil(left / effectiveGridSize) * effectiveGridSize;
-                for (let x = firstVertical; x <= right; x += effectiveGridSize) {
-                    const screenX = this.worldToScreenX(x);
-                    if (screenX < 0 || screenX > canvasWidth) continue;
-                    
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(screenX, 0);
-                    this.ctx.lineTo(screenX, canvasHeight);
-                    this.ctx.stroke();
-                }
-                
-                // Horizontale Linien
-                const firstHorizontal = Math.ceil(top / effectiveGridSize) * effectiveGridSize;
-                for (let y = firstHorizontal; y <= bottom; y += effectiveGridSize) {
-                    const screenY = this.worldToScreenY(y);
-                    if (screenY < 0 || screenY > canvasHeight) continue;
-                    
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, screenY);
-                    this.ctx.lineTo(canvasWidth, screenY);
-                    this.ctx.stroke();
-                }
+
+            drawGrid3D() {
+                let size = Math.max(50, (this.bbox.maxX-this.bbox.minX)/1.5);
+                let step = 10;
+                this.ctx.strokeStyle='#d6d3d1'; this.ctx.lineWidth=0.7;
+                for(let x=-size; x<=size; x+=step) { let p1=this.project3D(x,-size,0), p2=this.project3D(x,size,0); this.ctx.beginPath(); this.ctx.moveTo(p1.x,p1.y); this.ctx.lineTo(p2.x,p2.y); this.ctx.stroke(); }
+                for(let y=-size; y<=size; y+=step) { let p1=this.project3D(-size,y,0), p2=this.project3D(size,y,0); this.ctx.beginPath(); this.ctx.moveTo(p1.x,p1.y); this.ctx.lineTo(p2.x,p2.y); this.ctx.stroke(); }
             }
-            
-            draw3DGrid(canvasWidth, canvasHeight) {
-                // 3D-Gitternetz (XY-Ebene bei Z=0)
-                const gridSize = 10;
-                const gridExtent = 50;
-                
-                this.ctx.strokeStyle = '#e0e0e0';
-                this.ctx.lineWidth = 1;
-                
-                // X-Linien
-                for (let x = -gridExtent; x <= gridExtent; x += gridSize) {
-                    const p1 = this.project3D(x, -gridExtent, 0);
-                    const p2 = this.project3D(x, gridExtent, 0);
-                    
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(p1.x, p1.y);
-                    this.ctx.lineTo(p2.x, p2.y);
-                    this.ctx.stroke();
-                }
-                
-                // Y-Linien
-                for (let y = -gridExtent; y <= gridExtent; y += gridSize) {
-                    const p1 = this.project3D(-gridExtent, y, 0);
-                    const p2 = this.project3D(gridExtent, y, 0);
-                    
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(p1.x, p1.y);
-                    this.ctx.lineTo(p2.x, p2.y);
-                    this.ctx.stroke();
-                }
-                
-                // Achsen zeichnen
-                // X-Achse (Rot)
-                const xStart = this.project3D(-gridExtent, 0, 0);
-                const xEnd = this.project3D(gridExtent, 0, 0);
-                this.ctx.strokeStyle = '#e74c3c';
-                this.ctx.lineWidth = 2;
-                this.ctx.beginPath();
-                this.ctx.moveTo(xStart.x, xStart.y);
-                this.ctx.lineTo(xEnd.x, xEnd.y);
-                this.ctx.stroke();
-                
-                // Y-Achse (Grün)
-                const yStart = this.project3D(0, -gridExtent, 0);
-                const yEnd = this.project3D(0, gridExtent, 0);
-                this.ctx.strokeStyle = '#2ecc71';
-                this.ctx.lineWidth = 2;
-                this.ctx.beginPath();
-                this.ctx.moveTo(yStart.x, yStart.y);
-                this.ctx.lineTo(yEnd.x, yEnd.y);
-                this.ctx.stroke();
-                
-                // Z-Achse (Blau)
-                const zStart = this.project3D(0, 0, -gridExtent);
-                const zEnd = this.project3D(0, 0, gridExtent);
-                this.ctx.strokeStyle = '#3498db';
-                this.ctx.lineWidth = 2;
-                this.ctx.beginPath();
-                this.ctx.moveTo(zStart.x, zStart.y);
-                this.ctx.lineTo(zEnd.x, zEnd.y);
-                this.ctx.stroke();
-            }
-            
-            play() {
-                // Playback guard: Keine Wiedergabe wenn keine Segmente vorhanden
-                if (!this.segments.length) return;
-                
-                if (this.isPlaying) {
-                    this.stop();
-                    return;
-                }
-                
-                this.isPlaying = true;
-                this.playIndex = 0;
-                
-                const speedIndex = parseInt(document.getElementById('speed-slider').value) - 1;
-                const delay = this.speedValues[speedIndex];
-                
-                this.playInterval = setInterval(() => {
-                    this.step();
-                }, delay);
-                
-                document.getElementById('play-btn').innerHTML = '<span>⏹️</span> Simulation stoppen';
-            }
-            
-            stop() {
-                this.isPlaying = false;
-                if (this.playInterval) {
-                    clearInterval(this.playInterval);
-                    this.playInterval = null;
-                }
-                
-                document.getElementById('play-btn').innerHTML = '<span>▶️</span> Simulation starten';
-                this.draw();
-            }
-            
-            step() {
-                if (this.playIndex >= this.segments.length) {
-                    this.stop();
-                    return;
-                }
-                
-                this.playIndex++;
-                this.draw();
-                
-                if (this.playIndex >= this.segments.length) {
-                    this.stop();
-                }
-            }
-            
-            resetPlayback() {
-                this.playIndex = 0;
-                this.draw();
-            }
-            
-            updateUI() {
-                document.getElementById('zoom-level').textContent = Math.round(
-                    (this.activeView === '2d' ? this.view2D.zoom : this.view3D.distance / 100) * 100
-                ) + '%';
-                
-                document.getElementById('view-type').textContent = this.activeView === '2d' ? '2D' : '3D';
-                
-                // Einheiten anzeigen
-                document.getElementById('units').textContent = this.mode.units.toUpperCase();
-                
-                // 3D-Kamerainfo
-                const cameraInfo = document.getElementById('camera-info');
-                if (this.activeView === '3d') {
-                    cameraInfo.style.display = 'block';
-                    document.getElementById('camera-angles').textContent = 
-                        `${Math.round(this.view3D.yaw)}°, ${Math.round(this.view3D.pitch)}°`;
-                    document.getElementById('camera-distance').textContent = Math.round(this.view3D.distance);
-                } else {
-                    cameraInfo.style.display = 'none';
-                }
-            }
-            
-            setView(view) {
-                this.activeView = view;
-                document.getElementById('view-title').textContent = 
-                    view === '2d' ? '2D-Visualisierung (XY-Ebene)' : '3D-Visualisierung';
-                document.getElementById('view-type').textContent = view === '2d' ? '2D' : '3D';
-                
-                // Tabs aktualisieren
-                document.querySelectorAll('.view-tab').forEach(tab => {
-                    if (tab.dataset.view === view) {
-                        tab.classList.add('active');
-                    } else {
-                        tab.classList.remove('active');
-                    }
-                });
-                
-                this.updateUI();
-                this.draw();
-            }
-            
-            exportAsImage() {
-                // Temporäres Canvas für Export mit höherer Auflösung
-                const exportCanvas = document.createElement('canvas');
-                const exportCtx = exportCanvas.getContext('2d');
-                
-                // Größe für Export (höhere Auflösung)
-                const scale = 2;
-                exportCanvas.width = this.canvas.width * scale;
-                exportCanvas.height = this.canvas.height * scale;
-                
-                // Hintergrund weiß für Export
-                exportCtx.fillStyle = 'white';
-                exportCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
-                
-                if (this.activeView === '2d') {
-                    // 2D-Export
-                    const exportView = {
-                        zoom: this.view2D.zoom * scale,
-                        panX: this.view2D.panX,
-                        panY: this.view2D.panY,
-                        offsetX: this.view2D.offsetX * scale,
-                        offsetY: this.view2D.offsetY * scale
-                    };
-                    
-                    const worldToScreenXExport = (worldX) => {
-                        return (worldX - exportView.panX) * exportView.zoom + exportView.offsetX;
-                    };
-                    
-                    const worldToScreenYExport = (worldY) => {
-                        return (worldY - exportView.panY) * exportView.zoom + exportView.offsetY;
-                    };
-                    
-                    // Segmente zeichnen
-                    const showRapid = document.getElementById('rapid-toggle').checked;
-                    const lineWidthIndex = parseInt(document.getElementById('line-width-slider').value) - 1;
-                    const lineWidth = this.lineWidthValues[lineWidthIndex] * scale;
-                    
-                    for (const segment of this.segments) {
-                        const x1 = worldToScreenXExport(segment.x1);
-                        const y1 = worldToScreenYExport(segment.y1);
-                        const x2 = worldToScreenXExport(segment.x2);
-                        const y2 = worldToScreenYExport(segment.y2);
-                        
-                        // Linienstil basierend auf Bewegungstyp
-                        if (segment.rapid && showRapid) {
-                            exportCtx.strokeStyle = '#e74c3c';
-                            exportCtx.setLineDash([5 * scale, 5 * scale]);
-                        } else {
-                            exportCtx.strokeStyle = '#3498db';
-                            exportCtx.setLineDash([]);
-                        }
-                        
-                        exportCtx.lineWidth = lineWidth;
-                        exportCtx.beginPath();
-                        exportCtx.moveTo(x1, y1);
-                        exportCtx.lineTo(x2, y2);
-                        exportCtx.stroke();
-                    }
-                } else {
-                    // 3D-Export (vereinfacht, ohne Tiefensortierung)
-                    const exportView = {
-                        yaw: this.view3D.yaw,
-                        pitch: this.view3D.pitch,
-                        distance: this.view3D.distance,
-                        targetX: this.view3D.targetX,
-                        targetY: this.view3D.targetY,
-                        targetZ: this.view3D.targetZ
-                    };
-                    
-                    const project3DExport = (x, y, z) => {
-                        // Vereinfachte Projektion für Export
-                        const relX = x - exportView.targetX;
-                        const relY = y - exportView.targetY;
-                        const relZ = z - exportView.targetZ;
-                        
-                        const yawRad = exportView.yaw * Math.PI / 180;
-                        const pitchRad = exportView.pitch * Math.PI / 180;
-                        
-                        const cosYaw = Math.cos(yawRad);
-                        const sinYaw = Math.sin(yawRad);
-                        const x1 = relX * cosYaw - relZ * sinYaw;
-                        const z1 = relX * sinYaw + relZ * cosYaw;
-                        
-                        const cosPitch = Math.cos(pitchRad);
-                        const sinPitch = Math.sin(pitchRad);
-                        const y1 = relY * cosPitch - z1 * sinPitch;
-                        const z2 = relY * sinPitch + z1 * cosPitch;
-                        
-                        const fov = Math.PI / 4;
-                        const scaleFactor = Math.min(exportCanvas.width, exportCanvas.height) / 2;
-                        
-                        const zTranslated = z2 - exportView.distance;
-                        if (zTranslated === 0) zTranslated = 0.001;
-                        
-                        const factor = fov / zTranslated;
-                        const screenX = x1 * factor * scaleFactor + exportCanvas.width / 2;
-                        const screenY = y1 * factor * scaleFactor + exportCanvas.height / 2;
-                        
-                        return { x: screenX, y: screenY };
-                    };
-                    
-                    const showRapid = document.getElementById('rapid-toggle').checked;
-                    const lineWidthIndex = parseInt(document.getElementById('line-width-slider').value) - 1;
-                    const lineWidth = this.lineWidthValues[lineWidthIndex] * scale;
-                    
-                    for (const segment of this.segments) {
-                        const p1 = project3DExport(segment.x1, segment.y1, segment.z1);
-                        const p2 = project3DExport(segment.x2, segment.y2, segment.z2);
-                        
-                        // Linienstil basierend auf Bewegungstyp
-                        if (segment.rapid && showRapid) {
-                            exportCtx.strokeStyle = '#e74c3c';
-                            exportCtx.setLineDash([5 * scale, 5 * scale]);
-                        } else {
-                            exportCtx.strokeStyle = '#3498db';
-                            exportCtx.setLineDash([]);
-                        }
-                        
-                        exportCtx.lineWidth = lineWidth;
-                        exportCtx.beginPath();
-                        exportCtx.moveTo(p1.x, p1.y);
-                        exportCtx.lineTo(p2.x, p2.y);
-                        exportCtx.stroke();
-                    }
-                }
-                
-                // Bild herunterladen
-                const link = document.createElement('a');
-                link.download = 'gcode-visualisierung.png';
-                link.href = exportCanvas.toDataURL('image/png');
-                link.click();
-            }
+
+            play() { if(!this.segments.length) return; if(this.isPlaying) { this.stopPlayback(); return; } this.isPlaying=true; this.playIndex=0; const speedIdx=parseInt(document.getElementById('speed-slider').value)-1; const delay=this.speedValues[speedIdx]; this.playInterval=setInterval(()=>{ if(this.playIndex<this.segments.length){ this.playIndex++; this.draw(); if(this.playIndex>=this.segments.length) this.stopPlayback(); } else this.stopPlayback(); }, delay); document.getElementById('play-btn').innerHTML='⏹️ Simulation stoppen'; }
+            stopPlayback() { if(this.playInterval){ clearInterval(this.playInterval); this.playInterval=null; } this.isPlaying=false; document.getElementById('play-btn').innerHTML='▶️ Simulation starten'; this.draw(); }
+            step() { if(!this.isPlaying && this.playIndex>=this.segments.length) this.playIndex=0; if(this.playIndex<this.segments.length){ this.playIndex++; this.draw(); if(this.playIndex>=this.segments.length) this.stopPlayback(); } else this.stopPlayback(); }
+            resetSim() { this.stopPlayback(); this.playIndex=0; this.draw(); }
+            updateUI() { document.getElementById('zoom-level').innerText=Math.round((this.activeView==='2d'?this.view2D.zoom:this.view3D.distance/100)*100)+'%'; document.getElementById('view-type').innerText=this.activeView; document.getElementById('camera-info').style.display=this.activeView==='3d'?'block':'none'; if(this.activeView==='3d'){ document.getElementById('camera-angles').innerText=`${Math.round(this.view3D.yaw)}°/${Math.round(this.view3D.pitch)}°`; document.getElementById('camera-distance').innerText=Math.round(this.view3D.distance); } }
+            setView(v) { this.activeView=v; document.querySelectorAll('.view-tab').forEach(t=>t.classList.toggle('active',t.dataset.view===v)); document.getElementById('view-title').innerText=v==='2d'?'2D-Visualisierung (XY-Ebene)':'3D-Ansicht (Orbit)'; this.fitToView(); this.updateUI(); this.draw(); }
+            exportImage() { const link=document.createElement('a'); link.download='nc-viewer.png'; link.href=this.canvas.toDataURL(); link.click(); }
         }
 
-        // DOM-Elemente amir mobasheraghdam
-        const uploadArea = document.getElementById('upload-area');
-        const fileInput = document.getElementById('file-input');
-        const loadSampleBtn = document.getElementById('load-sample');
-        const resetViewBtn = document.getElementById('reset-view');
-        const fitViewBtn = document.getElementById('fit-view');
-        const playBtn = document.getElementById('play-btn');
-        const stepBtn = document.getElementById('step-btn');
-        const exportBtn = document.getElementById('export-btn');
-        const viewTabs = document.querySelectorAll('.view-tab');
-        const speedSlider = document.getElementById('speed-slider');
-        const toolSizeSlider = document.getElementById('line-width-slider');
-        const speedValue = document.getElementById('speed-value');
-        const toolSizeValue = document.getElementById('line-width-value');
-        const gridToggle = document.getElementById('grid-toggle');
-        const rapidToggle = document.getElementById('rapid-toggle');
-        const depthToggle = document.getElementById('depth-toggle');
-        
-        // Info-Felder
-        const filenameEl = document.getElementById('filename');
-        const filesizeEl = document.getElementById('filesize');
-        const lineCountEl = document.getElementById('line-count');
-        const processingTimeEl = document.getElementById('processing-time');
-        const gcodePreview = document.getElementById('gcode-preview');
-        
-        // Canvas für die Visualisierung nivta.de
+        // DOM Bindung
         const canvas = document.getElementById('viewer-canvas');
         const viewer = new GCodeViewer(canvas);
-        
-        // Event-Listener für Datei-Upload
-        uploadArea.addEventListener('click', () => {
-            fileInput.click();
-        });
-        
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#3498db';
-            uploadArea.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
-        });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.style.borderColor = '#95a5a6';
-            uploadArea.style.backgroundColor = 'transparent';
-        });
-        
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#95a5a6';
-            uploadArea.style.backgroundColor = 'transparent';
-            
-            if (e.dataTransfer.files.length) {
-                handleFile(e.dataTransfer.files[0]);
-            }
-        });
-        
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length) {
-                handleFile(e.target.files[0]);
-            }
-        });
-        
-        // Beispieldatei laden
-        loadSampleBtn.addEventListener('click', () => {
-            // Beispiel-G-Code
-            const sampleGCode = `%
-O1000
-(TEST PROGRAMM - QUADRAT MIT BOHRUNGEN)
-G17 G20 G40 G49 G80 G90
-G00 G54 X0. Y0. S2000 M03
-G43 H01 Z1.
-G01 Z-0.1 F10.
-X1. Y0.5 F15.
-G02 X1.5 Y1. I0.5 J0.
-G01 Y1.5
-G03 X1. Y2. I-0.5 J0.
-G01 X0.5
-G02 X0. Y1.5 I0. J-0.5
-G01 Y0.5
-G00 Z1.
-X0.5 Y0.5
-G01 Z-0.2 F10.
-G00 Z1.
-X1.0 Y1.0
-G01 Z-0.2 F10.
-G00 Z1.
-M30
-%`;
-            
-            handleFileContent(sampleGCode, 'beispiel_programm.nc', 24576);
-        });
-        
-        // Datei verarbeiten Amir
-        function handleFile(file) {
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                const content = e.target.result;
-                handleFileContent(content, file.name, file.size);
-            };
-            
-            reader.readAsText(file);
-        }
-        
-        function handleFileContent(content, filename, filesize) {
-            // Dateiinformationen anzeigen
-            filenameEl.textContent = filename;
-            filesizeEl.textContent = formatFileSize(filesize);
-            
-            // Zeilen zählen
+        const uploadArea = document.getElementById('upload-area'), fileInput = document.getElementById('file-input');
+        const loadSample = document.getElementById('load-sample'), fitBtn = document.getElementById('fit-view'), resetBtn = document.getElementById('reset-view');
+        const playBtn = document.getElementById('play-btn'), stepBtn = document.getElementById('step-btn'), resetSimBtn = document.getElementById('reset-sim-btn');
+        const exportBtn = document.getElementById('export-btn'), viewTabs = document.querySelectorAll('.view-tab');
+        const speedSlider = document.getElementById('speed-slider'), lineWidthSlider = document.getElementById('line-width-slider');
+        const gridToggle = document.getElementById('grid-toggle'), rapidToggle = document.getElementById('rapid-toggle'), depthToggle = document.getElementById('depth-toggle');
+        const speedVal = document.getElementById('speed-value'), lineWidthVal = document.getElementById('line-width-value');
+
+        function handleFileContent(content, name, size) {
+            document.getElementById('filename').innerText = name;
+            document.getElementById('filesize').innerText = size<1024?size+' B':(size/1024).toFixed(1)+' KB';
             const lines = content.split('\n');
-            lineCountEl.textContent = lines.length;
-            
-            // Bearbeitungszeit schätzen
-            const processingTime = Math.round(lines.length * 0.05); // 0.05 Sekunden pro Zeile
-            processingTimeEl.textContent = `${processingTime} Sekunden (geschätzt)`;
-            
-            // G-Code Vorschau
-            gcodePreview.innerHTML = '';
-            const previewLines = lines.slice(0, 120); // Erste 120 Zeilen anzeigen
-            previewLines.forEach(line => {
-                const lineEl = document.createElement('div');
-                lineEl.textContent = line;
-                gcodePreview.appendChild(lineEl);
-            });
-            
-            if (lines.length > 120) {
-                const moreEl = document.createElement('div');
-                moreEl.textContent = `... und ${lines.length - 120} weitere Zeilen`;
-                moreEl.style.fontStyle = 'italic';
-                moreEl.style.color = '#7f8c8d';
-                gcodePreview.appendChild(moreEl);
-            }
-            
-            // G-Code parsen und visualisieren
+            document.getElementById('line-count').innerText = lines.length;
             viewer.parseGCode(content);
-            
-            // Erfolgsmeldung
-            console.log(`Datei "${filename}" erfolgreich geladen und visualisiert!`);
+            const previewDiv = document.getElementById('gcode-preview');
+            previewDiv.innerHTML = lines.slice(0,80).map(l=>`<div style="font-family:monospace;">${escapeHtml(l.substring(0,80))}</div>`).join('');
+            if(lines.length>80) previewDiv.innerHTML+=`<div style="color:#aaa;">... +${lines.length-80} Zeilen</div>`;
         }
-        
-        // Dateigröße formatieren
-        function formatFileSize(bytes) {
-            if (bytes < 1024) return bytes + ' Bytes';
-            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-            else return (bytes / 1048576).toFixed(1) + ' MB';
-        }
-        
-        // Ansicht-Tabs
-        viewTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                viewer.setView(tab.dataset.view);
-            });
-        });
-        
-        // Slider-Event-Listener
-        speedSlider.addEventListener('input', () => {
-            const values = ['Sehr langsam', 'Langsam', 'Mittel', 'Schnell'];
-            speedValue.textContent = values[speedSlider.value - 1];
-            
-            // Wiedergabegeschwindigkeit aktualisieren, falls aktiv
-            if (viewer.isPlaying) {
-                viewer.stop();
-                viewer.play();
-            }
-        });
-        
-        toolSizeSlider.addEventListener('input', () => {
-            const values = ['Dünn', 'Mittel', 'Dick'];
-            toolSizeValue.textContent = values[toolSizeSlider.value - 1];
-            viewer.draw();
-        });
-        
-        // Toggle-Event-Listener
-        gridToggle.addEventListener('change', () => {
-            viewer.draw();
-        });
-        
-        rapidToggle.addEventListener('change', () => {
-            viewer.draw();
-        });
-        
-        depthToggle.addEventListener('change', () => {
-            if (viewer.activeView === '3d') {
-                viewer.draw();
-            }
-        });
-        
-        // Andere Buttons
-        resetViewBtn.addEventListener('click', () => {
-            if (viewer.activeView === '2d') {
-                viewer.view2D.zoom = 1;
-                viewer.view2D.panX = 0;
-                viewer.view2D.panY = 0;
-                const dpr = window.devicePixelRatio || 1;
-                const cssW = viewer.canvas.width / dpr;
-                const cssH = viewer.canvas.height / dpr;
-                viewer.view2D.offsetX = cssW / 2;
-                viewer.view2D.offsetY = cssH / 2;
-            } else {
-                viewer.view3D.yaw = 0;
-                viewer.view3D.pitch = 0;
-                viewer.view3D.distance = 100;
-                viewer.view3D.targetX = 0;
-                viewer.view3D.targetY = 0;
-                viewer.view3D.targetZ = 0;
-            }
-            viewer.updateUI();
-            viewer.draw();
-        });
-        
-        fitViewBtn.addEventListener('click', () => {
-            viewer.fitToView();
-        });
-        
-        playBtn.addEventListener('click', () => {
-            viewer.play();
-        });
-        
-        stepBtn.addEventListener('click', () => {
-            if (!viewer.isPlaying) {
-                viewer.resetPlayback();
-            }
-            viewer.step();
-        });
-        
-        exportBtn.addEventListener('click', () => {
-            viewer.exportAsImage();
-        });
-        
-        // Initialisierung
-        window.addEventListener('load', () => {
-            // Zeichne die anfängliche Platzhaltervisualisierung
-            viewer.draw();
-        });
-    </script>
+        function escapeHtml(str){ return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;});}
+        function handleFile(file){ const reader=new FileReader(); reader.onload=e=>handleFileContent(e.target.result, file.name, file.size); reader.readAsText(file); }
+        uploadArea.addEventListener('click',()=>fileInput.click()); uploadArea.addEventListener('dragover',e=>e.preventDefault()); uploadArea.addEventListener('drop',e=>{ e.preventDefault(); if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+        fileInput.addEventListener('change',e=>{if(e.target.files[0]) handleFile(e.target.files[0]);});
+        loadSample.addEventListener('click',()=>{ handleFileContent(`% (SAMPLE: Quadrat mit Bohrung)
+G90 G21 G17
+G0 X0 Y0
+G1 Z-1 F100
+X10 Y0
+G2 X10 Y10 I0 J5
+G1 X0 Y10
+G0 Z5
+M30`, 'beispiel.nc', 280); });
+        fitBtn.addEventListener('click',()=>viewer.fitToView());
+        resetBtn.addEventListener('click',()=>{ viewer.view2D.zoom=1; viewer.view2D.panX=0; viewer.view2D.panY=0; viewer.view3D.yaw=45; viewer.view3D.pitch=30; viewer.view3D.distance=150; viewer.fitToView(); });
+        playBtn.addEventListener('click',()=>viewer.play());
+        stepBtn.addEventListener('click',()=>viewer.step());
+        resetSimBtn.addEventListener('click',()=>viewer.resetSim());
+        exportBtn.addEventListener('click',()=>viewer.exportImage());
+        viewTabs.forEach(t=>t.addEventListener('click',()=>viewer.setView(t.dataset.view)));
+        speedSlider.addEventListener('input',()=>{ const vals=['Sehr langsam','Langsam','Mittel','Schnell']; speedVal.innerText=vals[speedSlider.value-1]; if(viewer.isPlaying){ viewer.stopPlayback(); viewer.play(); } });
+        lineWidthSlider.addEventListener('input',()=>{ const vals=['Dünn','Mittel','Dick']; lineWidthVal.innerText=vals[lineWidthSlider.value-1]; viewer.draw(); });
+        gridToggle.addEventListener('change',()=>viewer.draw()); rapidToggle.addEventListener('change',()=>viewer.draw()); depthToggle.addEventListener('change',()=>viewer.draw());
+        viewer.handleResize();
+    })();
+</script>
 </body>
 </html>
