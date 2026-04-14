@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>NC-Viewer Professional | CNC G-Code Visualisierung</title>
-    <meta name="description" content="Professioneller Online G-Code Viewer für die Fertigungsindustrie. 2D/3D Visualisierung, Simulation und Analyse von CNC-Programmen.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.nivt.de/">
-    <meta property="og:title" content="NC-Viewer Professional - G-Code Visualisierung">
-    <meta property="og:description" content="Kostenloser, leistungsstarker G-Code Viewer mit 2D/3D Ansichten und Simulation.">
-    <meta property="og:type" content="website">
+    <title>NC-Viewer Premium | CNC G-Code Visualisierung</title>
+    <meta name="description" content="Professioneller G-Code Viewer mit moderner Benutzeroberfläche. 2D/3D Visualisierung, Simulation und Analyse für die Fertigungsindustrie.">
     <meta name="theme-color" content="#f97316">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,45 +15,54 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            background: #fefcf5;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #fffbf5;
             color: #1e293b;
             line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* Weiß-Orange Theme */
+        /* Premium Orange & White Theme */
         :root {
-            --orange: #f97316;
-            --orange-dark: #ea580c;
-            --orange-light: #ffedd5;
-            --orange-soft: #fff7ed;
-            --white: #ffffff;
+            --orange-50: #fff7ed;
+            --orange-100: #ffedd5;
+            --orange-200: #fed7aa;
+            --orange-500: #f97316;
+            --orange-600: #ea580c;
+            --orange-700: #c2410c;
             --gray-50: #fafaf9;
             --gray-100: #f5f5f4;
             --gray-200: #e7e5e4;
             --gray-300: #d6d3d1;
-            --gray-700: #44403c;
+            --gray-600: #57534e;
             --gray-800: #292524;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --radius-lg: 1rem;
-            --radius-md: 0.75rem;
-            --radius-sm: 0.5rem;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.03);
+            --shadow-md: 0 8px 20px -6px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.02);
+            --shadow-lg: 0 20px 25px -12px rgba(0,0,0,0.1);
+            --radius-2xl: 1.5rem;
+            --radius-xl: 1rem;
+            --radius-lg: 0.75rem;
         }
 
-        /* Header modern */
+        /* Glas / moderne Effekte */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(249, 115, 22, 0.15);
+        }
+
         header {
             background: var(--white);
-            border-bottom: 3px solid var(--orange);
+            border-bottom: 2px solid var(--orange-200);
             box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 20;
         }
 
         .header-content {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
             padding: 1rem 2rem;
             display: flex;
@@ -74,126 +79,109 @@
         }
 
         .logo-icon {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 2px 4px rgba(249,115,22,0.2));
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-700));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         h1 {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #f97316, #ea580c);
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #1e293b, #f97316);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.3px;
         }
 
-        .subtitle {
-            font-size: 0.85rem;
-            color: var(--gray-700);
-            font-weight: 500;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--orange);
-            color: var(--orange-dark);
-            padding: 0.5rem 1.2rem;
+        .badge {
+            background: var(--orange-50);
+            padding: 0.25rem 0.9rem;
             border-radius: 2rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .btn-outline:hover {
-            background: var(--orange);
-            color: white;
-            transform: translateY(-1px);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--orange-600);
+            border: 1px solid var(--orange-200);
         }
 
         .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
+            max-width: 1440px;
+            margin: 1.8rem auto;
+            padding: 0 1.8rem;
         }
 
-        /* 2 Spalten Layout */
-        .main-content {
+        /* 2 Spalten Grid */
+        .dashboard {
             display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 1.75rem;
+            grid-template-columns: 330px 1fr;
+            gap: 1.8rem;
         }
 
-        /* Control Panel (Karten UI) */
+        /* Control Panel modern */
         .control-panel {
             background: var(--white);
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-2xl);
             box-shadow: var(--shadow-md);
-            padding: 1.5rem;
-            border: 1px solid var(--gray-200);
-            transition: all 0.2s;
+            padding: 1.6rem;
+            border: 1px solid var(--orange-100);
+            transition: transform 0.2s ease;
         }
 
-        .panel-section {
-            margin-bottom: 1.8rem;
-        }
-
-        .panel-section h3 {
-            font-size: 1.1rem;
+        .section-title {
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--orange-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--gray-800);
-            display: inline-block;
+            border-left: 3px solid var(--orange-500);
+            padding-left: 0.75rem;
         }
 
-        /* Upload Bereich */
-        .file-upload {
-            border: 2px dashed var(--gray-300);
-            background: var(--gray-50);
-            border-radius: var(--radius-md);
-            padding: 1.8rem 1rem;
+        .upload-zone {
+            background: var(--orange-50);
+            border: 2px dashed var(--orange-200);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem 1rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.25s ease;
             margin-bottom: 1rem;
         }
 
-        .file-upload:hover {
-            border-color: var(--orange);
-            background: var(--orange-soft);
+        .upload-zone:hover {
+            border-color: var(--orange-500);
+            background: #fff5e8;
             transform: scale(0.98);
-        }
-
-        .upload-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
         }
 
         .btn {
             border: none;
-            padding: 0.7rem 1.2rem;
             border-radius: 2rem;
-            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            font-weight: 500;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             display: inline-flex;
             align-items: center;
             gap: 8px;
             justify-content: center;
-            font-size: 0.9rem;
         }
 
         .btn-primary {
-            background: var(--orange);
+            background: var(--orange-500);
             color: white;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 2px 6px rgba(249,115,22,0.3);
         }
 
         .btn-primary:hover {
-            background: var(--orange-dark);
+            background: var(--orange-600);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 8px 18px rgba(249,115,22,0.25);
         }
 
         .btn-secondary {
@@ -207,31 +195,27 @@
             transform: translateY(-1px);
         }
 
-        .btn-accent {
-            background: #fff1e6;
-            color: var(--orange-dark);
-            border: 1px solid var(--orange-light);
+        .btn-outline-orange {
+            background: transparent;
+            border: 1.5px solid var(--orange-500);
+            color: var(--orange-600);
         }
 
-        .btn-accent:hover {
-            background: var(--orange);
+        .btn-outline-orange:hover {
+            background: var(--orange-500);
             color: white;
         }
 
-        .btn-block {
-            width: 100%;
-        }
-
-        .slider-container {
-            margin: 1rem 0;
+        .slider-group {
+            margin: 1.2rem 0;
         }
 
         .slider-label {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
+            margin-bottom: 0.5rem;
         }
 
         input[type="range"] {
@@ -250,24 +234,24 @@
             -webkit-appearance: none;
             width: 18px;
             height: 18px;
+            background: var(--orange-500);
             border-radius: 50%;
-            background: var(--orange);
             cursor: pointer;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             border: 2px solid white;
         }
 
-        .toggle-container {
+        .toggle-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 0.8rem 0;
+            margin: 0.9rem 0;
         }
 
         .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 48px;
+            width: 46px;
             height: 24px;
         }
 
@@ -285,7 +269,7 @@
             right: 0;
             bottom: 0;
             background-color: #ccc;
-            transition: .3s;
+            transition: 0.3s;
             border-radius: 34px;
         }
 
@@ -297,68 +281,67 @@
             left: 3px;
             bottom: 3px;
             background-color: white;
-            transition: .3s;
+            transition: 0.3s;
             border-radius: 50%;
         }
 
         input:checked + .toggle-slider {
-            background-color: var(--orange);
+            background-color: var(--orange-500);
         }
 
         input:checked + .toggle-slider:before {
-            transform: translateX(24px);
+            transform: translateX(22px);
         }
 
-        .file-info {
+        .info-card {
             background: var(--gray-50);
+            border-radius: var(--radius-lg);
             padding: 1rem;
-            border-radius: var(--radius-md);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            margin: 1rem 0;
         }
 
-        .info-item {
+        .info-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 0.6rem;
         }
 
         .gcode-preview {
-            max-height: 200px;
-            overflow-y: auto;
             background: #1e1b18;
-            color: #fef3c7;
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: 0.75rem;
-            padding: 0.8rem;
-            border-radius: var(--radius-sm);
-            line-height: 1.4;
-        }
-
-        /* Visualisierung Bereich */
-        .visualization-area {
-            background: var(--white);
+            color: #fde68a;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            padding: 1.5rem;
-            border: 1px solid var(--gray-200);
-            display: flex;
-            flex-direction: column;
-            height: fit-content;
+            padding: 0.8rem;
+            max-height: 180px;
+            overflow-y: auto;
         }
 
-        .visualization-header {
+        /* Visualization Area */
+        .viz-card {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--orange-100);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .viz-header {
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--gray-100);
+            background: rgba(255,251,245,0.6);
         }
 
         .view-tabs {
             display: flex;
             background: var(--gray-100);
             border-radius: 2rem;
-            padding: 0.25rem;
+            padding: 0.2rem;
         }
 
         .view-tab {
@@ -372,72 +355,82 @@
         }
 
         .view-tab.active {
-            background: var(--orange);
+            background: var(--orange-500);
             color: white;
             box-shadow: var(--shadow-sm);
         }
 
-        .canvas-container {
-            background: #fefaf5;
-            border-radius: var(--radius-md);
-            overflow: hidden;
+        .canvas-wrapper {
             position: relative;
-            cursor: grab;
+            background: #fefaf5;
             aspect-ratio: 16 / 10;
-            border: 1px solid var(--gray-200);
+            cursor: grab;
         }
 
-        .canvas-container:active {
+        .canvas-wrapper:active {
             cursor: grabbing;
         }
 
-        #viewer-canvas {
+        canvas {
             width: 100%;
             height: 100%;
             display: block;
         }
 
-        .status-bar, .coordinates, .camera-info {
+        .overlay-status {
             position: absolute;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(4px);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
             font-weight: 500;
             color: white;
+            font-family: monospace;
             pointer-events: none;
+        }
+
+        .overlay-coord {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            color: white;
             font-family: monospace;
         }
-        .status-bar { bottom: 12px; left: 12px; display: flex; gap: 12px; }
-        .coordinates { bottom: 12px; right: 12px; }
-        .camera-info { top: 12px; right: 12px; background: rgba(0,0,0,0.6); }
 
         .action-bar {
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
-            margin-top: 1.2rem;
             gap: 0.8rem;
             flex-wrap: wrap;
+            background: white;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        @media (max-width: 900px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 1rem;
+            }
         }
 
         footer {
             text-align: center;
             padding: 2rem;
-            margin-top: 3rem;
-            background: var(--white);
+            margin-top: 2rem;
+            color: var(--gray-600);
+            font-size: 0.8rem;
             border-top: 1px solid var(--gray-200);
-            color: var(--gray-700);
-        }
-
-        @media (max-width: 900px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
         }
     </style>
 </head>
@@ -445,123 +438,113 @@
 <header>
     <div class="header-content">
         <div class="logo">
-            <div class="logo-icon">⚙️🧡</div>
+            <div class="logo-icon">⚡🧡</div>
             <div>
-                <h1>NC-Viewer Professional</h1>
-                <div class="subtitle">Präzise G-Code Visualisierung | 2D/3D | Simulation</div>
+                <h1>NC-Viewer <span style="color:#f97316;">Premium</span></h1>
+                <div class="badge">G-Code Visualisierung · 2D/3D · Simulation</div>
             </div>
         </div>
-        <a href="https://www.nivt.de/" class="btn-outline">🌐 nivt.de</a>
+        <a href="https://www.nivt.de/" class="btn btn-outline-orange" style="text-decoration:none;">🌐 nivt.de</a>
     </div>
 </header>
 
 <div class="container">
-    <div class="main-content">
+    <div class="dashboard">
         <!-- Linke Steuerung -->
         <div class="control-panel">
-            <div class="panel-section">
-                <h3>📁 Datei laden</h3>
-                <div class="file-upload" id="upload-area">
-                    <div class="upload-icon">📂</div>
-                    <p>NC / G-Code hierher ziehen</p>
-                    <p style="font-size:0.75rem; color:gray;">.nc, .gcode, .cnc, .txt</p>
-                    <input type="file" id="file-input" accept=".nc,.gcode,.cnc,.txt" style="display:none">
-                </div>
-                <button class="btn btn-secondary btn-block" id="load-sample" style="margin-top:0.5rem;">📋 Beispieldatei laden</button>
+            <div class="section-title">📁 Datei laden</div>
+            <div class="upload-zone" id="uploadZone">
+                <div style="font-size:2rem;">📂</div>
+                <p style="font-weight:500;">Datei ablegen oder klicken</p>
+                <p style="font-size:0.7rem; color:gray;">.nc · .gcode · .cnc · .txt</p>
+                <input type="file" id="fileInput" accept=".nc,.gcode,.cnc,.txt" style="display:none">
+            </div>
+            <button class="btn btn-secondary" id="sampleBtn" style="width:100%; margin-bottom:1.5rem;">📋 Beispiel G-Code laden</button>
+
+            <div class="section-title">🎨 Anzeige</div>
+            <div class="toggle-row"><span>📐 Gitternetz</span><label class="toggle-switch"><input type="checkbox" id="gridToggle" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-row"><span>⚡ Schnellbewegungen (orange)</span><label class="toggle-switch"><input type="checkbox" id="rapidToggle" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-row"><span>🌀 Tiefeneffekt (3D)</span><label class="toggle-switch"><input type="checkbox" id="depthToggle"><span class="toggle-slider"></span></label></div>
+
+            <div class="slider-group"><div class="slider-label"><span>📏 Linienstärke</span><span id="lineWidthValue">Mittel</span></div><input type="range" id="lineWidthSlider" min="1" max="3" value="2" step="1"></div>
+            <div class="slider-group"><div class="slider-label"><span>🎬 Animationsgeschw.</span><span id="speedValue">Mittel</span></div><input type="range" id="speedSlider" min="1" max="4" value="2" step="1"></div>
+
+            <div style="display: flex; gap: 8px; margin: 1rem 0;">
+                <button class="btn btn-secondary" id="fitViewBtn">🔍 Zentrieren</button>
+                <button class="btn btn-secondary" id="resetViewBtn">🔄 Reset</button>
             </div>
 
-            <div class="panel-section">
-                <h3>🎨 Ansicht & Stil</h3>
-                <div class="toggle-container"><label class="toggle-switch"><input type="checkbox" id="grid-toggle" checked><span class="toggle-slider"></span></label><span>Gitternetz</span></div>
-                <div class="toggle-container"><label class="toggle-switch"><input type="checkbox" id="rapid-toggle" checked><span class="toggle-slider"></span></label><span>Schnellbewegungen (rot)</span></div>
-                <div class="toggle-container"><label class="toggle-switch"><input type="checkbox" id="depth-toggle"><span class="toggle-slider"></span></label><span>Tiefeneffekt (3D)</span></div>
-                <div class="slider-container"><div class="slider-label"><span>📏 Linienstärke</span><span id="line-width-value">Mittel</span></div><input type="range" min="1" max="3" value="2" id="line-width-slider"></div>
-                <div class="slider-container"><div class="slider-label"><span>⚡ Animationsgeschw.</span><span id="speed-value">Mittel</span></div><input type="range" min="1" max="4" value="2" id="speed-slider"></div>
-                <div style="display: flex; gap: 10px; margin-top: 1rem;">
-                    <button class="btn btn-secondary" id="fit-view">🔍 Zentrieren</button>
-                    <button class="btn btn-secondary" id="reset-view">🔄 Reset</button>
-                </div>
+            <div class="section-title">📊 Datei-Info</div>
+            <div class="info-card">
+                <div class="info-row"><span>📄 Dateiname:</span><span id="fileName">—</span></div>
+                <div class="info-row"><span>📦 Größe:</span><span id="fileSize">—</span></div>
+                <div class="info-row"><span>📝 Zeilen:</span><span id="lineCount">—</span></div>
+                <div class="info-row"><span>📐 X-Bereich:</span><span id="rangeX">—</span></div>
+                <div class="info-row"><span>📐 Y/Z-Bereich:</span><span id="rangeYZ">—</span></div>
+                <div class="info-row"><span>📏 Einheiten:</span><span id="unitsInfo">mm</span></div>
             </div>
 
-            <div class="panel-section">
-                <h3>📊 Datei-Info</h3>
-                <div class="file-info">
-                    <div class="info-item"><span>Dateiname:</span><span id="filename">—</span></div>
-                    <div class="info-item"><span>Größe:</span><span id="filesize">—</span></div>
-                    <div class="info-item"><span>Zeilen:</span><span id="line-count">—</span></div>
-                    <div class="info-item"><span>Bereich X:</span><span id="range-x">—</span></div>
-                    <div class="info-item"><span>Bereich Y/Z:</span><span id="range-yz">—</span></div>
-                    <div class="info-item"><span>Einheiten:</span><span id="units">mm</span></div>
-                </div>
-            </div>
-
-            <div class="panel-section">
-                <h3>📜 G-Code Vorschau</h3>
-                <div class="gcode-preview" id="gcode-preview"><span style="color:#aaa;">Keine Datei geladen</span></div>
-            </div>
+            <div class="section-title">📜 G-Code Vorschau</div>
+            <div class="gcode-preview" id="gcodePreview"><span style="color:#aaa;">Keine Datei geladen</span></div>
         </div>
 
         <!-- Rechte Visualisierung -->
-        <div class="visualization-area">
-            <div class="visualization-header">
-                <h3 id="view-title" style="font-weight:600;">2D-Visualisierung (XY-Ebene)</h3>
+        <div class="viz-card">
+            <div class="viz-header">
+                <h3 style="font-weight:600; font-size:1.1rem;" id="viewTitle">2D Draufsicht</h3>
                 <div class="view-tabs">
-                    <button class="view-tab active" data-view="2d">2D Draufsicht</button>
+                    <button class="view-tab active" data-view="2d">2D</button>
                     <button class="view-tab" data-view="3d">3D Orbit</button>
                 </div>
             </div>
-            <div class="canvas-container" id="canvas-container">
-                <canvas id="viewer-canvas"></canvas>
-                <div class="status-bar"><span>🔍 Zoom: <span id="zoom-level">100%</span></span><span>📐 <span id="view-type">2D</span></span></div>
-                <div class="coordinates" id="coord-panel">📍 X:0.00 Y:0.00 Z:0.00</div>
-                <div class="camera-info" id="camera-info" style="display:none;">🎥 Winkel: <span id="camera-angles">0°</span> 📏 <span id="camera-distance">100</span></div>
+            <div class="canvas-wrapper" id="canvasWrapper">
+                <canvas id="viewerCanvas"></canvas>
+                <div class="overlay-status">🔍 Zoom: <span id="zoomLevel">100%</span> | 📐 <span id="viewModeLabel">2D</span></div>
+                <div class="overlay-coord" id="coordDisplay">📍 X:0.00 Y:0.00 Z:0.00</div>
             </div>
             <div class="action-bar">
                 <div style="display:flex; gap:8px;">
-                    <button class="btn btn-primary" id="play-btn">▶️ Simulation starten</button>
-                    <button class="btn btn-secondary" id="step-btn">⏭️ Einzelschritt</button>
-                    <button class="btn btn-secondary" id="reset-sim-btn">🔄 Reset Sim</button>
+                    <button class="btn btn-primary" id="playSimBtn">▶️ Simulation starten</button>
+                    <button class="btn btn-secondary" id="stepSimBtn">⏭️ Schritt</button>
+                    <button class="btn btn-secondary" id="resetSimBtn">🔄 Reset Sim</button>
                 </div>
-                <button class="btn btn-accent" id="export-btn">📸 Als PNG exportieren</button>
+                <button class="btn btn-outline-orange" id="exportImgBtn">📸 Als PNG exportieren</button>
             </div>
-            <p style="font-size:0.7rem; margin-top: 12px; color: gray; text-align:center;">🖱️ Maus: Ziehen = Pan (2D) / Rotation (3D) | Shift+ziehen = Pan (3D) | Scroll = Zoom</p>
+            <div style="font-size:0.65rem; text-align:center; padding:0.5rem; color:gray; background:#fefaf5;">🖱️ Maus: Ziehen = Pan (2D) / Rotation (3D) | Shift+ziehen = Pan (3D) | Scroll = Zoom</div>
         </div>
     </div>
 </div>
 <footer>
-    <p>NC-Viewer Professional – Optimiert für die deutsche Fertigungsindustrie | Weiß-Orange Edition</p>
-    <p style="font-size:0.75rem;">© 2025 | Präzise G-Code Visualisierung direkt im Browser</p>
+    <p>NC-Viewer Premium – Hochpräzise CNC-Programm Visualisierung | Weiß-Orange Edition</p>
+    <p style="margin-top:0.3rem;">Unterstützt G-Code (G0, G1, G2, G3) · Echtzeit-Simulation</p>
 </footer>
 
 <script>
-    (function(){
-        // ----- Verbesserter G-Code Viewer mit Theme Orange/Weiß -----
-        class GCodeViewer {
+    (function() {
+        // ---------- ERWEITERTER G-CODE VIEWER MIT PREMIUM UI ----------
+        class PremiumGCodeViewer {
             constructor(canvas) {
                 this.canvas = canvas;
                 this.ctx = canvas.getContext('2d');
                 this.segments = [];
                 this.bbox = { minX:0, minY:0, minZ:0, maxX:0, maxY:0, maxZ:0 };
-                this.view2D = { zoom:1, panX:0, panY:0, offsetX:0, offsetY:0 };
-                this.view3D = { yaw:45, pitch:30, distance:150, targetX:0, targetY:0, targetZ:0 };
+                this.view2D = { zoom:1.2, panX:0, panY:0, offsetX:0, offsetY:0 };
+                this.view3D = { yaw: -30, pitch: 35, distance: 200, targetX:0, targetY:0, targetZ:0 };
                 this.mode = { absolute: true, units: 'mm' };
-                this.currentPosition = { x:0, y:0, z:0 };
+                this.currentPos = { x:0, y:0, z:0 };
                 this.playIndex = 0;
                 this.isPlaying = false;
-                this.playInterval = null;
-                this.speedValues = [800, 300, 120, 50];
-                this.lineWidthValues = [1, 2.2, 3.5];
+                this.interval = null;
+                this.speedMap = [800, 300, 120, 45];
+                this.lineWidthMap = [1.2, 2.2, 3.6];
                 this.activeView = '2d';
-                this.setupMouseControls();
-                this.setupCanvasResize();
+                this.initResize();
+                this.attachMouse();
             }
 
-            setupCanvasResize() {
-                const container = this.canvas.parentElement;
-                const resizeObserver = new ResizeObserver(() => {
-                    this.handleResize();
-                });
-                resizeObserver.observe(container);
+            initResize() {
+                const resizeObserver = new ResizeObserver(() => this.handleResize());
+                resizeObserver.observe(this.canvas.parentElement);
                 this.handleResize();
             }
 
@@ -577,63 +560,62 @@
                 this.ctx.scale(dpr, dpr);
                 const cssW = this.canvas.width / dpr;
                 const cssH = this.canvas.height / dpr;
-                if(this.view2D.offsetX === 0) this.view2D.offsetX = cssW/2;
-                if(this.view2D.offsetY === 0) this.view2D.offsetY = cssH/2;
+                if (this.view2D.offsetX === 0) this.view2D.offsetX = cssW/2;
+                if (this.view2D.offsetY === 0) this.view2D.offsetY = cssH/2;
                 this.draw();
             }
 
-            setupMouseControls() {
-                const container = this.canvas.parentElement;
-                let isPan2D = false, isRotate3D = false, isPan3D = false, lastX=0, lastY=0;
-                container.addEventListener('wheel', (e) => {
+            attachMouse() {
+                const wrap = this.canvas.parentElement;
+                let isPan2D = false, isRot3D = false, isPan3D = false, lastX=0, lastY=0;
+                wrap.addEventListener('wheel', (e) => {
                     e.preventDefault();
                     if(this.activeView === '2d') {
-                        const factor = e.deltaY > 0 ? 0.9 : 1.1;
-                        this.view2D.zoom = Math.min(12, Math.max(0.15, this.view2D.zoom * factor));
+                        let factor = e.deltaY > 0 ? 0.92 : 1.08;
+                        this.view2D.zoom = Math.min(12, Math.max(0.2, this.view2D.zoom * factor));
                     } else {
-                        const factor = e.deltaY > 0 ? 1.08 : 0.92;
-                        this.view3D.distance = Math.min(800, Math.max(20, this.view3D.distance * factor));
+                        let factor = e.deltaY > 0 ? 1.05 : 0.95;
+                        this.view3D.distance = Math.min(800, Math.max(30, this.view3D.distance * factor));
                     }
                     this.updateUI(); this.draw();
                 });
-                container.addEventListener('mousedown', (e) => {
+                wrap.addEventListener('mousedown', (e) => {
                     if(e.button !== 0) return;
-                    if(this.activeView === '2d') { isPan2D = true; }
-                    else { if(e.shiftKey) isPan3D = true; else isRotate3D = true; }
+                    if(this.activeView === '2d') isPan2D = true;
+                    else { if(e.shiftKey) isPan3D = true; else isRot3D = true; }
                     lastX = e.clientX; lastY = e.clientY;
-                    container.style.cursor = 'grabbing';
+                    wrap.style.cursor = 'grabbing';
                 });
                 window.addEventListener('mousemove', (e) => {
                     if(isPan2D) {
-                        const dx = e.clientX - lastX, dy = e.clientY - lastY;
+                        let dx = e.clientX - lastX, dy = e.clientY - lastY;
                         this.view2D.panX -= dx / this.view2D.zoom;
                         this.view2D.panY -= dy / this.view2D.zoom;
                         lastX = e.clientX; lastY = e.clientY;
                         this.draw();
-                    } else if(isRotate3D) {
-                        this.view3D.yaw += (e.clientX - lastX) * 0.6;
-                        this.view3D.pitch += (e.clientY - lastY) * 0.6;
+                    } else if(isRot3D) {
+                        this.view3D.yaw += (e.clientX - lastX) * 0.7;
+                        this.view3D.pitch += (e.clientY - lastY) * 0.7;
                         this.view3D.pitch = Math.min(89, Math.max(-89, this.view3D.pitch));
                         lastX = e.clientX; lastY = e.clientY;
                         this.updateUI(); this.draw();
                     } else if(isPan3D) {
-                        const speed = this.view3D.distance * 0.002;
-                        this.view3D.targetX -= (e.clientX - lastX) * speed;
-                        this.view3D.targetY += (e.clientY - lastY) * speed;
+                        let spd = this.view3D.distance * 0.002;
+                        this.view3D.targetX -= (e.clientX - lastX) * spd;
+                        this.view3D.targetY += (e.clientY - lastY) * spd;
                         lastX = e.clientX; lastY = e.clientY;
                         this.draw();
                     }
                 });
-                window.addEventListener('mouseup', () => { isPan2D=false; isRotate3D=false; isPan3D=false; container.style.cursor='grab'; });
-                container.addEventListener('dblclick', () => this.fitToView());
-                container.addEventListener('mousemove', (e) => {
+                window.addEventListener('mouseup', () => { isPan2D=false; isRot3D=false; isPan3D=false; wrap.style.cursor = 'grab'; });
+                wrap.addEventListener('mousemove', (e) => {
                     if(this.activeView === '2d') {
                         const rect = this.canvas.getBoundingClientRect();
                         const mx = e.clientX - rect.left, my = e.clientY - rect.top;
                         const wx = this.screenToWorldX(mx), wy = this.screenToWorldY(my);
-                        document.getElementById('coord-panel').innerHTML = `📍 X:${wx.toFixed(2)} Y:${wy.toFixed(2)} Z:0.00`;
+                        document.getElementById('coordDisplay').innerHTML = `📍 X:${wx.toFixed(2)} Y:${wy.toFixed(2)} Z:0.00`;
                     } else {
-                        document.getElementById('coord-panel').innerHTML = `🎮 3D-Modus | Ziel: X:${this.view3D.targetX.toFixed(1)} Y:${this.view3D.targetY.toFixed(1)}`;
+                        document.getElementById('coordDisplay').innerHTML = `🎯 3D · Ziel: X:${this.view3D.targetX.toFixed(1)} Y:${this.view3D.targetY.toFixed(1)} Z:${this.view3D.targetZ.toFixed(1)}`;
                     }
                 });
             }
@@ -657,88 +639,86 @@
                 return { x: x1 * factor * scale + this.canvas.width/(window.devicePixelRatio||1)/2, y: y1 * factor * scale + this.canvas.height/(window.devicePixelRatio||1)/2, depth: zTrans };
             }
 
-            parseGCode(gcodeStr) {
-                this.segments = []; this.currentPosition = {x:0,y:0,z:0}; this.mode = {absolute:true, units:'mm'};
-                const lines = gcodeStr.split(/\r?\n/);
-                for(let raw of lines) {
-                    let line = raw.split(';')[0].split('(')[0].trim().toUpperCase();
-                    if(!line) continue;
-                    if(line.includes('G90')) this.mode.absolute = true;
-                    if(line.includes('G91')) this.mode.absolute = false;
-                    if(line.includes('G20')) this.mode.units = 'inch';
-                    if(line.includes('G21')) this.mode.units = 'mm';
-                    if(line.match(/G0[0]?/) || line.match(/G0[0]?/)) this.parseMovement(line, true);
-                    else if(line.match(/G1[01]?/)) this.parseMovement(line, false);
-                    else if(line.match(/G2|G3|G02|G03/)) this.parseArc(line, false);
+            parseGCode(code) {
+                this.segments = [];
+                this.currentPos = {x:0,y:0,z:0};
+                this.mode = { absolute: true, units: 'mm' };
+                const lines = code.split(/\r?\n/);
+                for(let line of lines) {
+                    let clean = line.split(';')[0].split('(')[0].trim().toUpperCase();
+                    if(!clean) continue;
+                    if(clean.includes('G90')) this.mode.absolute = true;
+                    if(clean.includes('G91')) this.mode.absolute = false;
+                    if(clean.includes('G20')) this.mode.units = 'inch';
+                    if(clean.includes('G21')) this.mode.units = 'mm';
+                    if(clean.match(/G0[0]?/)) this.move(clean, true);
+                    else if(clean.match(/G1[01]?/)) this.move(clean, false);
+                    else if(clean.match(/G2|G3|G02|G03/)) this.arc(clean);
                 }
                 this.calcBBox();
                 this.fitToView();
-                this.stopPlayback();
+                this.stopSim();
                 this.playIndex = 0;
                 this.updateUI();
                 this.draw();
             }
 
-            parseMovement(line, rapid) {
-                let x = this.currentPosition.x, y = this.currentPosition.y, z = this.currentPosition.z;
-                let changed = false;
-                const getVal = (c) => { let m = line.match(new RegExp(c+'([-+]?\\d*\\.?\\d+)')); return m ? parseFloat(m[1]) : null; };
-                let nx = getVal('X'); if(nx !== null) { x = this.mode.absolute ? nx : this.currentPosition.x + nx; changed=true; }
-                let ny = getVal('Y'); if(ny !== null) { y = this.mode.absolute ? ny : this.currentPosition.y + ny; changed=true; }
-                let nz = getVal('Z'); if(nz !== null) { z = this.mode.absolute ? nz : this.currentPosition.z + nz; changed=true; }
+            move(line, rapid) {
+                let x = this.currentPos.x, y = this.currentPos.y, z = this.currentPos.z;
+                const get = (c) => { let m = line.match(new RegExp(c+'([-+]?\\d*\\.?\\d+)')); return m ? parseFloat(m[1]) : null; };
+                let nx = get('X'), ny = get('Y'), nz = get('Z');
+                if(nx !== null) x = this.mode.absolute ? nx : this.currentPos.x + nx;
+                if(ny !== null) y = this.mode.absolute ? ny : this.currentPos.y + ny;
+                if(nz !== null) z = this.mode.absolute ? nz : this.currentPos.z + nz;
                 if(this.mode.units === 'inch') { x*=25.4; y*=25.4; z*=25.4; }
-                if(changed && (x!==this.currentPosition.x || y!==this.currentPosition.y || z!==this.currentPosition.z)) {
-                    this.segments.push({ x1:this.currentPosition.x, y1:this.currentPosition.y, z1:this.currentPosition.z, x2:x, y2:y, z2:z, rapid, arc:false });
-                    this.currentPosition = {x,y,z};
+                if((nx!==null || ny!==null || nz!==null) && (x!==this.currentPos.x || y!==this.currentPos.y || z!==this.currentPos.z)) {
+                    this.segments.push({ x1:this.currentPos.x, y1:this.currentPos.y, z1:this.currentPos.z, x2:x, y2:y, z2:z, rapid });
+                    this.currentPos = {x,y,z};
                 }
             }
 
-            parseArc(line, rapid) {
-                let x = this.currentPosition.x, y = this.currentPosition.y;
-                let nx=null, ny=null, i=0, j=0;
-                const xm = line.match(/X([-+]?\d*\.?\d+)/), ym = line.match(/Y([-+]?\d*\.?\d+)/), im = line.match(/I([-+]?\d*\.?\d+)/), jm = line.match(/J([-+]?\d*\.?\d+)/);
+            arc(line) {
+                let xm = line.match(/X([-+]?\d*\.?\d+)/), ym = line.match(/Y([-+]?\d*\.?\d+)/), im = line.match(/I([-+]?\d*\.?\d+)/), jm = line.match(/J([-+]?\d*\.?\d+)/);
                 if(!xm || !ym || !im || !jm) return;
-                nx = parseFloat(xm[1]); ny = parseFloat(ym[1]); i = parseFloat(im[1]); j = parseFloat(jm[1]);
-                if(!this.mode.absolute) { nx += this.currentPosition.x; ny += this.currentPosition.y; }
-                const centerX = this.currentPosition.x + i, centerY = this.currentPosition.y + j;
-                const radius = Math.hypot(this.currentPosition.x - centerX, this.currentPosition.y - centerY);
-                let startAng = Math.atan2(this.currentPosition.y - centerY, this.currentPosition.x - centerX);
+                let nx = parseFloat(xm[1]), ny = parseFloat(ym[1]), i = parseFloat(im[1]), j = parseFloat(jm[1]);
+                if(!this.mode.absolute) { nx += this.currentPos.x; ny += this.currentPos.y; }
+                const centerX = this.currentPos.x + i, centerY = this.currentPos.y + j;
+                const radius = Math.hypot(this.currentPos.x - centerX, this.currentPos.y - centerY);
+                let startAng = Math.atan2(this.currentPos.y - centerY, this.currentPos.x - centerX);
                 let endAng = Math.atan2(ny - centerY, nx - centerX);
                 const clockwise = line.includes('G2') || line.includes('G02');
                 let angleDiff = endAng - startAng;
                 if(clockwise) { while(angleDiff > 0) angleDiff -= 2*Math.PI; while(angleDiff < -2*Math.PI) angleDiff += 2*Math.PI; }
                 else { while(angleDiff < 0) angleDiff += 2*Math.PI; while(angleDiff > 2*Math.PI) angleDiff -= 2*Math.PI; }
-                const steps = Math.max(12, Math.floor(Math.abs(angleDiff) * 12 / (2*Math.PI)));
-                let lastX = this.currentPosition.x, lastY = this.currentPosition.y;
+                const steps = Math.max(12, Math.floor(Math.abs(angleDiff) * 18 / (2*Math.PI)));
+                let lastX = this.currentPos.x, lastY = this.currentPos.y;
                 for(let s=1; s<=steps; s++) {
                     let ang = startAng + angleDiff * s/steps;
                     let px = centerX + radius * Math.cos(ang), py = centerY + radius * Math.sin(ang);
-                    this.segments.push({ x1:lastX, y1:lastY, z1:this.currentPosition.z, x2:px, y2:py, z2:this.currentPosition.z, rapid, arc:true });
+                    this.segments.push({ x1:lastX, y1:lastY, z1:this.currentPos.z, x2:px, y2:py, z2:this.currentPos.z, rapid:false, arc:true });
                     lastX = px; lastY = py;
                 }
-                this.currentPosition = { x:nx, y:ny, z:this.currentPosition.z };
+                this.currentPos = { x:nx, y:ny, z:this.currentPos.z };
             }
 
             calcBBox() {
-                if(!this.segments.length) { this.bbox = {minX:-20,minY:-20,minZ:-20,maxX:20,maxY:20,maxZ:20}; return; }
+                if(!this.segments.length) { this.bbox={minX:-20,minY:-20,minZ:-20,maxX:20,maxY:20,maxZ:20}; return; }
                 let minX=Infinity,minY=Infinity,minZ=Infinity,maxX=-Infinity,maxY=-Infinity,maxZ=-Infinity;
                 for(let s of this.segments) {
-                    minX = Math.min(minX,s.x1,s.x2); maxX = Math.max(maxX,s.x1,s.x2);
-                    minY = Math.min(minY,s.y1,s.y2); maxY = Math.max(maxY,s.y1,s.y2);
-                    minZ = Math.min(minZ,s.z1,s.z2); maxZ = Math.max(maxZ,s.z1,s.z2);
+                    minX=Math.min(minX,s.x1,s.x2); maxX=Math.max(maxX,s.x1,s.x2);
+                    minY=Math.min(minY,s.y1,s.y2); maxY=Math.max(maxY,s.y1,s.y2);
+                    minZ=Math.min(minZ,s.z1,s.z2); maxZ=Math.max(maxZ,s.z1,s.z2);
                 }
                 let pad = Math.max((maxX-minX)*0.08, (maxY-minY)*0.08, 1);
                 this.bbox = { minX:minX-pad, maxX:maxX+pad, minY:minY-pad, maxY:maxY+pad, minZ:minZ-pad, maxZ:maxZ+pad };
-                const rangeX = document.getElementById('range-x');
-                const rangeYZ = document.getElementById('range-yz');
-                if(rangeX) rangeX.innerText = `${minX.toFixed(1)}..${maxX.toFixed(1)}`;
-                if(rangeYZ) rangeYZ.innerText = `Y:${minY.toFixed(1)}..${maxY.toFixed(1)} Z:${minZ.toFixed(1)}..${maxZ.toFixed(1)}`;
+                document.getElementById('rangeX').innerText = `${minX.toFixed(1)}..${maxX.toFixed(1)}`;
+                document.getElementById('rangeYZ').innerText = `Y:${minY.toFixed(1)}..${maxY.toFixed(1)} Z:${minZ.toFixed(1)}..${maxZ.toFixed(1)}`;
             }
 
             fitToView() {
                 if(this.activeView === '2d') {
                     const w = this.canvas.width/(window.devicePixelRatio||1), h = this.canvas.height/(window.devicePixelRatio||1);
-                    const ww = this.bbox.maxX - this.bbox.minX, hh = this.bbox.maxY - this.bbox.minY;
+                    const ww = this.bbox.maxX-this.bbox.minX, hh = this.bbox.maxY-this.bbox.minY;
                     if(ww>0 && hh>0) {
                         this.view2D.zoom = Math.min(w/ww, h/hh) * 0.9;
                         this.view2D.panX = (this.bbox.minX+this.bbox.maxX)/2;
@@ -750,8 +730,8 @@
                     this.view3D.targetY = (this.bbox.minY+this.bbox.maxY)/2;
                     this.view3D.targetZ = (this.bbox.minZ+this.bbox.maxZ)/2;
                     let maxDim = Math.max(this.bbox.maxX-this.bbox.minX, this.bbox.maxY-this.bbox.minY, this.bbox.maxZ-this.bbox.minZ);
-                    this.view3D.distance = maxDim * 1.3;
-                    this.view3D.yaw = 45; this.view3D.pitch = 30;
+                    this.view3D.distance = maxDim * 1.4;
+                    this.view3D.yaw = -35; this.view3D.pitch = 30;
                 }
                 this.updateUI(); this.draw();
             }
@@ -759,23 +739,21 @@
             draw() {
                 const w = this.canvas.width/(window.devicePixelRatio||1), h = this.canvas.height/(window.devicePixelRatio||1);
                 this.ctx.clearRect(0,0,w,h);
-                this.ctx.fillStyle = '#ffffff'; this.ctx.fillRect(0,0,w,h);
+                this.ctx.fillStyle = '#FFFFFF'; this.ctx.fillRect(0,0,w,h);
                 if(this.activeView === '2d') this.draw2D(w,h);
                 else this.draw3D(w,h);
             }
 
             draw2D(w,h) {
-                if(document.getElementById('grid-toggle').checked) this.drawGrid2D(w,h);
-                const rapidVis = document.getElementById('rapid-toggle').checked;
-                const lwIdx = parseInt(document.getElementById('line-width-slider').value)-1;
-                const lw = this.lineWidthValues[lwIdx];
+                if(document.getElementById('gridToggle').checked) this.drawGrid2D(w,h);
+                const rapidVis = document.getElementById('rapidToggle').checked;
+                const lw = this.lineWidthMap[parseInt(document.getElementById('lineWidthSlider').value)-1];
                 for(let i=0; i<this.segments.length; i++) {
                     if(this.isPlaying && i>=this.playIndex) break;
-                    const s = this.segments[i];
-                    const x1=this.worldToScreenX(s.x1), y1=this.worldToScreenY(s.y1), x2=this.worldToScreenX(s.x2), y2=this.worldToScreenY(s.y2);
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(x1,y1); this.ctx.lineTo(x2,y2);
-                    if(s.rapid && rapidVis) { this.ctx.strokeStyle = '#f97316'; this.ctx.setLineDash([6,6]); }
+                    let s=this.segments[i];
+                    let x1=this.worldToScreenX(s.x1), y1=this.worldToScreenY(s.y1), x2=this.worldToScreenX(s.x2), y2=this.worldToScreenY(s.y2);
+                    this.ctx.beginPath(); this.ctx.moveTo(x1,y1); this.ctx.lineTo(x2,y2);
+                    if(s.rapid && rapidVis) { this.ctx.strokeStyle = '#f97316'; this.ctx.setLineDash([7,5]); }
                     else { this.ctx.strokeStyle = '#ea580c'; this.ctx.setLineDash([]); }
                     this.ctx.lineWidth = lw; this.ctx.stroke();
                 }
@@ -783,23 +761,26 @@
                 if(this.isPlaying && this.playIndex>0) {
                     let last = this.segments[this.playIndex-1];
                     let cx=this.worldToScreenX(last.x2), cy=this.worldToScreenY(last.y2);
-                    this.ctx.fillStyle = '#f97316'; this.ctx.beginPath(); this.ctx.arc(cx,cy,6,0,2*Math.PI); this.ctx.fill();
+                    this.ctx.fillStyle = '#f97316'; this.ctx.shadowBlur=0;
+                    this.ctx.beginPath(); this.ctx.arc(cx,cy,6,0,2*Math.PI); this.ctx.fill();
                 }
             }
 
             drawGrid2D(w,h) {
+                let step=10; if(this.view2D.zoom>1.5) step=5;
+                this.ctx.strokeStyle='#e9e5e0'; this.ctx.lineWidth=0.8;
                 const left=this.screenToWorldX(0), right=this.screenToWorldX(w), top=this.screenToWorldY(0), bottom=this.screenToWorldY(h);
-                let step = 10; if(this.view2D.zoom>1.2) step=5; if(this.view2D.zoom>2.5) step=2;
-                this.ctx.strokeStyle = '#e2e8f0'; this.ctx.lineWidth = 0.8;
-                for(let x=Math.floor(left/step)*step; x<=right; x+=step) { let sx=this.worldToScreenX(x); if(sx>0 && sx<w){ this.ctx.beginPath(); this.ctx.moveTo(sx,0); this.ctx.lineTo(sx,h); this.ctx.stroke(); } }
-                for(let y=Math.floor(top/step)*step; y<=bottom; y+=step) { let sy=this.worldToScreenY(y); if(sy>0 && sy<h){ this.ctx.beginPath(); this.ctx.moveTo(0,sy); this.ctx.lineTo(w,sy); this.ctx.stroke(); } }
-                this.ctx.beginPath(); let ax=this.worldToScreenX(0); if(ax>0&&ax<w){ this.ctx.moveTo(ax,0); this.ctx.lineTo(ax,h); } let ay=this.worldToScreenY(0); if(ay>0&&ay<h){ this.ctx.moveTo(0,ay); this.ctx.lineTo(w,ay); } this.ctx.strokeStyle='#f97316'; this.ctx.lineWidth=1.5; this.ctx.stroke();
+                for(let x=Math.floor(left/step)*step; x<=right; x+=step) { let sx=this.worldToScreenX(x); if(sx>0&&sx<w){ this.ctx.beginPath(); this.ctx.moveTo(sx,0); this.ctx.lineTo(sx,h); this.ctx.stroke(); } }
+                for(let y=Math.floor(top/step)*step; y<=bottom; y+=step) { let sy=this.worldToScreenY(y); if(sy>0&&sy<h){ this.ctx.beginPath(); this.ctx.moveTo(0,sy); this.ctx.lineTo(w,sy); this.ctx.stroke(); } }
+                let ax=this.worldToScreenX(0), ay=this.worldToScreenY(0);
+                this.ctx.beginPath(); this.ctx.strokeStyle='#f97316'; this.ctx.lineWidth=1.5;
+                if(ax>0&&ax<w){ this.ctx.moveTo(ax,0); this.ctx.lineTo(ax,h); } if(ay>0&&ay<h){ this.ctx.moveTo(0,ay); this.ctx.lineTo(w,ay); } this.ctx.stroke();
             }
 
             draw3D(w,h) {
-                if(document.getElementById('grid-toggle').checked) this.drawGrid3D();
-                const rapidVis = document.getElementById('rapid-toggle').checked, depthEff = document.getElementById('depth-toggle').checked;
-                const lwIdx = parseInt(document.getElementById('line-width-slider').value)-1, lw = this.lineWidthValues[lwIdx];
+                if(document.getElementById('gridToggle').checked) this.drawGrid3D();
+                const rapidVis = document.getElementById('rapidToggle').checked, depthEff = document.getElementById('depthToggle').checked;
+                const lw = this.lineWidthMap[parseInt(document.getElementById('lineWidthSlider').value)-1];
                 let proj = [];
                 for(let i=0; i<this.segments.length; i++) {
                     if(this.isPlaying && i>=this.playIndex) break;
@@ -810,9 +791,9 @@
                 proj.sort((a,b)=>b.depth-a.depth);
                 for(let p of proj) {
                     this.ctx.beginPath(); this.ctx.moveTo(p.p1.x,p.p1.y); this.ctx.lineTo(p.p2.x,p.p2.y);
-                    if(p.rapid && rapidVis) { this.ctx.strokeStyle = '#f97316'; this.ctx.setLineDash([5,5]); }
+                    if(p.rapid && rapidVis) { this.ctx.strokeStyle = '#f97316'; this.ctx.setLineDash([6,6]); }
                     else { this.ctx.strokeStyle = '#ea580c'; this.ctx.setLineDash([]); }
-                    if(depthEff) this.ctx.globalAlpha = Math.min(1, Math.max(0.3, 1 - (p.depth+this.view3D.distance)/(this.view3D.distance*1.8)));
+                    if(depthEff) this.ctx.globalAlpha = Math.min(1, Math.max(0.3, 1 - (p.depth+this.view3D.distance)/(this.view3D.distance*1.5)));
                     else this.ctx.globalAlpha = 1;
                     this.ctx.lineWidth = lw; this.ctx.stroke();
                 }
@@ -820,66 +801,68 @@
             }
 
             drawGrid3D() {
-                let size = Math.max(50, (this.bbox.maxX-this.bbox.minX)/1.5);
-                let step = 10;
-                this.ctx.strokeStyle='#d6d3d1'; this.ctx.lineWidth=0.7;
+                let size=60, step=10;
+                this.ctx.strokeStyle='#ddd8d0'; this.ctx.lineWidth=0.8;
                 for(let x=-size; x<=size; x+=step) { let p1=this.project3D(x,-size,0), p2=this.project3D(x,size,0); this.ctx.beginPath(); this.ctx.moveTo(p1.x,p1.y); this.ctx.lineTo(p2.x,p2.y); this.ctx.stroke(); }
                 for(let y=-size; y<=size; y+=step) { let p1=this.project3D(-size,y,0), p2=this.project3D(size,y,0); this.ctx.beginPath(); this.ctx.moveTo(p1.x,p1.y); this.ctx.lineTo(p2.x,p2.y); this.ctx.stroke(); }
             }
 
-            play() { if(!this.segments.length) return; if(this.isPlaying) { this.stopPlayback(); return; } this.isPlaying=true; this.playIndex=0; const speedIdx=parseInt(document.getElementById('speed-slider').value)-1; const delay=this.speedValues[speedIdx]; this.playInterval=setInterval(()=>{ if(this.playIndex<this.segments.length){ this.playIndex++; this.draw(); if(this.playIndex>=this.segments.length) this.stopPlayback(); } else this.stopPlayback(); }, delay); document.getElementById('play-btn').innerHTML='⏹️ Simulation stoppen'; }
-            stopPlayback() { if(this.playInterval){ clearInterval(this.playInterval); this.playInterval=null; } this.isPlaying=false; document.getElementById('play-btn').innerHTML='▶️ Simulation starten'; this.draw(); }
-            step() { if(!this.isPlaying && this.playIndex>=this.segments.length) this.playIndex=0; if(this.playIndex<this.segments.length){ this.playIndex++; this.draw(); if(this.playIndex>=this.segments.length) this.stopPlayback(); } else this.stopPlayback(); }
-            resetSim() { this.stopPlayback(); this.playIndex=0; this.draw(); }
-            updateUI() { document.getElementById('zoom-level').innerText=Math.round((this.activeView==='2d'?this.view2D.zoom:this.view3D.distance/100)*100)+'%'; document.getElementById('view-type').innerText=this.activeView; document.getElementById('camera-info').style.display=this.activeView==='3d'?'block':'none'; if(this.activeView==='3d'){ document.getElementById('camera-angles').innerText=`${Math.round(this.view3D.yaw)}°/${Math.round(this.view3D.pitch)}°`; document.getElementById('camera-distance').innerText=Math.round(this.view3D.distance); } }
-            setView(v) { this.activeView=v; document.querySelectorAll('.view-tab').forEach(t=>t.classList.toggle('active',t.dataset.view===v)); document.getElementById('view-title').innerText=v==='2d'?'2D-Visualisierung (XY-Ebene)':'3D-Ansicht (Orbit)'; this.fitToView(); this.updateUI(); this.draw(); }
-            exportImage() { const link=document.createElement('a'); link.download='nc-viewer.png'; link.href=this.canvas.toDataURL(); link.click(); }
+            playSim() { if(!this.segments.length) return; if(this.isPlaying){ this.stopSim(); return; } this.isPlaying=true; this.playIndex=0; let idx=parseInt(document.getElementById('speedSlider').value)-1; let delay=this.speedMap[idx]; this.interval=setInterval(()=>{ if(this.playIndex<this.segments.length){ this.playIndex++; this.draw(); if(this.playIndex>=this.segments.length) this.stopSim(); } else this.stopSim(); }, delay); document.getElementById('playSimBtn').innerHTML='⏹️ Stoppen'; }
+            stopSim() { if(this.interval) clearInterval(this.interval); this.isPlaying=false; this.interval=null; document.getElementById('playSimBtn').innerHTML='▶️ Simulation starten'; this.draw(); }
+            stepSim() { if(!this.isPlaying && this.playIndex>=this.segments.length) this.playIndex=0; if(this.playIndex<this.segments.length){ this.playIndex++; this.draw(); if(this.playIndex>=this.segments.length) this.stopSim(); } }
+            resetSim() { this.stopSim(); this.playIndex=0; this.draw(); }
+            updateUI() { document.getElementById('zoomLevel').innerText=Math.round((this.activeView==='2d'?this.view2D.zoom:this.view3D.distance/100)*100)+'%'; document.getElementById('viewModeLabel').innerText=this.activeView; }
+            setView(v) { this.activeView=v; document.querySelectorAll('.view-tab').forEach(t=>t.classList.toggle('active',t.dataset.view===v)); document.getElementById('viewTitle').innerText=v==='2d'?'2D Draufsicht':'3D Orbit-Ansicht'; this.fitToView(); this.updateUI(); this.draw(); }
+            exportImage() { let link=document.createElement('a'); link.download='nc_viewer.png'; link.href=this.canvas.toDataURL(); link.click(); }
         }
 
-        // DOM Bindung
-        const canvas = document.getElementById('viewer-canvas');
-        const viewer = new GCodeViewer(canvas);
-        const uploadArea = document.getElementById('upload-area'), fileInput = document.getElementById('file-input');
-        const loadSample = document.getElementById('load-sample'), fitBtn = document.getElementById('fit-view'), resetBtn = document.getElementById('reset-view');
-        const playBtn = document.getElementById('play-btn'), stepBtn = document.getElementById('step-btn'), resetSimBtn = document.getElementById('reset-sim-btn');
-        const exportBtn = document.getElementById('export-btn'), viewTabs = document.querySelectorAll('.view-tab');
-        const speedSlider = document.getElementById('speed-slider'), lineWidthSlider = document.getElementById('line-width-slider');
-        const gridToggle = document.getElementById('grid-toggle'), rapidToggle = document.getElementById('rapid-toggle'), depthToggle = document.getElementById('depth-toggle');
-        const speedVal = document.getElementById('speed-value'), lineWidthVal = document.getElementById('line-width-value');
+        // DOM bindings
+        const canvas = document.getElementById('viewerCanvas');
+        const viewer = new PremiumGCodeViewer(canvas);
+        const uploadZone = document.getElementById('uploadZone'), fileInput = document.getElementById('fileInput');
+        const sampleBtn = document.getElementById('sampleBtn'), fitBtn = document.getElementById('fitViewBtn'), resetBtn = document.getElementById('resetViewBtn');
+        const playBtn = document.getElementById('playSimBtn'), stepBtn = document.getElementById('stepSimBtn'), resetSim = document.getElementById('resetSimBtn');
+        const exportBtn = document.getElementById('exportImgBtn'), viewTabs = document.querySelectorAll('.view-tab');
+        const speedSlider = document.getElementById('speedSlider'), lineSlider = document.getElementById('lineWidthSlider');
+        const speedVal = document.getElementById('speedValue'), lineVal = document.getElementById('lineWidthValue');
 
-        function handleFileContent(content, name, size) {
-            document.getElementById('filename').innerText = name;
-            document.getElementById('filesize').innerText = size<1024?size+' B':(size/1024).toFixed(1)+' KB';
-            const lines = content.split('\n');
-            document.getElementById('line-count').innerText = lines.length;
+        function loadGCode(content, name, size) {
+            document.getElementById('fileName').innerText = name;
+            document.getElementById('fileSize').innerText = size<1024?size+' B':(size/1024).toFixed(1)+' KB';
+            let lines = content.split('\n');
+            document.getElementById('lineCount').innerText = lines.length;
+            document.getElementById('unitsInfo').innerText = 'mm';
             viewer.parseGCode(content);
-            const previewDiv = document.getElementById('gcode-preview');
-            previewDiv.innerHTML = lines.slice(0,80).map(l=>`<div style="font-family:monospace;">${escapeHtml(l.substring(0,80))}</div>`).join('');
-            if(lines.length>80) previewDiv.innerHTML+=`<div style="color:#aaa;">... +${lines.length-80} Zeilen</div>`;
+            let previewDiv = document.getElementById('gcodePreview');
+            previewDiv.innerHTML = lines.slice(0,70).map(l=>`<div style="font-family:monospace; font-size:0.7rem;">${escapeHtml(l.substring(0,80))}</div>`).join('');
+            if(lines.length>70) previewDiv.innerHTML+=`<div style="color:#aaa;">... +${lines.length-70} Zeilen</div>`;
         }
-        function escapeHtml(str){ return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;});}
-        function handleFile(file){ const reader=new FileReader(); reader.onload=e=>handleFileContent(e.target.result, file.name, file.size); reader.readAsText(file); }
-        uploadArea.addEventListener('click',()=>fileInput.click()); uploadArea.addEventListener('dragover',e=>e.preventDefault()); uploadArea.addEventListener('drop',e=>{ e.preventDefault(); if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+        function escapeHtml(str){ return str.replace(/[&<>]/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+        function handleFile(file){ const reader=new FileReader(); reader.onload=e=>loadGCode(e.target.result, file.name, file.size); reader.readAsText(file); }
+        uploadZone.addEventListener('click',()=>fileInput.click());
+        uploadZone.addEventListener('dragover',e=>e.preventDefault());
+        uploadZone.addEventListener('drop',e=>{ e.preventDefault(); if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
         fileInput.addEventListener('change',e=>{if(e.target.files[0]) handleFile(e.target.files[0]);});
-        loadSample.addEventListener('click',()=>{ handleFileContent(`% (SAMPLE: Quadrat mit Bohrung)
-G90 G21 G17
+        sampleBtn.addEventListener('click',()=>{ loadGCode(`G90 G21 G17
 G0 X0 Y0
-G1 Z-1 F100
-X10 Y0
-G2 X10 Y10 I0 J5
-G1 X0 Y10
+G1 Z-1 F200
+X15 Y0
+G2 X15 Y15 I0 J7.5
+G1 X0 Y15
 G0 Z5
-M30`, 'beispiel.nc', 280); });
+M30`, 'Beispiel.nc', 180); });
         fitBtn.addEventListener('click',()=>viewer.fitToView());
-        resetBtn.addEventListener('click',()=>{ viewer.view2D.zoom=1; viewer.view2D.panX=0; viewer.view2D.panY=0; viewer.view3D.yaw=45; viewer.view3D.pitch=30; viewer.view3D.distance=150; viewer.fitToView(); });
-        playBtn.addEventListener('click',()=>viewer.play());
-        stepBtn.addEventListener('click',()=>viewer.step());
-        resetSimBtn.addEventListener('click',()=>viewer.resetSim());
+        resetBtn.addEventListener('click',()=>{ viewer.view2D.zoom=1; viewer.view2D.panX=0; viewer.view2D.panY=0; viewer.view3D.yaw=-30; viewer.view3D.pitch=35; viewer.view3D.distance=180; viewer.fitToView(); });
+        playBtn.addEventListener('click',()=>viewer.playSim());
+        stepBtn.addEventListener('click',()=>viewer.stepSim());
+        resetSim.addEventListener('click',()=>viewer.resetSim());
         exportBtn.addEventListener('click',()=>viewer.exportImage());
         viewTabs.forEach(t=>t.addEventListener('click',()=>viewer.setView(t.dataset.view)));
-        speedSlider.addEventListener('input',()=>{ const vals=['Sehr langsam','Langsam','Mittel','Schnell']; speedVal.innerText=vals[speedSlider.value-1]; if(viewer.isPlaying){ viewer.stopPlayback(); viewer.play(); } });
-        lineWidthSlider.addEventListener('input',()=>{ const vals=['Dünn','Mittel','Dick']; lineWidthVal.innerText=vals[lineWidthSlider.value-1]; viewer.draw(); });
-        gridToggle.addEventListener('change',()=>viewer.draw()); rapidToggle.addEventListener('change',()=>viewer.draw()); depthToggle.addEventListener('change',()=>viewer.draw());
+        speedSlider.addEventListener('input',()=>{ const v=['Sehr langsam','Langsam','Mittel','Schnell']; speedVal.innerText=v[speedSlider.value-1]; if(viewer.isPlaying){ viewer.stopSim(); viewer.playSim(); } });
+        lineSlider.addEventListener('input',()=>{ const v=['Dünn','Mittel','Dick']; lineVal.innerText=v[lineSlider.value-1]; viewer.draw(); });
+        document.getElementById('gridToggle').addEventListener('change',()=>viewer.draw());
+        document.getElementById('rapidToggle').addEventListener('change',()=>viewer.draw());
+        document.getElementById('depthToggle').addEventListener('change',()=>viewer.draw());
         viewer.handleResize();
     })();
 </script>
